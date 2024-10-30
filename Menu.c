@@ -50,7 +50,6 @@ bool menuChoisir(){
             printf("Erreur : Nombre invalide");
             while(getchar()!= '\n');
             return 1;
-
     }
 }
 
@@ -101,7 +100,7 @@ int menuPersonnalisation(int modeDeJeu){
                     printf("Erreur, rentrez un nombre valide");
                     while(getchar()!= '\n');
             }
-        }while(!(choix<5 && choix>0));
+        } while(!(choix<5 && choix>0));
     }
 }
 
