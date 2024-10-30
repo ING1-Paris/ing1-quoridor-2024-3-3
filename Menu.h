@@ -2,6 +2,7 @@
 #define BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_MENU_H
 #include <stdbool.h>
 #include <stdio.h>
+#include "windows.h"
 bool menu();
 void menuAfficher();
 bool menuChoisir();

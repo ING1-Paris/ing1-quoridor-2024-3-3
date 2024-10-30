@@ -1,5 +1,3 @@
-//
-// Created by Travail on 25/10/2024.
-//
-
 #include "Jeu.h"
+
+//int plateau[17][17] = {{0}};

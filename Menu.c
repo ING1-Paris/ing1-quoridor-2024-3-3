@@ -17,11 +17,11 @@ void menuAfficher(){
     printf("| | | | | | |/ _ \\| '__| |/ _` |/ _ \\| '__|\n");
     printf("| |_| | |_| | (_) | |  | | (_| | (_) | |   \n");
     printf(" \\__\\_\\\\__,_|\\___/|_|  |_|\\__,_|\\___/|_|   \n");
-    printf("Tapez 1 : Commencer partie\n");
-    printf("Tapez 2 : Continuer partie\n");
-    printf("Tapez 3 : Afficher aide\n");
-    printf("Tapez 4 : Afficher score\n");
-    printf("Tapez 5 : Quitter le jeu\n");
+    printf("          Commencer partie\n");
+    printf("          Continuer partie\n");
+    printf("          Afficher aide\n");
+    printf("          Afficher score\n");
+    printf("          Quitter le jeu\n");
 }
 
 //Menu pour choisir la fonctionnalité souhaitée
@@ -30,6 +30,7 @@ void menuAfficher(){
 bool menuChoisir(){
     int choix;
     scanf("%d", &choix);
+    system("cls");
     switch(choix){
         case 1:
             //Commencer partie
@@ -37,8 +38,8 @@ bool menuChoisir(){
         case 2:
             //Continuer partie
             return 1;
-        case 3:
-            //Afficher aide
+        case 3: //Afficher règles
+            reglesAfficher();
             return 1;
         case 4:
             //menu score
@@ -46,7 +47,7 @@ bool menuChoisir(){
         case 5: //Quitter
             return 0;
         default://Cas où l'entré dans la console ne correspond à rien
-            printf("Nombre invalide");
+            printf("Erreur : Nombre invalide");
             while(getchar()!= '\n');
             return 1;
 
@@ -121,10 +122,8 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
-    printf("\nPour sortir, taper n'importe quoi dans la console\n");
     printf("\n***********************************************\n");
-    int temp;
-    scanf("%d", &temp);
+    system("pause");
 }
 
 // Fonction menu Score
