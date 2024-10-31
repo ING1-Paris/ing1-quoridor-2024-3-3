@@ -10,7 +10,7 @@
 //Fonction qui affiche les bords inférieur et supérieur du plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), ligne(numéro ligne), tableau(plateau)
 //OUT : affichage bord supérieur et inférieur
-void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]){
+void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]) {
     printf("\n   ");     //Décalage pour les lettres
     printf("%c", angleDebut); //Ecriture de l'angle de début
     for (int i =0; i < 2*(Cases - 1); i+=2) { //augmente de 2 par 2 pour accéder à la zone barrière et joueur
@@ -34,22 +34,24 @@ void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int
 //OUT : affichage des lignes
 void afficher_ligne (int tableau[17][17], int ligne) {
     printf("\n   "); //Décalage pour les lettres
-    if(tableau[1 + 2*ligne][0] >= 5){ //Vérification si une barrière touche le bord gauche
+    if (tableau[1 + 2*ligne][0] >= 5){ //Vérification si une barrière touche le bord gauche
         printf("%c", 0xCC); //S'il le touche, affiche |-
-    }else{
+    }
+    else {
         printf("%c", BarreV); //sinon seulement une barre verticale
     }
     for (int i = 0; i < 2*(Cases - 1); i+=2) {
-        if(tableau[1 + 2*ligne][i] >= 5){ //Si une barrière est présente dans le plateau:
+        if (tableau[1 + 2*ligne][i] >= 5){ //Si une barrière est présente dans le plateau:
             for (int j = 0; j < 4; j++) { //écrit 4 barres horizontales pour la représenter
                 printf("%c", BarreH);
             }
-        }else{
+        }
+        else {
             for (int j = 0; j < 4; j++) {
                 printf("%c", Espace); //Sinon écrit 4 espaces
             }
         }
-        switch(tableau[1 + 2*ligne][i+1]){ //Si dans l'intersection entre deux barrières :
+        switch (tableau[1 + 2*ligne][i+1]){ //Si dans l'intersection entre deux barrières :
             case 5:
                 printf("%c", BarreH); //il y a une barrière horizontal (5) la représente
                 break;
@@ -63,18 +65,20 @@ void afficher_ligne (int tableau[17][17], int ligne) {
                 printf("%c", 0xFA); //sinon on met un point
         }
     }
-    if(tableau[1 + 2*ligne][16] >= 5){ //Si une barrière est présente à la case 16:
+    if (tableau[1 + 2*ligne][16] >= 5){ //Si une barrière est présente à la case 16:
         for (int j = 0; j < 4; j++) {
             printf("%c", BarreH); //écrit 4 barres horizontales pour la représenter
         }
-    }else{
+    }
+    else {
         for (int j = 0; j < 4; j++) {
             printf("%c", Espace); //Sinon écrit 4 espaces
         }
     }
-    if(tableau[1 + 2*ligne][16] >= 5){ //Vérification si une barrière touche le bord droit
+    if (tableau[1 + 2*ligne][16] >= 5){ //Vérification si une barrière touche le bord droit
         printf("%c", 0xB9); //S'il le touche, affiche -|
-    }else{
+    }
+    else {
         printf("%c", BarreV);//sinon seulement une barre verticale
     }
 }
@@ -89,7 +93,7 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
         for (int i = 0; i < 2; i++) {   //Pour représenter la case sur un espacement de 4n on écrit d'abord 2 espaces
             printf("%c",  Espace);
         }
-        switch(tableau[2*ligne][j]){ //Puis on cherche à savoir si un jour est sur la case du plateau :
+        switch (tableau[2*ligne][j]){ //Puis on cherche à savoir si un jour est sur la case du plateau :
             case 1: //Si c'est le joueur 1, on écrit son jeton en bleu foncé
                 Color(1, 0);
                 printf("%c", Jetons[0]);
@@ -117,7 +121,8 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
         if (j!=16){
             if(tableau[2*ligne][j+1] >= 5){ //S'il y a contact entre barrière et bord, remplace la barre verticale
                 printf("%c", BarreV);
-            }else{
+            }
+            else {
                 printf("%c", Espace);  //Sinon on écrit un espace
             }
         }

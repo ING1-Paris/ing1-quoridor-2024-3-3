@@ -4,7 +4,7 @@
 //Menu principale qui gère les différents menues
 //IN : rien
 //OUT : 1 si le joueur décide de jouer sinon 0 lorsqu'il décide de quitter
-bool menu(){
+bool menu() {
     menuAfficher();
     return menuChoisir();
 }
@@ -12,7 +12,7 @@ bool menu(){
 //Menu qui affiche le menu pricipale
 //IN : rien
 //OUT : rien
-void menuAfficher(){
+void menuAfficher() {
     printf("  ___                   _     _            \n");
     printf(" / _ \\ _   _  ___  _ __(_) __| | ___  _ __ \n");
     printf("| | | | | | |/ _ \\| '__| |/ _` |/ _ \\| '__|\n");
@@ -28,7 +28,7 @@ void menuAfficher(){
 //Menu pour choisir la fonctionnalité souhaitée
 //IN : rien
 //OUT : menu souhaité (1 : Commencer partie, 2 : continuer, 3 : aides, 4 : Scores, 5: Quitter)
-bool menuChoisir(){
+bool menuChoisir() {
     int choix;
     scanf("%d", &choix);
     system("cls");
@@ -51,7 +51,6 @@ bool menuChoisir(){
             printf("Erreur : Nombre invalide");
             while(getchar()!= '\n');
             return 1;
-
     }
 }
 
@@ -59,8 +58,9 @@ bool menuChoisir(){
 //IN : rien
 //OUT : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
 //Non utilisé car doit fonctionner avec MenuPersonnalisation
-int menuModeDeJeu(){
+int menuModeDeJeu() {
     int choix;
+    printf("Choissisez votre mode de jeu");
     printf("Tapez 1 : Mode 2 joueurs\n");
     printf("Tapez 2 : Mode 4 joueurs\n");
     scanf("%d", &choix);
@@ -71,7 +71,7 @@ int menuModeDeJeu(){
 //IN : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
 //OUT : pseudo et pion de chaque joueur
 //Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
-int menuPersonnalisation(int modeDeJeu){
+int menuPersonnalisation(int modeDeJeu) {
     int choix;
     char pseudo, pion;
     for(int i=1; i<=2*modeDeJeu; i++){
@@ -85,7 +85,7 @@ int menuPersonnalisation(int modeDeJeu){
             printf("Tapez 3 : %c\n", 0x05);
             printf("Tapez 4 : %c\n", 0x06);
             scanf("%d", &choix);
-            switch (choix){
+            switch (choix) {
                 case 1:
                     //choix coeur
                     break;
@@ -102,7 +102,7 @@ int menuPersonnalisation(int modeDeJeu){
                     printf("Erreur, rentrez un nombre valide");
                     while(getchar()!= '\n');
             }
-        }while(!(choix<5 && choix>0));
+        } while(!(choix<5 && choix>0));
     }
 }
 
@@ -112,7 +112,7 @@ int menuPersonnalisation(int modeDeJeu){
 //IN : rien
 //OUT :rien
 void reglesAfficher() {
-    printf("\n********** Aide - Regles du QUORIDOR **********\n");
+    printf("\n********** Aide - Regles du QUORIDOR **********\n\n");
     printf("Objectif :\n");
     printf("    Chaque joueur doit atteindre la ligne opposee du plateau.\n");
     printf("    Le premier joueur a y parvenir gagne la partie.\n\n");
