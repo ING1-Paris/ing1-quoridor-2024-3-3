@@ -111,7 +111,7 @@ int menuPersonnalisation(int modeDeJeu) {
 //IN : rien
 //OUT :rien
 void reglesAfficher() {
-    printf("\n********** Aide - Regles du QUORIDOR **********\n");
+    printf("\n********** Aide - Regles du QUORIDOR **********\n\n");
     printf("Objectif :\n");
     printf("    Chaque joueur doit atteindre la ligne opposee du plateau.\n");
     printf("    Le premier joueur a y parvenir gagne la partie.\n\n");
