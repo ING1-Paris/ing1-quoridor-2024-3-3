@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Jeu.h"
 
 //Menu principale qui gère les différents menues
 //IN : rien
@@ -32,8 +33,8 @@ bool menuChoisir(){
     scanf("%d", &choix);
     system("cls");
     switch(choix){
-        case 1:
-            //Commencer partie
+        case 1://Commencer partie
+            executionJeu(4);
             return 1;
         case 2:
             //Continuer partie

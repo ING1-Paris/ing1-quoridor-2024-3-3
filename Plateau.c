@@ -1,22 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
+#include "main.h"
 
 #define Cases 9 // nombre de cases par lignes/colonnes
 #define BarreH 0xCD // Barres Horizontales
 #define BarreV 0xBA // Barres Verticales
 #define BarreC 0xCE // Barres Croix
 #define Espace 0x20 // Espace
-
-
-//Fonction qui permet de mettre de la couleur dans la console
-//IN :  couleurDuTexte, couleurDeFond
-//OUT : affichage en couleur
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
-}
 
 //Fonction qui affiche les bords inférieur et supérieur du plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), ligne(numéro ligne), tableau(plateau)
@@ -93,7 +82,7 @@ void afficher_ligne (int tableau[17][17], int ligne) {
 //Fonctions qui affiche les interlignes du plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), ligne(numéro ligne), tableau(plateau)
 //OUT : affichage des interlignes
-void afficher_interligne(int tableau[17][17], int ligne, char lettre, char JetonJ1, char JetonJ2, char JetonJ3, char JetonJ4){
+void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jetons[4]){
     printf("\n%c  ", lettre);  //Affichage des lettres pour représenter l'indice des cases
     printf("%c", BarreV); //Affiche le bord gauche
     for (int j = 0; j <= 2*(Cases - 1); j+=2) { //Pour représenter la case sur un espacement de 4n on écrit 2 espaces
@@ -103,22 +92,22 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
         switch(tableau[2*ligne][j]){ //Puis on cherche à savoir si un jour est sur la case du plateau :
             case 1: //Si c'est le joueur 1, on écrit son jeton en bleu foncé
                 Color(1, 0);
-                printf("%c", JetonJ1);
+                printf("%c", Jetons[0]);
                 Color(15, 0);
                 break;
             case 2: //Si c'est le joueur 2, on écrit son jeton en rouge foncé
                 Color(4, 0);
-                printf("%c", JetonJ2);
+                printf("%c", Jetons[1]);
                 Color(15, 0);
                 break;
             case 3: //Si c'est le joueur 3, on écrit son jeton en jaune
                 Color(14, 0);
-                printf("%c", JetonJ3);
+                printf("%c", Jetons[2]);
                 Color(15, 0);
                 break;
             case 4: //Si c'est le joueur 4, on écrit son jeton en vert
                 Color(2, 0);
-                printf("%c", JetonJ4);
+                printf("%c", Jetons[4]);
                 Color(15, 0);
                 break;
             default :
@@ -139,25 +128,18 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
 //Fonctions qui gère les sous-programmes afin d'afficher le plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), tableau(plateau)
 //OUT : affichage des interlignes
-void AffichagePlateau(int plateau[17][17], char JetonJ1, char JetonJ2, char JetonJ3, char JetonJ4) {
-    system("cls");
-
-    printf(" ");
-    for (int i = 1; i < 10; i++) { // Afficher le numéro des colonnes
-        printf("    %d", i);
+void affichagePlateau(int ligne, int plateau[17][17], char Jetons[4]){
+    if (ligne == 0) {
+        printf(" ");
+        for (int i = 1; i < 10; i++) {
+            printf("    %d", i);
+        }
+        afficherBord(0xC9, 0xBB, 0xCB, 0, plateau);
+    } else if (ligne == 9) {
+        afficher_interligne(plateau, 8, 'I', Jetons);
+        afficherBord(0xC8, 0xBC, 0xCA, 8, plateau);
+    } else {
+        afficher_interligne(plateau, ligne-1, 'A' + ligne-1, Jetons);
+        afficher_ligne(plateau, ligne-1);
     }
-
-    // affiche la première ligne
-    afficherBord(0xC9, 0xBB, 0xCB, 0, plateau);
-
-    // Toutes les lignes de 2 à 8
-    for (int i = 0, lettre = 'A'; i < Cases-1; i++, lettre++) { // Initialisation à la troisième car la première c'est les nombres au dessus
-        afficher_interligne(plateau, i, lettre, JetonJ1, JetonJ2, JetonJ3, JetonJ4);
-        afficher_ligne(plateau, i); //modifier le i++ pour avoir des écarts et insérer les barres verticales
-    }
-    afficher_interligne(plateau, 8, 'I', JetonJ1, JetonJ2, JetonJ3, JetonJ4);
-
-    // Dernière ligne
-    afficherBord(0xC8, 0xBC, 0xCA, 8, plateau);
-
 }
