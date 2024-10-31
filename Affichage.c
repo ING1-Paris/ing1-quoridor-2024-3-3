@@ -5,7 +5,7 @@
 
 //Fonction qui affiche le Jeu
 //IN :  plateau, Jetons, Pseudos, nombreDeJoueur
-//OUT : affichage plateau avec
+//OUT : affichage plateau avec informations
 void affichageJeu(int plateau[17][17], char Jetons[4], int nombreDeJoueur){
     system("cls");
     for(int i=0; i<10; i++){  //Affiche pour chaque ligne
@@ -14,6 +14,9 @@ void affichageJeu(int plateau[17][17], char Jetons[4], int nombreDeJoueur){
     }
 }
 
+//Fonction qui affiche les informations à droite du plateau
+//IN :  ligne, nombreDeJoueur
+//OUT : affichage informations
 void affichageInformations(int ligne, int nombreDeJoueur){
     switch(ligne){
         case 0:

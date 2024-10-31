@@ -3,6 +3,9 @@
 #include "stdbool.h"
 #include "windows.h"
 
+//Fonction qui execute le jeu et qui correspond à la boucle de jeu
+//IN :
+//OUT :
 void executionJeu(int nombreDeJoueur){
     int plateau[17][17] = {{0}};
     char Jetons[4] = {'0'};
