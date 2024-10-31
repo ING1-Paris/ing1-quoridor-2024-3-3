@@ -21,7 +21,7 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
 //Fonction qui affiche les bords inférieur et supérieur du plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), ligne(numéro ligne), tableau(plateau)
 //OUT : affichage bord supérieur et inférieur
-void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]){
+void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]) {
     printf("\n   ");     //Décalage pour les lettres
     printf("%c", angleDebut); //Ecriture de l'angle de début
     for (int i =0; i < 2*(Cases - 1); i+=2) { //augmente de 2 par 2 pour accéder à la zone barrière et joueur
@@ -97,7 +97,7 @@ void afficher_ligne (int tableau[17][17], int ligne) {
 //Fonctions qui affiche les interlignes du plateau
 //IN :  angleDebut (hexa ANSI), angleFin (hexa ANSI), intersection (hexa ANSI), ligne(numéro ligne), tableau(plateau)
 //OUT : affichage des interlignes
-void afficher_interligne(int tableau[17][17], int ligne, char lettre, char JetonJ1, char JetonJ2, char JetonJ3, char JetonJ4){
+void afficher_interligne(int tableau[17][17], int ligne, char lettre, char JetonJ1, char JetonJ2, char JetonJ3, char JetonJ4) {
     printf("\n%c  ", lettre);  //Affichage des lettres pour représenter l'indice des cases
     printf("%c", BarreV); //Affiche le bord gauche
     for (int j = 0; j <= 2*(Cases - 1); j+=2) { //Pour représenter la case sur un espacement de 4n on écrit 2 espaces
