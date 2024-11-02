@@ -123,7 +123,7 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
-    printf("\n*\n");
+    printf("\n***********************************************\n");
     system("pause");
 }
 

@@ -21,7 +21,7 @@ void executionJeu(int nombreDeJoueur) {
     }
     bool execution = 1, tourJoueur = 1;
     while (execution) {
-        affichageJeu(plateau, Jetons, 4);
+        affichageJeu(plateau, Jetons, nombreDeJoueur);
         while (tourJoueur) {
             // Mouvement Joueur
             // Placer barrière
