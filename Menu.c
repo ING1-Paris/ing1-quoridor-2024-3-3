@@ -34,7 +34,7 @@ bool menuChoisir() {
     system("cls");
     switch(choix){
         case 1://Commencer partie
-            executionJeu(4);
+            executionJeu(menuModeDeJeu());
             return 1;
         case 2:
             //Continuer partie
@@ -57,14 +57,14 @@ bool menuChoisir() {
 //Menu pour choisir le mode de jeu
 //IN : rien
 //OUT : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
-//Non utilisé car doit fonctionner avec MenuPersonnalisation
 int menuModeDeJeu() {
     int choix;
-    printf("Choissisez votre mode de jeu");
+    printf("Choissisez votre mode de jeu\n");
     printf("Tapez 1 : Mode 2 joueurs\n");
     printf("Tapez 2 : Mode 4 joueurs\n");
     scanf("%d", &choix);
-    return choix;
+    system("cls");
+    return choix*2;
 }
 
 //Menu pour personnaliser le joueur en début de partie.
@@ -123,9 +123,8 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
-    printf("\n***********************************************\n");
+    printf("\n*\n");
     system("pause");
 }
 
 // Fonction menu Score
-
