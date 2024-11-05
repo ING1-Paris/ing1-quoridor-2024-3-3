@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "main.h"
+#include "menu.h"
 
 #define Cases 9 // nombre de cases par lignes/colonnes
 #define BarreH 0xCD // Barres Horizontales

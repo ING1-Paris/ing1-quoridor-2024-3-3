@@ -10,5 +10,6 @@ bool menuChoisir();
 void reglesAfficher();
 int menuModeDeJeu();
 int menuPersonnalisation(int modeDeJeu);
+void Color(int couleurDuTexte,int couleurDeFond);
 
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_MENU_H

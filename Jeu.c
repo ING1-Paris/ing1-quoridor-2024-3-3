@@ -1,13 +1,14 @@
 #include "Jeu.h"
+#include "Menu.h"
 #include "Affichage.h"
 #include "stdbool.h"
-#include "windows.h"
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 // IN :
 // OUT :
 void executionJeu(int nombreDeJoueur) {
     int plateau[17][17] = {{0}}; // matrice[ligne][colonne] : 9 cases Joueur, 8 cases barrières.
+    //menuPersonnalisation(nombreDeJoueur);
     char Jetons[4];
     Jetons[0] = '#'; // Jeton J1
     Jetons[1] = '@'; // Jeton J2

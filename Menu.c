@@ -68,13 +68,12 @@ int menuModeDeJeu() {
 }
 
 //Menu pour personnaliser le joueur en début de partie.
-//IN : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
+//IN : nombreDeJoueur (1 : 2 joueurs, 2 : 4 joueurs)
 //OUT : pseudo et pion de chaque joueur
 //Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
-int menuPersonnalisation(int modeDeJeu) {
+int menuPersonnalisation(int nombreDeJoueur) {
     int choix;
-    char pseudo, pion;
-    for(int i=1; i<=2*modeDeJeu; i++){
+    for(int i=1; i<=2*nombreDeJoueur; i++){
         printf("Joueur %d :\n", i);
         printf("Entrez votre pseudo :\n");
         //Scanf chaine de caractère
@@ -128,3 +127,12 @@ void reglesAfficher() {
 }
 
 // Fonction menu Score
+
+//Fonction qui permet de mettre de la couleur dans la console
+//IN :  couleurDuTexte, couleurDeFond
+//OUT : affichage en couleur
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}

@@ -10,7 +10,7 @@ add_executable(Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
         Jeu.c
         Plateau.c
         Plateau.h
-        main.h
         Affichage.h
         Affichage.c
+        main.h
 )
