@@ -79,16 +79,16 @@ int menuPersonnalisation(int nombreDeJoueur, char* Jeton[4], char* pseudo[4][20]
             switch (choix) {
                 case 1:
                     *Jeton[i] = 0x03; //choix coeur
-                break;
+                    break;
                 case 2:
                     *Jeton[i] = 0x04; //choix trèfle
-                break;
+                    break;
                 case 3:
                     *Jeton[i] = 0x05; //choix carreau
-                break;
+                    break;
                 case 4 :
                     *Jeton[i] = 0x06; //choix pique
-                break;
+                    break;
                 default :
                     printf("Erreur, rentrez un nombre valide");
                 while(getchar()!= '\n');
@@ -117,12 +117,3 @@ void reglesAfficher() {
 }
 
 // Fonction menu Score
-
-//Fonction qui permet de mettre de la couleur dans la console
-//IN :  couleurDuTexte, couleurDeFond
-//OUT : affichage en couleur
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
-}
