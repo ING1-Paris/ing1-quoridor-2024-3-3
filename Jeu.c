@@ -64,22 +64,22 @@ Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour){
     }
 }
 
-bool conditionVictoire(int tour, Joueur* J){
-    switch(tour){
+bool conditionVictoire(int tour, Joueur* J) {
+    switch (tour) {
         case 1: //Condition Victoire J1
-            if(J->x == 0){
+            if (J->x == 0) {
                 return 1;
             }
         case 2: //Condition Victoire J2
-            if(J->x == 16){
+            if (J->x == 16) {
                 return 1;
             }
         case 3: //Condition Victoire J3
-            if(J->y == 16){
+            if (J->y == 16) {
                 return 1;
             }
         case 4: //Condition Victoire J4
-            if(J->y == 0){
+            if (J->y == 0) {
                 return 1;
             }
         default :  //Condition de non-Victoire
