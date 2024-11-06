@@ -128,6 +128,30 @@ Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/build
 .PHONY : Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3/fast
 
+Affichage.obj: Affichage.c.obj
+.PHONY : Affichage.obj
+
+# target to build an object file
+Affichage.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj
+.PHONY : Affichage.c.obj
+
+Affichage.i: Affichage.c.i
+.PHONY : Affichage.i
+
+# target to preprocess a source file
+Affichage.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.i
+.PHONY : Affichage.c.i
+
+Affichage.s: Affichage.c.s
+.PHONY : Affichage.s
+
+# target to generate assembly for a file
+Affichage.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.s
+.PHONY : Affichage.c.s
+
 Jeu.obj: Jeu.c.obj
 .PHONY : Jeu.obj
 
@@ -233,6 +257,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
+	@echo ... Affichage.obj
+	@echo ... Affichage.i
+	@echo ... Affichage.s
 	@echo ... Jeu.obj
 	@echo ... Jeu.i
 	@echo ... Jeu.s

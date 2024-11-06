@@ -10,8 +10,6 @@ bool menu() {
 }
 
 //Menu qui affiche le menu pricipale
-//IN : rien
-//OUT : rien
 void menuAfficher() {
     printf("  ___                   _     _            \n");
     printf(" / _ \\ _   _  ___  _ __(_) __| | ___  _ __ \n");
@@ -26,13 +24,11 @@ void menuAfficher() {
 }
 
 //Menu pour choisir la fonctionnalité souhaitée
-//IN : rien
-//OUT : menu souhaité (1 : Commencer partie, 2 : continuer, 3 : aides, 4 : Scores, 5: Quitter)
 bool menuChoisir() {
     int choix;
     scanf("%d", &choix);
     system("cls");
-    switch(choix){
+    switch(choix) {
         case 1://Commencer partie
             executionJeu(menuModeDeJeu());
             return 1;
@@ -55,8 +51,6 @@ bool menuChoisir() {
 }
 
 //Menu pour choisir le mode de jeu
-//IN : rien
-//OUT : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
 int menuModeDeJeu() {
     int choix;
     printf("Choissisez votre mode de jeu\n");
@@ -64,17 +58,15 @@ int menuModeDeJeu() {
     printf("Tapez 2 : Mode 4 joueurs\n");
     scanf("%d", &choix);
     system("cls");
-    return choix*2;
+    return choix * 2;
 }
 
-//Menu pour personnaliser le joueur en début de partie.
-//IN : mode de jeu (1 : 2 joueurs, 2 : 4 joueurs)
-//OUT : pseudo et pion de chaque joueur
+//Menu pour personnaliser le joueur en début de partie
 //Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
 int menuPersonnalisation(int modeDeJeu) {
     int choix;
     char pseudo, pion;
-    for(int i=1; i<=2*modeDeJeu; i++){
+    for(int i = 1; i <= 2 * modeDeJeu; i++) {
         printf("Joueur %d :\n", i);
         printf("Entrez votre pseudo :\n");
         //Scanf chaine de caractère
@@ -102,15 +94,13 @@ int menuPersonnalisation(int modeDeJeu) {
                     printf("Erreur, rentrez un nombre valide");
                     while(getchar()!= '\n');
             }
-        } while(!(choix<5 && choix>0));
+        } while(!(choix < 5 && choix > 0));
     }
 }
 
 // Fonction pour Continuer la partie du Quoridor
 
 // Fonction pour afficher les règles du Quoridor
-//IN : rien
-//OUT :rien
 void reglesAfficher() {
     printf("\n********** Aide - Regles du QUORIDOR **********\n\n");
     printf("Objectif :\n");
@@ -123,7 +113,7 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
-    printf("\n*\n");
+    printf("\n************************************************\n\n");
     system("pause");
 }
 

@@ -5,7 +5,7 @@
 
 int main() {
     bool execution = 1;
-    while(execution){
+    while(execution) {
         execution = menu();
         system("cls");
     }
@@ -13,10 +13,7 @@ int main() {
 }
 
 //Fonction qui permet de mettre de la couleur dans la console
-//IN :  couleurDuTexte, couleurDeFond
-//OUT : affichage en couleur
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+void Color(int couleurDuTexte,int couleurDeFond) {
+    HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H, couleurDeFond * 16 + couleurDuTexte);
 }

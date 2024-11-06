@@ -4,21 +4,17 @@
 #include "windows.h"
 
 //Fonction qui affiche le Jeu
-//IN :  plateau, Jetons, Pseudos, nombreDeJoueur
-//OUT : affichage plateau avec informations
-void affichageJeu(int plateau[17][17], char Jetons[4], int nombreDeJoueur){
+void affichageJeu(int plateau[17][17], char Jetons[4], int nombreDeJoueur) {
     system("cls");
-    for(int i=0; i<10; i++){  //Affiche pour chaque ligne
+    for(int i = 0; i < 10; i++) {  //Affiche pour chaque ligne
         affichagePlateau(i, plateau, Jetons); //Le plateau
         affichageInformations(i, nombreDeJoueur);
     }
 }
 
 //Fonction qui affiche les informations à droite du plateau
-//IN :  ligne, nombreDeJoueur
-//OUT : affichage informations
-void affichageInformations(int ligne, int nombreDeJoueur){
-    switch(ligne){
+void affichageInformations(int ligne, int nombreDeJoueur) {
+    switch(ligne) {
         case 0:
             printf("    Nombre de joueurs : %d", nombreDeJoueur);
             break;
@@ -30,6 +26,5 @@ void affichageInformations(int ligne, int nombreDeJoueur){
             break;
         case 3:
             break;
-
     }
 }

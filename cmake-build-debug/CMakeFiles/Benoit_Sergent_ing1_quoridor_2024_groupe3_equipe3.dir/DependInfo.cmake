@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/Affichage.c" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj" "gcc" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj.d"
   "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/Jeu.c" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj" "gcc" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj.d"
   "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/Menu.c" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj" "gcc" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj.d"
   "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/Plateau.c" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.obj" "gcc" "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.obj.d"
