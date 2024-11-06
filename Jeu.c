@@ -45,27 +45,33 @@ void initialiserJoueur() {
     Joueur1.y = 8;
     strcpy(Joueur1.pseudo, pseudo[0]);
     Joueur1.pion = Jeton[0];
+    Joueur1.nb_barrieres = 10;
 
     structureJoueur Joueur2;
     Joueur2.x = 0;    // placement du joueur 2 en haut au milieu
     Joueur2.y = 8;
     strcpy(Joueur2.pseudo, pseudo[1]);
     Joueur2.pion = Jeton[1];
+    Joueur2.nb_barrieres = 10;
 
     structureJoueur Joueur4;
     structureJoueur Joueur3;
 
     // Si l'utilisateur choisi le mode de jeu 4 joueurs alors on initialise 2 joueurs de plus
     if (nbJoueurs == 4) {
+        Joueur1.nb_barrieres = 5;
+        Joueur2.nb_barrieres = 5;
 
         Joueur3.x = 8;    // placement du joueur 3 a gauche au milieu
         Joueur3.y = 0;
         strcpy(Joueur3.pseudo, pseudo[2]);
         Joueur3.pion = Jeton[2];
+        Joueur3.nb_barrieres = 5;
 
         Joueur4.x = 8;    // placement du joueur 4 a droite au milieu
         Joueur4.y = 16;
         strcpy(Joueur4.pseudo, pseudo[3]);
         Joueur4.pion = Jeton[3];
+        Joueur4.nb_barrieres = 5;
     }
 }
