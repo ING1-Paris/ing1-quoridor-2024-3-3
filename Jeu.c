@@ -1,71 +1,88 @@
 #include "Jeu.h"
 #include "Affichage.h"
 #include "Menu.h"
-#include "stdbool.h"
+#include "Actions.h"
+#include "Plateau.h"
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 void executionJeu(int nombreDeJoueur) {
     int plateau[17][17] = {{0}}; // matrice[ligne][colonne] : 9 cases Joueur, 8 cases barrières.
-    //menuPersonnalisation(nombreDeJoueur);
-    char Jetons[4];
-    Jetons[0] = '#'; // Jeton J1
-    Jetons[1] = '@'; // Jeton J2
-    plateau[8][0] = 1; // Positionne le Joueur 1 sur le bord gauche au milieu
-    plateau[8][16] = 2; // Positionne le Joueur 2 sur le bord droit au milieu
-    if (nombreDeJoueur == 4) {
-        Jetons[2] = '&'; // Jeton J3
-        Jetons[3] = '$'; // Jeton J4
-        plateau[0][8] = 3; // Positionne le Joueur 3 sur le bord du haut au milieu
-        plateau[16][8] = 4; // Positionne le Joueur 4 sur le bord du bas au milieu
+    initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
+
+    char pseudo[4][20]; // Tableaux pour stocker les pseudos
+    char jeton[4]; // Tableaux pour stocker les jetons
+    menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
+
+    Joueur J1, J2, J3, J4;
+    J1 = initialiserJoueur(16, 8, pseudo[0], jeton[0], nombreDeJoueur);
+    J2 = initialiserJoueur(0, 8, pseudo[1], jeton[1], nombreDeJoueur);
+    if(nombreDeJoueur>2){
+        J3 = initialiserJoueur(8, 0, pseudo[2], jeton[2], nombreDeJoueur);
+        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur);
     }
-    bool execution = 1, tourJoueur = 1;
-    while (execution) {
-        affichageJeu(plateau, Jetons, nombreDeJoueur);
-        while (tourJoueur) {
-            // Mouvement Joueur
-            // Placer barrière
-            // Annuler tour
-            // Passer tour
+
+    int ordre[nombreDeJoueur];
+    //Fonction définir ordre (à implémenter)
+
+    for(int i = 0;; i = (i+1)%nombreDeJoueur){
+        Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
+
+        //Modification matrice
+        affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
+        if (conditionVictoire(ordre[i], JoueurActuel)){ //Condition victoire
+            break;
         }
+        actionsJoueurs(JoueurActuel);//Actions
+        system("pause");
     }
 }
 
 // Fonction pour initialiser un joueur
-void initialiserJoueur() {
-    int nbJoueurs = menuModeDeJeu();
-    // Tableaux pour stocker les pseudos et les jetons
-    char Jeton[4];
-    char pseudo[4][20];
+Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur) {
+    Joueur J;
+    J.x = x;   // placement du joueur 1 en bas au milieu
+    J.y = y;
+    strcpy(J.pseudo, pseudo);
+    J.jeton = jeton;
+    if(nombreDeJoueur ==2){
+        J.nb_barrieres = 5;
+    }else{
+        J.nb_barrieres = 10;
+    }
+    return J;
+}
 
-    menuPersonnalisation(nbJoueurs, Jeton, pseudo);
+Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour){
+    if(tour== 1){
+        return J1;
+    }else if(tour== 2){
+        return J2;
+    }else if(tour== 3){
+        return J3;
+    }else{
+        return J4;
+    }
+}
 
-    // Dans le cas basique  nous avons 2 joueurs à initialiser
-    structureJoueur Joueur1;
-    Joueur1.x = 16;   // placement du joueur 1 en bas au milieu
-    Joueur1.y = 8;
-    strcpy(Joueur1.pseudo, pseudo[0]);
-    Joueur1.pion = Jeton[0];
-
-    structureJoueur Joueur2;
-    Joueur2.x = 0;    // placement du joueur 2 en haut au milieu
-    Joueur2.y = 8;
-    strcpy(Joueur2.pseudo, pseudo[1]);
-    Joueur2.pion = Jeton[1];
-
-    structureJoueur Joueur4;
-    structureJoueur Joueur3;
-
-    // Si l'utilisateur choisi le mode de jeu 4 joueurs alors on initialise 2 joueurs de plus
-    if (nbJoueurs == 4) {
-
-        Joueur3.x = 8;    // placement du joueur 3 a gauche au milieu
-        Joueur3.y = 0;
-        strcpy(Joueur3.pseudo, pseudo[2]);
-        Joueur3.pion = Jeton[2];
-
-        Joueur4.x = 8;    // placement du joueur 4 a droite au milieu
-        Joueur4.y = 16;
-        strcpy(Joueur4.pseudo, pseudo[3]);
-        Joueur4.pion = Jeton[3];
+bool conditionVictoire(int tour, Joueur* J){
+    switch(tour){
+        case 1: //Condition Victoire J1
+            if(J->x == 0){
+                return 1;
+            }
+        case 2: //Condition Victoire J2
+            if(J->x == 16){
+                return 1;
+            }
+        case 3: //Condition Victoire J3
+            if(J->y == 16){
+                return 1;
+            }
+        case 4: //Condition Victoire J4
+            if(J->y == 0){
+                return 1;
+            }
+        default :  //Condition de non-Victoire
+            return 0;
     }
 }

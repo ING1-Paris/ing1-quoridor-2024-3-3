@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Jeu.h"
+#include <unistd.h>
 
 //Menu principale qui gère les différents menues
 //IN : rien
@@ -45,6 +46,7 @@ bool menuChoisir() {
             return 0;
         default://Cas où l'entré dans la console ne correspond à rien
             printf("Erreur : Nombre invalide");
+            sleep(3);
             while(getchar()!= '\n');
             return 1;
     }
@@ -62,39 +64,47 @@ int menuModeDeJeu() {
 }
 
 //Menu pour personnaliser le joueur en début de partie
-//Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
-int menuPersonnalisation(int nombreDeJoueur, char* Jeton[4], char* pseudo[4][20]) {
-    int choix;
-    for(int i = 0; i < 2 * nombreDeJoueur; i++){
-        printf("Joueur %d :\n", i + 1);
-        printf("Entrez votre pseudo (20 caracteres maximum) :\n");
-        fgets(*pseudo[4], 20, stdin);
-        do {
-            printf("Choisissez votre Pion :\n");
-            printf("Tapez 1 : %c\n", 0x03);
-            printf("Tapez 2 : %c\n", 0x04);
-            printf("Tapez 3 : %c\n", 0x05);
-            printf("Tapez 4 : %c\n", 0x06);
-            scanf("%d", &choix);
-            switch (choix) {
-                case 1:
-                    *Jeton[i] = 0x03; //choix coeur
-                    break;
-                case 2:
-                    *Jeton[i] = 0x04; //choix trèfle
-                    break;
-                case 3:
-                    *Jeton[i] = 0x05; //choix carreau
-                    break;
-                case 4 :
-                    *Jeton[i] = 0x06; //choix pique
-                    break;
-                default :
-                    printf("Erreur, rentrez un nombre valide");
-                while(getchar()!= '\n');
-            }
-        } while(!(choix < 5 && choix > 0));
+void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20]){
+    for(int i=0; i<nombreDeJoueur; i++){
+        menuPseudo(i, pseudo[i]);
+        jeton[i] = menuJeton();
+        system("cls");
     }
+}
+
+//Menu pour entrer le pseudo du joueur
+void menuPseudo(int numero, char pseudo[]){
+    printf("          Joueur %d\n", numero);
+    printf("Entrez votre pseudo (20 caracteres maximum) : ");
+    while(getchar()!= '\n');
+    fgets(pseudo, 20, stdin);
+    //pseudo[strcspn(pseudo, "\n")] = '\0';
+}
+
+//Menu pour entrer le jeton du joueur
+char menuJeton(){
+    int choix;
+    do{
+        printf("\nChoisissez votre Pion : \n");
+        printf("Tapez 1 : %c\n", 0x9D);
+        printf("Tapez 2 : %c\n", 0x4F);
+        printf("Tapez 3 : %c\n", 0xFE);
+        printf("Tapez 4 : %c\n", 0xBE);
+        scanf("%d", &choix);
+        switch (choix) {
+            case 1:
+                return 0x9D; //choix rond moche
+            case 2:
+                return 0x4F; //choix rond
+            case 3:
+                return 0xFE; //choix carré
+            case 4 :
+                return 0xBE; //choix Yen
+            default :
+                printf("Erreur, rentrez un nombre valide");
+                while(getchar()!= '\n');
+        }
+    } while(!(choix < 5 && choix > 0));
 }
 
 // Fonction pour Continuer la partie du Quoridor

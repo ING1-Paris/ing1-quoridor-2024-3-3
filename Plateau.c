@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "Plateau.h"
 #include "menu.h"
 #include "fonctionsUtiles.h"
 
@@ -142,5 +143,14 @@ void affichagePlateau(int ligne, int plateau[17][17], char Jetons[4]) {
     else {
         afficher_interligne(plateau, ligne - 1, 'A' + ligne - 1, Jetons);
         afficher_ligne(plateau, ligne - 1);
+    }
+}
+
+void initialiserPlateau(int plateau[17][17], int nombreDeJoueur){
+    plateau[8][0] = 1; // Positionne le Joueur 1 sur le bord gauche au milieu
+    plateau[8][16] = 2; // Positionne le Joueur 2 sur le bord droit au milieu
+    if (nombreDeJoueur == 4) {
+        plateau[0][8] = 3; // Positionne le Joueur 3 sur le bord du haut au milieu
+        plateau[16][8] = 4; // Positionne le Joueur 4 sur le bord du bas au milieu
     }
 }

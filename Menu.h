@@ -9,6 +9,7 @@ void menuAfficher();
 bool menuChoisir();
 void reglesAfficher();
 int menuModeDeJeu();
-int menuPersonnalisation(int nombreDeJoueur, char* Jeton[4], char* pseudo[4][20]);
-
+void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20]);
+void menuPseudo(int numero, char pseudo[]);
+char menuJeton();
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_MENU_H
