@@ -5,7 +5,7 @@
 
 int main() {
     bool execution = 1;
-    while(execution){
+    while (execution) {
         execution = menu();
         system("cls");
     }

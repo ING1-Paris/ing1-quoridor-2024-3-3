@@ -124,12 +124,27 @@ CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Plateau.c -o CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\Plateau.c.s
 
+CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/flags.make
+CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj: C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/Affichage.c
+CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj -MF CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\Affichage.c.obj.d -o CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\Affichage.c.obj -c C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Affichage.c
+
+CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Affichage.c > CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\Affichage.c.i
+
+CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Affichage.c -o CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\Affichage.c.s
+
 # Object files for target Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3_OBJECTS = \
 "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/main.c.obj" \
 "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj" \
 "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj" \
-"CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.obj"
+"CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.obj" \
+"CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj"
 
 # External object files for target Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3_EXTERNAL_OBJECTS =
@@ -138,11 +153,12 @@ Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.obj
+Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/build.make
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/linkLibs.rsp
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/objects1.rsp
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe: CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

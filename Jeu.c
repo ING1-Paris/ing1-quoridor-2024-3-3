@@ -1,11 +1,8 @@
 #include "Jeu.h"
-#include "Menu.h"
 #include "Affichage.h"
 #include "stdbool.h"
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
-// IN :
-// OUT :
 void executionJeu(int nombreDeJoueur) {
     int plateau[17][17] = {{0}}; // matrice[ligne][colonne] : 9 cases Joueur, 8 cases barrières.
     //menuPersonnalisation(nombreDeJoueur);
@@ -30,4 +27,14 @@ void executionJeu(int nombreDeJoueur) {
             // Passer tour
         }
     }
+}
+
+// Fonction pour initialiser un joueur
+void initialiserJoueur(structureJoueur *joueur, int x, int y, int nb_barrieres) {
+    //joueur-> pseudo = x; //mettre pseudo ,scanf ?, utilisation de menuPersonalisation
+    //joueur-> pion = x; //mettre pseudo ,scanf ?, utilisation de menuPersonalisation
+
+    joueur->x = x;
+    joueur->y = y;
+    joueur->nb_barrieres = nb_barrieres;
 }

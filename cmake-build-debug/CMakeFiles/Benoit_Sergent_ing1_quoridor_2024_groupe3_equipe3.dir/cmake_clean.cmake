@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe"
   "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.exe.manifest"
   "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.pdb"
+  "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj"
+  "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Affichage.c.obj.d"
   "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj"
   "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Jeu.c.obj.d"
   "CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj"
