@@ -63,13 +63,14 @@ int menuModeDeJeu() {
 
 //Menu pour personnaliser le joueur en début de partie
 //Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
-int menuPersonnalisation(int modeDeJeu) {
+//Menu pour personnaliser le joueur en début de partie
+//Non finit car compétences requises trop haut niveau pour l'instant (chaine de caractère)
+int menuPersonnalisation(int nombreDeJoueur, char* Jeton[4], char* pseudo[4][20]) {
     int choix;
-    char pseudo, pion;
-    for(int i = 1; i <= 2 * modeDeJeu; i++) {
-        printf("Joueur %d :\n", i);
-        printf("Entrez votre pseudo :\n");
-        //Scanf chaine de caractère
+    for(int i = 0; i < 2 * nombreDeJoueur; i++){
+        printf("Joueur %d :\n", i + 1);
+        printf("Entrez votre pseudo (20 caracteres maximum) :\n");
+        fgets(*pseudo[4], 20, stdin);
         do {
             printf("Choisissez votre Pion :\n");
             printf("Tapez 1 : %c\n", 0x03);
@@ -79,20 +80,20 @@ int menuPersonnalisation(int modeDeJeu) {
             scanf("%d", &choix);
             switch (choix) {
                 case 1:
-                    //choix coeur
-                    break;
+                    *Jeton[i] = 0x03; //choix coeur
+                break;
                 case 2:
-                    //choix trèfle
-                    break;
+                    *Jeton[i] = 0x04; //choix trèfle
+                break;
                 case 3:
-                    //choix carreau
-                    break;
+                    *Jeton[i] = 0x05; //choix carreau
+                break;
                 case 4 :
-                    //choix pique
-                    break;
+                    *Jeton[i] = 0x06; //choix pique
+                break;
                 default :
                     printf("Erreur, rentrez un nombre valide");
-                    while(getchar()!= '\n');
+                while(getchar()!= '\n');
             }
         } while(!(choix < 5 && choix > 0));
     }

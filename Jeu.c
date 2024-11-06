@@ -1,8 +1,8 @@
-#include "Jeu.h"
-
 #include <stdio.h>
 
+#include "Jeu.h"
 #include "Affichage.h"
+#include "Menu.h"
 #include "stdbool.h"
 #include "windows.h"
 
@@ -33,11 +33,41 @@ void executionJeu(int nombreDeJoueur) {
 }
 
 // Fonction pour initialiser un joueur
-void initialiserJoueur(structureJoueur *joueur, int x, int y, int nb_barrieres) {
-    //joueur-> pseudo = x; //mettre pseudo ,scanf ?, utilisation de menuPersonalisation
-    //joueur-> pion = x; //mettre pseudo ,scanf ?, utilisation de menuPersonalisation
+void initialiserJoueur() {
+    int nbJoueurs = menuModeDeJeu();
+    // Tableaux pour stocker les pseudos et les jetons
+    char Jeton[4];
+    char pseudo[4][20];
 
-    joueur->x = x;
-    joueur->y = y;
-    joueur->nb_barrieres = nb_barrieres;
+    menuPersonnalisation(nbJoueurs, Jeton, pseudo);
+
+    // Dans le cas basique  nous avons 2 joueurs à initialiser
+    structureJoueur Joueur1;
+    Joueur1.x = 16;   // placement du joueur 1 en bas au milieu
+    Joueur1.y = 8;
+    strcpy(Joueur1.pseudo, pseudo[0]);
+    Joueur1.pion = Jeton[0];
+
+    structureJoueur Joueur2;
+    Joueur2.x = 0;    // placement du joueur 2 en haut au milieu
+    Joueur2.y = 8;
+    strcpy(Joueur2.pseudo, pseudo[1]);
+    Joueur2.pion = Jeton[1];
+
+    structureJoueur Joueur4;
+    structureJoueur Joueur3;
+
+    // Si l'utilisateur choisi le mode de jeu 4 joueurs alors on initialise 2 joueurs de plus
+    if (nbJoueurs == 4) {
+
+        Joueur3.x = 8;    // placement du joueur 3 a gauche au milieu
+        Joueur3.y = 0;
+        strcpy(Joueur3.pseudo, pseudo[2]);
+        Joueur3.pion = Jeton[2];
+
+        Joueur4.x = 8;    // placement du joueur 4 a droite au milieu
+        Joueur4.y = 16;
+        strcpy(Joueur4.pseudo, pseudo[3]);
+        Joueur4.pion = Jeton[3];
+    }
 }

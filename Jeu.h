@@ -3,13 +3,13 @@
 
 void executionJeu(int nombreDeJoueur);
 
-typedef struct{
-    char pseudo[15];
+typedef struct {
+    char pseudo[20];
     char pion;
     int x;         // Coordonnée x du joueur sur le plateau
     int y;         // Coordonnée y du joueur sur le plateau
     int nb_barrieres; // Nombre de barrières restant
-    // le score se trouve dans un fichier alors pas ici ??
+    int score;
 } structureJoueur;
 
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H
