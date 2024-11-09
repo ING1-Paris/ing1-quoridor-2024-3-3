@@ -1,7 +1,6 @@
 #ifndef BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H
 #define BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H
 #include <stdbool.h>
-void executionJeu(int nombreDeJoueur);
 
 typedef struct {
     int x;         // Coordonnée x du joueur sur le plateau
@@ -15,4 +14,6 @@ typedef struct {
 Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur);
 Joueur *ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour);
 bool conditionVictoire(int tour, Joueur* J);
+void executionJeu(int nombreDeJoueur);
+int aleatoire(int nombredejoueurs);
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H

@@ -3,6 +3,37 @@
 #include "Menu.h"
 #include "Actions.h"
 #include "Plateau.h"
+#include <stdlib.h>
+#include <time.h>
+
+int aleatoire(int nombredejoueurs) {
+    int choix;
+    srand(time(NULL));
+    choix = rand();             // Fonction alétoire en fonction du temps
+    if (nombredejoueurs == 2) { // S'il y a 2 joueurs
+        if (choix % 10 < 5) {   // On définit une fonction qui prend uniquement le chiffre des unités
+            choix = 1;          // Si il est inférieur ou égal à 4, c'est le premier joueur qui commence
+        }
+        else {                  // Sinon c'est le deuxième
+            choix = 2;
+        }
+    }
+    if (nombredejoueurs == 4) { // S'il y a 4 joueurs
+        if (choix % 12 < 3) {   // On définit une fonction mudulo 12 car 12/3=4
+            choix = 1;          // Même principe que pour 2 joueurs
+        }
+        else if (choix % 12 < 6) {
+            choix = 2;
+        }
+        else if (choix % 12 < 9) {
+            choix = 3;
+        }
+        else {
+            choix = 4;
+        }
+    }
+    return choix;
+}
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 void executionJeu(int nombreDeJoueur) {
@@ -21,15 +52,15 @@ void executionJeu(int nombreDeJoueur) {
         J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur);
     }
 
-    int ordre[nombreDeJoueur];
-    //Fonction définir ordre (à implémenter)
+    int ordre = aleatoire(nombreDeJoueur);
 
-    for(int i = 0;; i = (i+1)%nombreDeJoueur){
-        Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
+
+    for(int i = ordre;; i = (i+1)%nombreDeJoueur){
+        Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre);
 
         //Modification matrice
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
-        if (conditionVictoire(ordre[i], JoueurActuel)){ //Condition victoire
+        if (conditionVictoire(ordre, JoueurActuel)){ //Condition victoire
             break;
         }
         actionsJoueurs(JoueurActuel);//Actions
