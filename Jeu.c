@@ -76,9 +76,9 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     strcpy(J.pseudo, pseudo);
     J.jeton = jeton;
     if(nombreDeJoueur ==2){
-        J.nb_barrieres = 5;
-    }else{
         J.nb_barrieres = 10;
+    }else{
+        J.nb_barrieres = 5;
     }
     return J;
 }

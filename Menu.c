@@ -74,11 +74,11 @@ void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20])
 
 //Menu pour entrer le pseudo du joueur
 void menuPseudo(int numero, char pseudo[]){
-    printf("          Joueur %d\n", numero);
+    printf("          Joueur %d\n", numero+1);
     printf("Entrez votre pseudo (20 caracteres maximum) : ");
     while(getchar()!= '\n');
     fgets(pseudo, 20, stdin);
-    //pseudo[strcspn(pseudo, "\n")] = '\0';
+    pseudo[strcspn(pseudo, "\n")] = '\0';
 }
 
 //Menu pour entrer le jeton du joueur
