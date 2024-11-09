@@ -45,10 +45,12 @@ void executionJeu(int nombreDeJoueur) {
     menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
 
     Joueur J1, J2, J3, J4;
-    J1 = initialiserJoueur(16, 8, pseudo[0], jeton[0], nombreDeJoueur);
-    J2 = initialiserJoueur(0, 8, pseudo[1], jeton[1], nombreDeJoueur);
+    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur);
+    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur);
     if(nombreDeJoueur>2){
-        J3 = initialiserJoueur(8, 0, pseudo[2], jeton[2], nombreDeJoueur);
+        J2.x = 8;
+        J2.y = 0;
+        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur);
         J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur);
     }
 
