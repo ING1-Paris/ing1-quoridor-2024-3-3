@@ -46,8 +46,8 @@ bool menuChoisir() {
             return 0;
         default://Cas où l'entré dans la console ne correspond à rien
             printf("Erreur : Nombre invalide");
-            sleep(3);
             while(getchar()!= '\n');
+            sleep(3);
             return 1;
     }
 }
@@ -55,12 +55,20 @@ bool menuChoisir() {
 //Menu pour choisir le mode de jeu
 int menuModeDeJeu() {
     int choix;
-    printf("Choissisez votre mode de jeu\n");
-    printf("Tapez 1 : Mode 2 joueurs\n");
-    printf("Tapez 2 : Mode 4 joueurs\n");
-    scanf("%d", &choix);
-    system("cls");
-    return choix * 2;
+    while(1){
+        printf("Choissisez votre mode de jeu\n");
+        printf("Tapez 1 : Mode 2 joueurs\n");
+        printf("Tapez 2 : Mode 4 joueurs\n");
+        scanf("%d", &choix);
+        while(getchar()!= '\n');
+        system("cls");
+        if (choix==1||choix ==2){
+            return choix * 2;
+        }
+        printf("Erreur, rentrez un nombre valide");
+        sleep(2);
+        system("pause");
+    }
 }
 
 //Menu pour personnaliser le joueur en début de partie
@@ -101,8 +109,10 @@ char menuJeton(){
             case 4 :
                 return 0x06; // Pique
             default :
+                system("cls");
                 printf("Erreur, rentrez un nombre valide");
                 while(getchar()!= '\n');
+                sleep(2);
         }
     } while(!(choix < 5 && choix > 0));
 }

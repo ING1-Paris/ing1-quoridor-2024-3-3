@@ -111,7 +111,7 @@ bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur) {
             if (J->x == 16) {
                 return 1;
             }
-        break;
+            break;
         case 2: //Condition Victoire J2
             if (nombreDeJoueur == 4) {
                 if (J->y == 16) {
