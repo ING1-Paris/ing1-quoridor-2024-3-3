@@ -86,20 +86,20 @@ char menuJeton(){
     int choix;
     do{
         printf("\nChoisissez votre Pion : \n");
-        printf("Tapez 1 : %c\n", 0x9D);
-        printf("Tapez 2 : %c\n", 0x4F);
-        printf("Tapez 3 : %c\n", 0xFE);
-        printf("Tapez 4 : %c\n", 0xBE);
+        printf("Tapez 1 : %c\n", 0x03);
+        printf("Tapez 2 : %c\n", 0x04);
+        printf("Tapez 3 : %c\n", 0x05);
+        printf("Tapez 4 : %c\n", 0x06);
         scanf("%d", &choix);
         switch (choix) {
             case 1:
-                return 0x9D; //choix rond moche
+                return 0x03; // Coeur
             case 2:
-                return 0x4F; //choix rond
+                return 0x04; // Carreau
             case 3:
-                return 0xFE; //choix carré
+                return 0x05; // Trèfle
             case 4 :
-                return 0xBE; //choix Yen
+                return 0x06; // Pique
             default :
                 printf("Erreur, rentrez un nombre valide");
                 while(getchar()!= '\n');
