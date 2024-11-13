@@ -60,14 +60,14 @@ int menuModeDeJeu() {
         printf("Tapez 1 : Mode 2 joueurs\n");
         printf("Tapez 2 : Mode 4 joueurs\n");
         scanf("%d", &choix);
-        while(getchar()!= '\n');
         system("cls");
         if (choix==1||choix ==2){
             return choix * 2;
         }
         printf("Erreur, rentrez un nombre valide");
         sleep(2);
-        system("pause");
+        system("cls");
+        while(getchar()!= '\n');
     }
 }
 
