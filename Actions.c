@@ -18,7 +18,7 @@ void actionsJoueurs(Joueur* J){
     }
 }
 
-// FONCTION POUR DEPLACER LE JOUEUR
+// FONCTION POUR DEPLACER LE JOUEUR AVEC LES TOUCHES z, q, s, d
 void deplacer_joueur(Joueur* J) {
     if (_kbhit()) {  // Vérifie si une touche a été pressée
         char deplacement = _getch();
@@ -57,13 +57,13 @@ int conversion_chiffre(char chiffre) { // On convertit le chiffre en une ligne
     return (chiffre - '1') * 2;
 }
 
-// FONCTION POUR PLACER UNE BARRIERE SUR LE PLATEAU
+// FONCTION POUR DEMANDER LES COORDONNEES DE LA BARRIERE
 void demander_coordonnees(char* lettre, char* chiffre) {
     do {
         printf("Entrez les coordonnees (exemple : A1) : ");
-        scanf(" %c%c", lettre, chiffre);  // Espaces pour ignorer les caractères indésirables
+        scanf("%c%c", lettre, chiffre);
 
-        // Vérification des coordonnées
+        // Vérification des coordonnées rentrées par le joueur
         if (!isalpha(*lettre) || !isdigit(*chiffre)) {
             printf("Erreur : La coordonnee doit etre une lettre suivie d'un chiffre.\n");
         } else if (*lettre < 'A' || *lettre > 'I') {
@@ -79,7 +79,7 @@ int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
     return (abs(lettre1 - lettre2) == 1 && chiffre1 == chiffre2) || (abs(chiffre1 - chiffre2) == 1 && lettre1 == lettre2);
 }
 
-// FONCTION
+// FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS
 void placer_barriere() {
     char lettre1, chiffre1, lettre2, chiffre2, sens;
 
