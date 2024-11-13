@@ -38,7 +38,7 @@ void actionsJoueurs(Joueur* J){
             }
         }
         if (annulation == 0) {
-            printf("Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez 0");
+            printf("Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez 0 :");
             scanf("%d", &annulation);
             if (annulation == 1) {
                 //annuler coup
