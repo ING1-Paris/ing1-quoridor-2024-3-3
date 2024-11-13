@@ -13,7 +13,7 @@ typedef struct {
 
 Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur);
 Joueur *ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour);
-bool conditionVictoire(int tour, Joueur* J);
+bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur);
 void executionJeu(int nombreDeJoueur);
-int aleatoire(int nombredejoueurs);
+void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]);
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H
