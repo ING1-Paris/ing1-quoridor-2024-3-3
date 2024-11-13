@@ -17,33 +17,30 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
     switch(ligne) {
         case 0:
             printf("    Nombre de joueurs : %d", nombreDeJoueur);
-            break;
+        break;
         case 1:
             printf("    C'est au tour de : %s", J->pseudo);
-            break;
+        break;
         case 2:
             //printf("    Score du joueur : %d");
-            break;
+                break;
         case 3:
             printf("    Jeton du joueur : %c", J->jeton);
-            break;
+        break;
         case 4:
             printf("    Nombre de barrieres : %d", J->nb_barrieres);
-            break;
+        break;
         case 5:
             printf("    Tapez 1: Deplacer le pion");
-            break;
+        break;
         case 6:
             printf("    Tapez 2: Placer une barriere");
-            break;
+        break;
         case 7:
-            printf("    Tapez 3: Annuler le dernier coups");
-            break;
+            printf("    Tapez 3: Passez votre tour");
+        break;
         case 8:
-            printf("    Tapez 4: Passez votre tour");
-            break;
-        case 9:
-            printf("    Tapez 5: Interrompre et sauvegarder la partie");
-            break;
+            printf("    Tapez 4: Interrompre et sauvegarder la partie");
+        break;
     }
 }
