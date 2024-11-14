@@ -1,7 +1,8 @@
 #ifndef SCORECALCUL_H
 #define SCORECALCUL_H
 
-void attribuerScore();
-void ajouterScore();
+int chercherJoueur(const char *pseudo);
+void ajouterJoueur(const char *pseudo);
+void ajouterPointGagnant(const char *pseudo);
 
 #endif //SCORECALCUL_H
