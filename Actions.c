@@ -87,7 +87,6 @@ void deplacer_joueur(Joueur* J) {
     } while (verif);
 }
 
-
 // FONCTIONS POUR CONVERTIR LES COORDONNEES DU PLATEAU (ex : A1, B5) EN COORDONNEES DE LA MATRICE
 int conversion_lettre(char lettre) { // On convertit la lettre en une colonne
     return (lettre - 'A') * 2;
@@ -100,7 +99,7 @@ int conversion_chiffre(char chiffre) { // On convertit le chiffre en une ligne
 void demander_coordonnees(char* lettre, char* chiffre) {
     do {
         printf("Entrez les coordonnees (exemple : A1) : ");
-        scanf("%c%c", lettre, chiffre);
+        scanf(" %c%c", lettre, chiffre);
 
         // Vérification des coordonnées rentrées par le joueur
         if (!isalpha(*lettre) || !isdigit(*chiffre)) {
@@ -123,28 +122,26 @@ void placer_barriere() {
     char lettre1, chiffre1, lettre2, chiffre2, sens;
 
     // Saisie et validation des coordonnées de la première case
-    printf("Saisie de la 1ere case : \n");
+    printf("Saisie de la 1ere case :\n");
     demander_coordonnees(&lettre1, &chiffre1);
 
     // Saisie et validation des coordonnées de la deuxième case
-    printf("Saisie de la 2eme case : \n");
+    printf("Saisie de la 2eme case :\n");
     demander_coordonnees(&lettre2, &chiffre2);
 
-    // Vérification que les cases sont côte à côte, et ressaisir les coordonnées si ce n'est pas le cas
+    // Vérification que les cases sont côte à côte
     while (!cote_a_cote(lettre1, chiffre1, lettre2, chiffre2)) {
         printf("Erreur : Les deux cases ne sont pas cote a cote. Veuillez ressaisir les coordonnees.\n");
-
         printf("Saisie de la 1ere case :\n");
         demander_coordonnees(&lettre1, &chiffre1);
-
-        printf("Saisie de la 2eme case : \n");
+        printf("Saisie de la 2eme case :\n");
         demander_coordonnees(&lettre2, &chiffre2);
     }
 
     // Saisie du sens de la barrière
     do {
         printf("Indiquez le sens pour placer la barriere par rapport aux cases (H = haut, B = bas, G = gauche, D = droite) : ");
-        scanf(" %c", &sens);  // Espaces pour ignorer d'éventuels caractères indésirables
+        scanf(" %c", &sens);
 
         // Vérification que le sens est valide
         if (sens != 'H' && sens != 'B' && sens != 'G' && sens != 'D') {
