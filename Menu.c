@@ -83,11 +83,11 @@ void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20])
 //Menu pour entrer le pseudo du joueur
 void menuPseudo(int numero, char pseudo[numero+1][20]){
     bool duplicationPseudo;
+    while(getchar() != '\n');
     do {
         duplicationPseudo = 0; // Réinitialisation pour chaque tentative
         printf("          Joueur %d\n", numero+1);
         printf("Entrez votre pseudo (20 caracteres maximum) : ");
-        while(getchar() != '\n');
         fgets(pseudo[numero], 20, stdin);
         pseudo[numero][strcspn(pseudo[numero], "\n")] = '\0'; // Suppression du '\n'
         for (int i = 0; i < numero; i++) {
