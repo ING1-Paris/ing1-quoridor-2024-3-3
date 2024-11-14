@@ -52,32 +52,39 @@ void actionsJoueurs(Joueur* J) {
 
 // FONCTION POUR DEPLACER LE JOUEUR AVEC LES TOUCHES z, q, s, d
 void deplacer_joueur(Joueur* J) {
-    if (_kbhit()) {  // Vérifie si une touche a été pressée
-        char deplacement = _getch();
+    int verif = 1;
+    do {
+        if (_kbhit()) {  // Vérifie si une touche a été pressée
+            char deplacement = _getch();
 
-        switch (deplacement) {
-            case 'z':  // Déplace le joueur vers le haut
-                if (J->y > 0) { // Vérifie que le joueur ne se trouve pas tout en haut du plateau
-                    J->y -= 2;
-                }
-            break;
-            case 's':  // Déplace le joueur vers le bas
-                if (J->y < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout en bas du plateau
-                    J->y += 2;
-                }
-            break;
-            case 'q':  // Déplace le joueur vers la gauche
-                if (J->x > 0) { // Vérifie que le joueur ne se trouve pas tout à gauche du plateau
-                    J->x -= 2;
-                }
-            break;
-            case 'd':  // Déplace le joueur vers la droite
-                if (J->x < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout à droite du plateau
-                    J->x += 2;
-                }
-            break;
+            switch (deplacement) {
+                case 'z':  // Déplace le joueur vers le haut
+                    if (J->y > 0) { // Vérifie que le joueur ne se trouve pas tout en haut du plateau
+                        J->y -= 2;
+                        verif = 0;
+                    }
+                break;
+                case 's':  // Déplace le joueur vers le bas
+                    if (J->y < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout en bas du plateau
+                        J->y += 2;
+                        verif = 0;
+                    }
+                break;
+                case 'q':  // Déplace le joueur vers la gauche
+                    if (J->x > 0) { // Vérifie que le joueur ne se trouve pas tout à gauche du plateau
+                        J->x -= 2;
+                        verif = 0;
+                    }
+                break;
+                case 'd':  // Déplace le joueur vers la droite
+                    if (J->x < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout à droite du plateau
+                        J->x += 2;
+                        verif = 0;
+                    }
+                break;
+            }
         }
-    }
+    } while (verif);
 }
 
 
