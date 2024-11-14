@@ -42,5 +42,8 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
         case 8:
             printf("    Tapez 4: Interrompre et sauvegarder la partie");
         break;
+        case 9:
+            printf("    Tapez le chiffre correspondant a l'action que vous voulez faire :");
+        break;
     }
 }

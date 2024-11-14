@@ -9,45 +9,43 @@
 #include "Plateau.h"
 
 
-void actionsJoueurs(Joueur* J) {
-    bool tourDuJoueur, annulation = 0;
-    int choix;
+char actionsJoueurs(Joueur* J) {
+    int choix,annulation = 0;
     do {
-        tourDuJoueur = 1;
-        while(tourDuJoueur) {
-            scanf("%d", &choix);
-            switch(choix) {
-                case 1: // Mouvement
-                    deplacer_joueur(J);
-                    tourDuJoueur = 0;
+        while(getchar()!= '\n');
+        scanf("%d", &choix);
+        switch(choix) {
+            case 1: // Mouvement
+                deplacer_joueur(J);
                 break;
-                case 2: //Poser barriere
-                    placer_barriere();
-                    tourDuJoueur = 0;
+            case 2: //Poser barriere
+                placer_barriere();
                 break;
-                case 3: //Passer son tour
-                    tourDuJoueur = 0;
-                    break;
-                case 4: //Sauvegarde de la partie
-                    tourDuJoueur = 0;
-                    break;
-                default://Cas où l'entrée dans la console ne correspond à rien
-                    printf("Erreur : Nombre invalide");
-                system("cls");
-                while(getchar()!= '\n');
-            }
+            case 3: //Passer son tour
+                break;
+            case 4: //Sauvegarde de la partie
+                return 'S';
+            default://Cas où l'entrée dans la console ne correspond à rien
+                return 'E';
         }
+        //Afficher modifications
         if (annulation == 0) {
-            printf("Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez 0 :");
+            printf("\nVoulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez 2 :");
             scanf("%d", &annulation);
+
             if (annulation == 1) {
                 //annuler coup
+                //Reafficher l'ancien plateau
+                printf("\nRetapez alors l'action voulue :");
+            }else if(annulation != 2){
+                return 'E';
             }
         }
         else {
             break;
         }
-    } while(annulation);
+    } while(annulation==1);
+    return 0;
 }
 
 // FONCTION POUR DEPLACER LE JOUEUR AVEC LES TOUCHES z, q, s, d

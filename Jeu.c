@@ -5,6 +5,7 @@
 #include "Plateau.h"
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
@@ -68,12 +69,23 @@ void executionJeu(int nombreDeJoueur) {
     for(int i = 0;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
-        //Modification matrice
+
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
         if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) { //Condition victoire
+            //Calcul du score
             break;
         }
-        actionsJoueurs(JoueurActuel);//Actions
+
+        char action = actionsJoueurs(JoueurActuel); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur
+        if (action == 'S'){//Actions
+            //Sauvegarde de la partie
+            break;
+        }else if(action == 'E'){
+            printf("\nErreur : Nombre invalide");
+            sleep(2);
+            system("cls");
+            i--;
+        }
         system("pause");
     }
 }

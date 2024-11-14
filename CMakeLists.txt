@@ -17,4 +17,5 @@ add_executable(Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
         Actions.c
         ScoreCalcul.c
         ScoreCalcul.h
+        score.txt
 )

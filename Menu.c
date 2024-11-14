@@ -17,11 +17,11 @@ void menuAfficher() {
     printf("| | | | | | |/ _ \\| '__| |/ _` |/ _ \\| '__|\n");
     printf("| |_| | |_| | (_) | |  | | (_| | (_) | |   \n");
     printf(" \\__\\_\\\\__,_|\\___/|_|  |_|\\__,_|\\___/|_|   \n");
-    printf("          Commencer partie\n");
-    printf("          Continuer partie\n");
-    printf("          Afficher aide\n");
-    printf("          Afficher score\n");
-    printf("          Quitter le jeu\n");
+    printf("Tapez 1 : Commencer partie\n");
+    printf("Tapez 2 : Continuer partie\n");
+    printf("Tapez 3 : Afficher aide\n");
+    printf("Tapez 4 : Afficher score\n");
+    printf("Tapez 5 : Quitter le jeu\n");
 }
 
 //Menu pour choisir la fonctionnalité souhaitée
@@ -93,7 +93,7 @@ void menuPseudo(int numero, char pseudo[numero+1][20]){
         for (int i = 0; i < numero; i++) {
             if (!strcmp(pseudo[numero], pseudo[i])) {
                 printf("Erreur, ce pseudo est deja inscrit.\n");
-                duplicationPseudo = true;
+                duplicationPseudo = 1;
                 sleep(2);
                 system("cls");
                 break; // Sortir de la boucle dès qu'un doublon est trouvé
