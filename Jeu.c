@@ -54,7 +54,7 @@ void executionJeu(int nombreDeJoueur) {
     Joueur J1, J2, J3, J4;
     J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur);
     J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur);
-    if(nombreDeJoueur>2){
+    if(nombreDeJoueur>2) {
         J2.x = 8;
         J2.y = 0;
         J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur);
@@ -65,7 +65,7 @@ void executionJeu(int nombreDeJoueur) {
     aleatoire(nombreDeJoueur, ordre);
 
 
-    for(int i = 0;; i = (i+1)%nombreDeJoueur){
+    for(int i = 0;; i = (i+1)%nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
         //Modification matrice
@@ -85,7 +85,7 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     J.y = y;
     strcpy(J.pseudo, pseudo);
     J.jeton = jeton;
-    if(nombreDeJoueur ==2){
+    if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
     }else{
         J.nb_barrieres = 5;
@@ -93,14 +93,17 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     return J;
 }
 
-Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int ordre){
-    if(ordre== 1){
+Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int ordre) {
+    if(ordre== 1) {
         return J1;
-    }else if(ordre== 2){
+    }
+    else if(ordre== 2) {
         return J2;
-    }else if(ordre== 3){
+    }
+    else if(ordre== 3) {
         return J3;
-    }else{
+    }
+    else {
         return J4;
     }
 }

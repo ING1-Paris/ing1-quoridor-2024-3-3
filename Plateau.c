@@ -83,7 +83,7 @@ void afficher_ligne (int tableau[17][17], int ligne) {
 }
 
 //Fonctions qui affiche les interlignes du plateau
-void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jetons[4]){
+void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jetons[4]) {
     printf("\n%c  ", lettre);  //Affichage des lettres pour représenter l'indice des cases
     printf("%c", BarreV);      //Affiche le bord gauche
     for (int j = 0; j <= 2 * (Cases - 1); j += 2) { //Pour représenter la case sur un espacement de 4n on écrit 2 espaces
@@ -146,7 +146,7 @@ void affichagePlateau(int ligne, int plateau[17][17], char Jetons[4]) {
     }
 }
 
-void initialiserPlateau(int plateau[17][17], int nombreDeJoueur){
+void initialiserPlateau(int plateau[17][17], int nombreDeJoueur) {
     plateau[8][0] = 1; // Positionne le Joueur 1 sur le bord gauche au milieu
     plateau[8][16] = 2; // Positionne le Joueur 2 sur le bord droit au milieu
     if (nombreDeJoueur == 4) {

@@ -61,7 +61,7 @@ int menuModeDeJeu() {
         printf("Tapez 2 : Mode 4 joueurs\n");
         scanf("%d", &choix);
         system("cls");
-        if (choix==1||choix ==2){
+        if (choix==1||choix ==2) {
             return choix * 2;
         }
         printf("Erreur, rentrez un nombre valide");
@@ -72,8 +72,8 @@ int menuModeDeJeu() {
 }
 
 //Menu pour personnaliser le joueur en début de partie
-void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20]){
-    for(int i=0; i<nombreDeJoueur; i++){
+void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20]) {
+    for(int i=0; i<nombreDeJoueur; i++) {
         menuPseudo(i, pseudo[i]);
         jeton[i] = menuJeton();
         system("cls");
@@ -81,7 +81,7 @@ void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20])
 }
 
 //Menu pour entrer le pseudo du joueur
-void menuPseudo(int numero, char pseudo[]){
+void menuPseudo(int numero, char pseudo[]) {
     printf("          Joueur %d\n", numero+1);
     printf("Entrez votre pseudo (20 caracteres maximum) :");
     while(getchar()!= '\n');
@@ -90,9 +90,9 @@ void menuPseudo(int numero, char pseudo[]){
 }
 
 //Menu pour entrer le jeton du joueur
-char menuJeton(){
+char menuJeton() {
     int choix;
-    do{
+    do {
         printf("\nChoisissez votre Pion : \n");
         printf("Tapez 1 : %c\n", 0x03);
         printf("Tapez 2 : %c\n", 0x04);
