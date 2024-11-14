@@ -141,7 +141,8 @@ void reglesAfficher() {
     printf("1. Le jeu se joue sur un plateau de 9x9 cases.\n");
     printf("2. Chaque joueur commence au centre de sa premiere ligne.\n");
     printf("3. Les joueurs se deplacent d'une case a la fois (verticalement ou horizontalement).\n");
-    printf("4. Chaque joueur dispose de 10 barrieres pour une partie a 2 joueurs ou 5 barrieres s'il y a 4 joueurs.\n");
+    printf("4. Chaque joueur dispose de barrieres qui empeche les autres joueurs d'avancer lorsqu'ils se trouvent devants, afin de les bloquer.\n");
+    printf("5. Chaque joueur dispose de 10 barrieres pour une partie a 2 joueurs ou 5 barrieres s'il y a 4 joueurs.\n");
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
