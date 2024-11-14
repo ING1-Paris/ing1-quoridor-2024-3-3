@@ -272,4 +272,11 @@ CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Menu.c.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/winsvc.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/mcx.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/imm.h \
- C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Jeu.h
+ C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\Jeu.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/unistd.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/io.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/process.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/corecrt_startup.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/sys/types.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/getopt.h \
+ C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/pthread_unistd.h

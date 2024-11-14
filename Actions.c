@@ -9,7 +9,7 @@
 #include "Plateau.h"
 
 
-void actionsJoueurs(Joueur* J){
+void actionsJoueurs(Joueur* J) {
     bool tourDuJoueur, annulation = 0;
     int choix;
     do {

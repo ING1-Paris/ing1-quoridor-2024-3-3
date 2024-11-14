@@ -65,12 +65,12 @@ void executionJeu(int nombreDeJoueur) {
     aleatoire(nombreDeJoueur, ordre);
 
 
-    for(int i = 0;; i = (i+1)%nombreDeJoueur) {
+    for(int i = 0;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
         //Modification matrice
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
-        if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)){ //Condition victoire
+        if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) { //Condition victoire
             break;
         }
         actionsJoueurs(JoueurActuel);//Actions
@@ -87,7 +87,8 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     J.jeton = jeton;
     if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
-    }else{
+    }
+    else {
         J.nb_barrieres = 5;
     }
     return J;
