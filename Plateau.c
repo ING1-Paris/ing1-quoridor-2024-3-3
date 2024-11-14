@@ -107,9 +107,9 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
                 Color(15, 0);
                 break;
             case 4: //Si c'est le joueur 4, on écrit son jeton en vert
-                Color(2, 0);
-                printf("%c", Jetons[3]);
                 Color(10, 0);
+                printf("%c", Jetons[3]);
+                Color(15, 0);
                 break;
             default :
                 printf("%c", Espace); //Sinon on écrit un espace

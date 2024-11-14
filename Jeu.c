@@ -117,28 +117,23 @@ bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur) {
             }
             break;
         case 2: //Condition Victoire J2
-            if (nombreDeJoueur == 4) {
-                if (J->y == 16) {
-                    return 1;
-                }
+            if (nombreDeJoueur == 4 && J->y == 16) {
+                return 1;
             }
-            if (nombreDeJoueur == 2) {
-                if (J->x == 0) {
-                    return 1;
-                }
+            if (nombreDeJoueur == 2 && J->x == 0) {
+                return 1;
             }
-        break;
+            break;
         case 3: //Condition Victoire J3
             if (J->x == 0) {
                 return 1;
             }
-        break;
+            break;
         case 4: //Condition Victoire J4
             if (J->y == 0) {
                 return 1;
             }
-        break;
-        default :  //Condition de non-Victoire
-            return 0;
+            break;
     }
+    return 0; //Condition de non-Victoire
 }
