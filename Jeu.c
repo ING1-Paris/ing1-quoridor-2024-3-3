@@ -80,7 +80,8 @@ void executionJeu(int nombreDeJoueur) {
         if (action == 'S'){//Actions
             //Sauvegarde de la partie
             break;
-        }else if(action == 'E'){
+        }
+        else if(action == 'E'){
             printf("\nErreur : Nombre invalide");
             sleep(2);
             system("cls");

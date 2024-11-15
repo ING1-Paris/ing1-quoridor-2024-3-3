@@ -23,7 +23,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17]) {
                 deplacer_joueur(J, plateau);
                 break;
             case 2: //Poser barriere
-                placer_barriere();
+                placer_barriere(J);
                 break;
             case 3: //Passer son tour
                 break;
@@ -41,7 +41,8 @@ char actionsJoueurs(Joueur* J, int plateau[17][17]) {
                 //annuler coup
                 //Reafficher l'ancien plateau
                 printf("\nRetapez alors l'action voulue :");
-            }else if(annulation != 2){
+            }
+            else if(annulation != 2) {
                 return 'E';
             }
         }
@@ -197,7 +198,7 @@ int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
 }
 
 // FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS
-void placer_barriere() {
+void placer_barriere(Joueur* J) {
     char lettre1, chiffre1, lettre2, chiffre2, sens;
 
     // Saisie et validation des coordonnées de la première case
@@ -227,4 +228,6 @@ void placer_barriere() {
             printf("Erreur : Le sens doit etre l'une des lettres suivantes : H, B, G, D.\n");
         }
     } while (sens != 'H' && sens != 'B' && sens != 'G' && sens != 'D');
+
+    J->nb_barrieres -= 1;
 }
