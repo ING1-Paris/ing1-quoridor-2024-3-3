@@ -7,12 +7,15 @@
 
 int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
     int vrai = 0;
-    if ((abs(X - position_jetonX) == 1 && Y == position_jetonY) || (abs(Y - position_jetonY) == 1 && X == position_jetonX)) {
+    if (abs(X - position_jetonX) == 2 && Y == position_jetonY) {
         vrai = 1;
     }
-
+    if (abs(Y - position_jetonY) == 2 && X == position_jetonX) {
+        vrai = 1;
+    }
     return vrai;
 }
+
 
 int souris(Joueur* J) {
     // Ouvrir un handle pour l'entrée de la console
@@ -49,18 +52,19 @@ int souris(Joueur* J) {
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
                     int X = 0, Y = 0;
-                    for (i = 0; i < 16; i+=2) {
+                    for (i = 0; i < 16; i++) {
                         if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
                             X = 2*i;
                         }
                     }
-                    for (i = 0; i < 16; i+=2) {
+                    for (i = 0; i < 16; i++) {
                         if (2 + 2*i == mer.dwMousePosition.Y) {
                             Y = 2*i;
                         }
                     }
 
                     printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
+                    printf("Les coordonnées dans la matrice sont X: %d, Y: %d", X, Y);
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
                         printf("La Position n'est pas convenable");
                     }
@@ -76,12 +80,10 @@ int souris(Joueur* J) {
                             }
                             else {
                                 printf("C'est bon");
+                                fin = 0;
                             }
-                            //fin = 0;
                         }
                     }
-                    //sleep(3);
-                    //fin = 0;
                 }
             }
         }
