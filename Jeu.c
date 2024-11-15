@@ -8,8 +8,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "ScoreCalcul.h"
-
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
     srand(time(NULL));
