@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "Actions.h"
 #include "Plateau.h"
+#include "Souris.h"
 
 
 char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
@@ -17,6 +18,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
         switch(choix) {
             case 1: // Mouvement
                 *tourPasse = 0;
+            souris_joueurs(J);
                 printf("\nPour aller en haut, tapez z");
                 printf("\nPour aller en bas, tapez s");
                 printf("\nPour aller a droite, tapez d");
@@ -27,6 +29,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
                 break;
             case 2: //Poser barriere
                 *tourPasse = 0;
+                souris_barrieres();
                 placer_barriere(J, plateau);
                 break;
             case 3: //Passer son tour
