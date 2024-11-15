@@ -3,9 +3,12 @@
 #include "Menu.h"
 #include "Actions.h"
 #include "Plateau.h"
+#include "ScoreCalcul.h"
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+
+#include "ScoreCalcul.h"
 
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
@@ -74,12 +77,13 @@ void executionJeu(int nombreDeJoueur) {
 
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
         if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) { //Condition victoire
-            //Calcul du score
+            JoueurActuel->score +=5;
+            ajouterPointGagnant(JoueurActuel->pseudo);
             break;
         }
 
         char action = actionsJoueurs(JoueurActuel, plateau); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur
-        if (action == 'S'){//Actions
+        if (action == 'S') {//Actions
             //Sauvegarde de la partie
             break;
         }
