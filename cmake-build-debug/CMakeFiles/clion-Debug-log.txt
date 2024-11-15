@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3 -B C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3 -B C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3\cmake-build-debug
 -- Configuring done (0.2s)
 -- Generating done (0.0s)
--- Build files have been written to: C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug
+-- Build files have been written to: C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug

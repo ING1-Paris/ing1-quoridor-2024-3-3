@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3-Debug-0e24a9aca5e9ce3321b4.json",
+					"jsonFile" : "target-Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3-Debug-758c5752a9c18209b0f2.json",
 					"name" : "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug",
-		"source" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3"
+		"build" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug",
+		"source" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3"
 	},
 	"version" : 
 	{
