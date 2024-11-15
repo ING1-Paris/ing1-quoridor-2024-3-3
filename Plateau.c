@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "Plateau.h"
-#include "menu.h"
 #include "fonctionsUtiles.h"
 
 #define Cases 9     // nombre de cases par lignes/colonnes

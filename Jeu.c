@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include "ScoreCalcul.h"
 
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
@@ -51,7 +52,7 @@ void executionJeu(int nombreDeJoueur) {
     // 1 = J1; 2 = J2; 3 = J3; 4 = J4; 5 = barrière horizontale; 6 = barrière verticale 7 = barrière en croix
     initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
 
-    char pseudo[4][20]; // Tableaux pour stocker les pseudos
+    char pseudo[4][21]; // Tableaux pour stocker les pseudos
     char jeton[4]; // Tableaux pour stocker les jetons
     menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
 
@@ -75,7 +76,6 @@ void executionJeu(int nombreDeJoueur) {
 
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
         if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) { //Condition victoire
-            JoueurActuel->score +=5;
             ajouterPointGagnant(JoueurActuel->pseudo);
             break;
         }

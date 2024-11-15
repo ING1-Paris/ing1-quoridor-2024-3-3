@@ -49,7 +49,7 @@ void ajouterPointGagnant(const char *pseudo) {
         return;
     }
 
-    char pseudo_lu[20];
+    char pseudo_lu[21];
     int score_lu;
 
     // Fichier temporaire pour réécrire les scores - cela réduit la possibilité d'erreur

@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Jeu.h"
+#include "ScoreCalcul.h"
 #include <unistd.h>
 #include <string.h>
 
@@ -99,6 +100,7 @@ void menuPseudo(int numero, char pseudo[numero + 1][21]) {
             }
         }
     } while (duplicationPseudo);
+    ajouterJoueur(pseudo[numero]);
 }
 
 //Menu pour entrer le jeton du joueur
