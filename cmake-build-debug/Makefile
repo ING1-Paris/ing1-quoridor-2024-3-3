@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3
+CMAKE_SOURCE_DIR = C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\CMakeFiles C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3\cmake-build-debug\CMakeFiles C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\theob\OneDrive\Documents\GitHub\Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\cleme\Documents\GitHub\ing1-quoridor-2024-3-3\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -127,6 +127,30 @@ Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3: cmake_check_build_system
 Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/build
 .PHONY : Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3/fast
+
+Actions.obj: Actions.c.obj
+.PHONY : Actions.obj
+
+# target to build an object file
+Actions.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Actions.c.obj
+.PHONY : Actions.c.obj
+
+Actions.i: Actions.c.i
+.PHONY : Actions.i
+
+# target to preprocess a source file
+Actions.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Actions.c.i
+.PHONY : Actions.c.i
+
+Actions.s: Actions.c.s
+.PHONY : Actions.s
+
+# target to generate assembly for a file
+Actions.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Actions.c.s
+.PHONY : Actions.c.s
 
 Affichage.obj: Affichage.c.obj
 .PHONY : Affichage.obj
@@ -224,6 +248,30 @@ Plateau.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/Plateau.c.s
 .PHONY : Plateau.c.s
 
+ScoreCalcul.obj: ScoreCalcul.c.obj
+.PHONY : ScoreCalcul.obj
+
+# target to build an object file
+ScoreCalcul.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/ScoreCalcul.c.obj
+.PHONY : ScoreCalcul.c.obj
+
+ScoreCalcul.i: ScoreCalcul.c.i
+.PHONY : ScoreCalcul.i
+
+# target to preprocess a source file
+ScoreCalcul.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/ScoreCalcul.c.i
+.PHONY : ScoreCalcul.c.i
+
+ScoreCalcul.s: ScoreCalcul.c.s
+.PHONY : ScoreCalcul.s
+
+# target to generate assembly for a file
+ScoreCalcul.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/ScoreCalcul.c.s
+.PHONY : ScoreCalcul.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -248,6 +296,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/main.c.s
 .PHONY : main.c.s
 
+souris.obj: souris.c.obj
+.PHONY : souris.obj
+
+# target to build an object file
+souris.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/souris.c.obj
+.PHONY : souris.c.obj
+
+souris.i: souris.c.i
+.PHONY : souris.i
+
+# target to preprocess a source file
+souris.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/souris.c.i
+.PHONY : souris.c.i
+
+souris.s: souris.c.s
+.PHONY : souris.s
+
+# target to generate assembly for a file
+souris.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir\build.make CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir/souris.c.s
+.PHONY : souris.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -257,6 +329,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
+	@echo ... Actions.obj
+	@echo ... Actions.i
+	@echo ... Actions.s
 	@echo ... Affichage.obj
 	@echo ... Affichage.i
 	@echo ... Affichage.s
@@ -269,9 +344,15 @@ help:
 	@echo ... Plateau.obj
 	@echo ... Plateau.i
 	@echo ... Plateau.s
+	@echo ... ScoreCalcul.obj
+	@echo ... ScoreCalcul.i
+	@echo ... ScoreCalcul.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... souris.obj
+	@echo ... souris.i
+	@echo ... souris.s
 .PHONY : help
 
 

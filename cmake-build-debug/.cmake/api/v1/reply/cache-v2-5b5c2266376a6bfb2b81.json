@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug"
+			"value" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug"
 		},
 		{
 			"name" : "Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3"
+			"value" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug"
+			"value" : "c:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -451,7 +451,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -523,7 +523,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3"
+			"value" : "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",

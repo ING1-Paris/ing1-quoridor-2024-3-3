@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "Actions.h"
 #include "Plateau.h"
+#include "souris.h"
 
 
 char actionsJoueurs(Joueur* J) {
@@ -16,7 +17,7 @@ char actionsJoueurs(Joueur* J) {
         scanf("%d", &choix);
         switch(choix) {
             case 1: // Mouvement
-                deplacer_joueur(J);
+                souris(J);
                 break;
             case 2: //Poser barriere
                 placer_barriere();
@@ -108,11 +109,6 @@ void demander_coordonnees(char* lettre, char* chiffre) {
             printf("Erreur : Le chiffre doit etre compris entre 1 et 9 inclus.\n");
         }
     } while (!(isalpha(*lettre) && isdigit(*chiffre) && (*lettre >= 'A' && *lettre <= 'I') && (*chiffre >= '1' && *chiffre <= '9')));
-}
-
-// FONCTION POUR VERIFIER SI LES DEUX CASES SONT COTE A COTE
-int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
-    return (abs(lettre1 - lettre2) == 1 && chiffre1 == chiffre2) || (abs(chiffre1 - chiffre2) == 1 && lettre1 == lettre2);
 }
 
 // FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS

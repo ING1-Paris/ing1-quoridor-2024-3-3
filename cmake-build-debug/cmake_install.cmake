@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3
+# Install script for directory: C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/theob/OneDrive/Documents/GitHub/Benoit-Sergent-ing1-quoridor-2024-groupe3-equipe3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
