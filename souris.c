@@ -7,7 +7,7 @@
 
 int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
     int vrai = 0;
-    if ((abs(X - position_jetonX) <= 7 && Y == position_jetonY) || (abs(Y - position_jetonY) <= 2 && abs(X - position_jetonX) <= 2)) {
+    if ((abs(X - position_jetonX) == 1 && Y == position_jetonY) || (abs(Y - position_jetonY) == 1 && X == position_jetonX)) {
         vrai = 1;
     }
 
@@ -48,6 +48,18 @@ int souris(Joueur* J) {
 
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+                    int X = 0, Y = 0;
+                    for (i = 0; i < 16; i+=2) {
+                        if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
+                            X = 2*i;
+                        }
+                    }
+                    for (i = 0; i < 16; i+=2) {
+                        if (2 + 2*i == mer.dwMousePosition.Y) {
+                            Y = 2*i;
+                        }
+                    }
+
                     printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
                         printf("La Position n'est pas convenable");
@@ -57,7 +69,9 @@ int souris(Joueur* J) {
                             printf("La Position n'est pas convenable");
                         }
                         else {
-                            if (cote_a_cote(mer.dwMousePosition.X, mer.dwMousePosition.Y, J->x, J->y)) {
+                            int vrai = 0;
+                            vrai = cote_a_cote(X, Y, J->x, J->y);
+                            if (vrai == 0) {
                                 printf("La Position n'est pas convenable");
                             }
                             else {
