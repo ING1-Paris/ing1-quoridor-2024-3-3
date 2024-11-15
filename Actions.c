@@ -25,7 +25,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17]) {
                 actuPlateauMouv(J, anciennePosition, plateau);
                 break;
             case 2: //Poser barriere
-                placer_barriere(J);
+                placer_barriere(J, plateau);
                 break;
             case 3: //Passer son tour
                 break;
@@ -200,7 +200,7 @@ int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
 }
 
 // FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS
-void placer_barriere(Joueur* J) {
+void placer_barriere(Joueur* J, int plateau[17][17]) {
     char lettre1, chiffre1, lettre2, chiffre2, sens;
 
     // Saisie et validation des coordonnées de la première case
@@ -221,15 +221,23 @@ void placer_barriere(Joueur* J) {
     }
 
     // Saisie du sens de la barrière
+    int aligne_horizontalement = (lettre1 == lettre2);
+    int aligne_verticalement = (chiffre1 == chiffre2);
+
     do {
-        printf("Indiquez le sens pour placer la barriere par rapport aux cases (H = haut, B = bas, G = gauche, D = droite) : ");
+        printf("Indiquez le sens pour placer la barriere par rapport aux cases (H = haut, B = bas, D = droite, G = gauche) : \n");
         scanf(" %c", &sens);
 
         // Vérification que le sens est valide
-        if (sens != 'H' && sens != 'B' && sens != 'G' && sens != 'D') {
-            printf("Erreur : Le sens doit etre l'une des lettres suivantes : H, B, G, D.\n");
+        if ((aligne_horizontalement && (sens != 'H' && sens != 'B')) || (aligne_verticalement && (sens != 'D' && sens != 'G'))) {
+            printf("Erreur : le sens est invalide par rapport aux cases. \n");
         }
-    } while (sens != 'H' && sens != 'B' && sens != 'G' && sens != 'D');
+    } while ((aligne_horizontalement && (sens != 'H' && sens != 'B')) || (aligne_verticalement && (sens != 'D' && sens != 'G')));
 
+    // AFFICHAGE DU PLATEAU AVEC LA BARRIERE PLACEE
+    ajouter_barriere(plateau, lettre1, chiffre1, lettre2, chiffre2, sens);
+
+    // MISE A JOUR DES STOCKS DU NOMBRE DE BARRIERES DU JOUEUR
     J->nb_barrieres -= 1;
 }
+//
