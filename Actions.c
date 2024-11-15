@@ -238,3 +238,4 @@ void placer_barriere(Joueur* J, int plateau[17][17]) {
     // MISE A JOUR DES STOCKS DU NOMBRE DE BARRIERES DU JOUEUR
     J->nb_barrieres -= 1;
 }
+//
