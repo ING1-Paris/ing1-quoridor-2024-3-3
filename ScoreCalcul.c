@@ -30,7 +30,7 @@ int chercherJoueur(const char *pseudo) {
 // Fonction qui ajoute un joueur avec un score de 0 s'il n'est pas déjà présent
 void ajouterJoueur(const char *pseudo) {
     if (!chercherJoueur(pseudo)) {
-        FILE* pf = fopen("./score.txt", "a"); // Ouvrir en mode ajout
+        FILE* pf = fopen("../score.txt", "a"); // Ouvrir en mode ajout
         if (pf == NULL) {
             printf("Erreur lors de l'ouverture du fichier pour l'ajout\n");
             return;
@@ -43,7 +43,7 @@ void ajouterJoueur(const char *pseudo) {
 
 // Fonction qui ajoute des points au joueur gagnant
 void ajouterPointGagnant(const char *pseudo) {
-    FILE* pf = fopen("./score.txt", "r");
+    FILE* pf = fopen("../score.txt", "r");
     if (pf == NULL) {
         printf("Erreur lors de l'ouverture du fichier\n");
         return;

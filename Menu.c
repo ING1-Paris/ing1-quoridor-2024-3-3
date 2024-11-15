@@ -54,13 +54,13 @@ bool menuChoisir() {
 //Menu pour choisir le mode de jeu
 int menuModeDeJeu() {
     int choix;
-    while(1){
+    while(1) {
         printf("Choissisez votre mode de jeu\n");
         printf("Tapez 1 : Mode 2 joueurs\n");
         printf("Tapez 2 : Mode 4 joueurs\n");
         scanf("%d", &choix);
         system("cls");
-        if (choix == 1||choix == 2) {
+        if (choix == 1 || choix == 2) {
             return choix * 2;
         }
         printf("Erreur, rentrez un nombre valide");
@@ -72,7 +72,7 @@ int menuModeDeJeu() {
 
 //Menu pour personnaliser le joueur en début de partie
 void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][21]) {
-    for(int i=0; i<nombreDeJoueur; i++) {
+    for(int i=0; i < nombreDeJoueur; i++) {
         menuPseudo(i, pseudo);
         jeton[i] = menuJeton();
         system("cls");
@@ -80,7 +80,7 @@ void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][21])
 }
 
 //Menu pour entrer le pseudo du joueur
-void menuPseudo(int numero, char pseudo[numero + 1][21]){
+void menuPseudo(int numero, char pseudo[numero + 1][21]) {
     bool duplicationPseudo;
     while(getchar() != '\n');
     do {
@@ -150,22 +150,45 @@ void reglesAfficher() {
 }
 
 // Fonction menu Score
-/*
 void scoreAfficher() {
-    char tableau_score[100][40], pseudo_lu[20];
-    int cpt = 0, score_lu;
+    char pseudo[100][21];
+    int scores[100];
+    int n = 0;
 
-    FILE* pf = fopen("./score.txt", "r");
-    if (pf == NULL) {
-        printf("Erreur lors de l'ouverture du fichier\n");
+    // Ouverture du fichier en mode lecture
+    FILE *file = fopen("../score.txt", "r");
+    if (file == NULL) {
+        printf("Erreur: impossible d'ouvrir le fichier.\n");
     }
 
-    // Parcours du fichier pour chercher le pseudo
-    while (fscanf(pf, "%s %d", pseudo_lu, &score_lu) != EOF) {
-        tableau_score[]
+    // Lecture du fichier et stockage des pseudos et scores
+    while (fscanf(file, "%s %d", pseudo[n], &scores[n]) != EOF) {
+        n++;
+    }
+    fclose(file);
+
+    // Tri à bulle pour trier les scores du plus grand au plus petit
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (scores[j] < scores[j + 1]) {
+                // Échange des scores
+                int tempScore = scores[j];
+                scores[j] = scores[j + 1];
+                scores[j + 1] = tempScore;
+
+                // Échange des pseudos correspondants
+                char tempPseudo[100];
+                strcpy(tempPseudo, pseudo[j]);
+                strcpy(pseudo[j], pseudo[j + 1]);
+                strcpy(pseudo[j + 1], tempPseudo);
+            }
+        }
     }
 
-    fclose(pf);
-    pf = NULL;
+    // Affichage des résultats
+    printf("Tableau des scores:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d : %s %d\n", i + 1, pseudo[i], scores[i]);
+    }
+    return 0;
 }
-*/
