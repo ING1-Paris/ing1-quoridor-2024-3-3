@@ -17,10 +17,10 @@ char actionsJoueurs(Joueur* J) {
         scanf("%d", &choix);
         switch(choix) {
             case 1: // Mouvement
-                souris(J);
+                souris_joueurs(J);
                 break;
             case 2: //Poser barriere
-                placer_barriere();
+                souris_barrieres();
                 break;
             case 3: //Passer son tour
                 break;

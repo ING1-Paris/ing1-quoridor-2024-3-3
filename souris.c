@@ -17,7 +17,7 @@ int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
 }
 
 
-int souris(Joueur* J) {
+int souris_joueurs(Joueur* J) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 
@@ -91,3 +91,75 @@ int souris(Joueur* J) {
     return 0;
 }
 
+int souris_barrieres() {
+    // Ouvrir un handle pour l'entrée de la console
+    HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+
+    /* Vérifier si le handle est valide
+    if (hStdin == INVALID_HANDLE_VALUE) {
+        printf("Erreur : Impossible d'obtenir le handle de la console.\n");
+        return 1;
+    }*/
+
+    // Activer le mode pour lire les événements de la souris
+    DWORD fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT;
+    SetConsoleMode(hStdin, fdwMode);
+
+
+    int fin = 1;
+    // Boucle pour lire les événements de la console
+    while (fin) {
+        // Lire les événements de la console
+        INPUT_RECORD irInBuf[128];
+        DWORD cNumRead;
+        if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
+            printf("Erreur de lecture de l'entrée de la console.\n");
+            return 1;
+        }
+
+        // Traiter chaque événement
+        for (DWORD i = 0; i < cNumRead; i++) {
+            // Vérifier si c'est un événement de souris
+            if (irInBuf[i].EventType == MOUSE_EVENT) {
+                MOUSE_EVENT_RECORD mer = irInBuf[i].Event.MouseEvent;
+
+                // Où le clic gauche est pressé
+                if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+                    int X = 0, Y = 0;
+                    for (i = 0; i < 16; i++) {
+                        if (3 + 5*i == mer.dwMousePosition.X) {
+                            X = 2*i - 1;
+                        }
+                    }
+                    for (i = 0; i < 16; i++) {
+                        if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
+                            X = 2*i;
+                        }
+                    }
+                    for (i = 0; i < 16; i++) {
+                        if (3 + i == mer.dwMousePosition.Y) {
+                            Y = 1 + i;
+                        }
+                    }
+
+                    printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
+                    printf("Les coordonnées dans la matrice sont X: %d, Y: %d\n", X, Y);
+                    if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
+                        printf("La Position n'est pas convenable\n");
+                    }
+                    else {
+                        if (mer.dwMousePosition.X % 5 != 3 || mer.dwMousePosition.Y % 2 != 1) {
+                            printf("La Position n'est pas convenable\n");
+                        }
+                        else {
+                            printf("La position de la premiere partie de la barriere est donc en X: %d, Y: %d.\n", X, Y);
+                            fin = 0;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
