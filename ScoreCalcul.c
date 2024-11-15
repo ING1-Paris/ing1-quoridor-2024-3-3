@@ -2,8 +2,9 @@
 #include <string.h>
 #include "ScoreCalcul.h"
 
-// Fonction qui cherche si le joueur est présent dans le fichier
-int chercherJoueur(const char *pseudo) {
+
+// Fonction qui renvoie le score du joueur, et renvoie -1 s'il n'est pas présent dans le fichier
+int chercherScoreJoueur(const char *pseudo) {
     FILE* pf = fopen("../score.txt", "r");
     if (pf == NULL) {
         printf("Erreur lors de l'ouverture du fichier\n");
@@ -18,26 +19,34 @@ int chercherJoueur(const char *pseudo) {
         if (strcmp(pseudo_lu, pseudo) == 0) {
             fclose(pf);
             pf = NULL;
-            return 1; // Joueur trouvé
+            return score_lu; // Renvoie le score quand le joueur est trouvé
         }
     }
 
     fclose(pf);
     pf = NULL;
-    return 0; // Joueur non trouvé
+    return -1; // Joueur non trouvé
 }
 
 // Fonction qui ajoute un joueur avec un score de 0 s'il n'est pas déjà présent
 void ajouterJoueur(const char *pseudo) {
-    if (!chercherJoueur(pseudo)) {
-        FILE* pf = fopen("../score.txt", "a"); // Ouvrir en mode ajout
-        if (pf == NULL) {
-            printf("Erreur lors de l'ouverture du fichier pour l'ajout\n");
-            return;
-        }
-        fprintf(pf, "%s 0\n", pseudo);
-        fclose(pf);
-        pf = NULL;
+    FILE* pf = fopen("../score.txt", "a"); // Ouvrir en mode ajout
+    if (pf == NULL) {
+        printf("Erreur lors de l'ouverture du fichier pour l'ajout\n");
+        return;
+    }
+    fprintf(pf, "%s 0\n", pseudo);
+    fclose(pf);
+    pf = NULL;
+}
+
+void initialisationScore(Joueur* J){
+    int scoreJoueur = chercherScoreJoueur(J->pseudo);
+    if (scoreJoueur == -1) {
+        ajouterJoueur(J->pseudo); //Ajoute le score
+        J->score = 0;
+    }else{
+        J->score = scoreJoueur;
     }
 }
 

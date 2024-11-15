@@ -106,6 +106,7 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     strcpy(J.pseudo, pseudo);
     J.jeton = jeton;
     J.numero = numero;
+    initialisationScore(&J);
     if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
     }
@@ -177,6 +178,6 @@ void ecranMatchNul(){
     printf("| |\\/| |/ _` | __/ __| '_ \\  | '_ \\| | | | |            \n");
     printf("| |  | | (_| | || (__| | | | | | | | |_| | |  _   _   _ \n");
     printf("|_|  |_|\\__,_|\\__\\___|_| |_| |_| |_|\\__,_|_| (_) (_) (_)\n");
-    printf("         Blocage de la partie : match nul ...");
+    printf("        Blocage de la partie : match nul ...");
     sleep(3);
 }

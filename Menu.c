@@ -100,7 +100,6 @@ void menuPseudo(int numero, char pseudo[numero + 1][21]) {
             }
         }
     } while (duplicationPseudo);
-    ajouterJoueur(pseudo[numero]);
 }
 
 //Menu pour entrer le jeton du joueur
