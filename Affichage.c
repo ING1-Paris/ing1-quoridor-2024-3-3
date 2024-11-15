@@ -19,10 +19,10 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
             printf("    Nombre de joueurs : %d", nombreDeJoueur);
         break;
         case 1:
-            printf("    C'est au tour de : %s", J->pseudo);
+            printf("    C'est au tour du joueur %d : %s", J->numero, J->pseudo);
         break;
         case 2:
-            //printf("    Score du joueur : %d");
+            //printf("    Score du joueur : %d", J->score);
                 break;
         case 3:
             printf("    Jeton du joueur : %c", J->jeton);

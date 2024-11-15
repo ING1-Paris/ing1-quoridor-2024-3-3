@@ -45,7 +45,9 @@ void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 void executionJeu(int nombreDeJoueur) {
-    int plateau[17][17] = {{0}}; // matrice[colonne][ligne] : 9 cases Joueur, 8 cases barrières.
+    int plateau[17][17] = {{0}}; // matrice[colonne][ligne] : 9 cases Joueur, 8 cases barrières
+    //éléments en fonction du chiffre :
+    // 1 = J1; 2 = J2; 3 = J3; 4 = J4; 5 = barrière horizontale; 6 = barrière verticale 7 = barrière en croix
     initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
 
     char pseudo[4][20]; // Tableaux pour stocker les pseudos
@@ -53,13 +55,13 @@ void executionJeu(int nombreDeJoueur) {
     menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
 
     Joueur J1, J2, J3, J4;
-    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur);
-    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur);
+    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1);
+    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2);
     if(nombreDeJoueur>2) {
         J2.x = 8;
         J2.y = 0;
-        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur);
-        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur);
+        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3);
+        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4);
     }
 
     int ordre[nombreDeJoueur];
@@ -91,12 +93,13 @@ void executionJeu(int nombreDeJoueur) {
 }
 
 // Fonction pour initialiser un joueur
-Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur) {
+Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero) {
     Joueur J;
     J.x = x;   // placement du joueur 1 en bas au milieu
     J.y = y;
     strcpy(J.pseudo, pseudo);
     J.jeton = jeton;
+    J.numero = numero;
     if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
     }

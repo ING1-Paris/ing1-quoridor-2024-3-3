@@ -20,7 +20,9 @@ char actionsJoueurs(Joueur* J, int plateau[17][17]) {
                 printf("\nPour aller en bas, tapez s");
                 printf("\nPour aller a droite, tapez d");
                 printf("\nPour aller en gauche, tapez q");
+                int anciennePosition[2] = {J->y, J->x}; //Pour effacer l'ancienne position
                 deplacer_joueur(J, plateau);
+                actuPlateauMouv(J, anciennePosition, plateau);
                 break;
             case 2: //Poser barriere
                 placer_barriere(J);
