@@ -1,10 +1,9 @@
 #include "Menu.h"
 #include "Jeu.h"
 #include <unistd.h>
+#include <string.h>
 
 //Menu principale qui gère les différents menues
-//IN : rien
-//OUT : 1 si le joueur décide de jouer sinon 0 lorsqu'il décide de quitter
 bool menu() {
     menuAfficher();
     return menuChoisir();
@@ -61,7 +60,7 @@ int menuModeDeJeu() {
         printf("Tapez 2 : Mode 4 joueurs\n");
         scanf("%d", &choix);
         system("cls");
-        if (choix==1||choix ==2) {
+        if (choix == 1||choix == 2) {
             return choix * 2;
         }
         printf("Erreur, rentrez un nombre valide");
@@ -72,7 +71,7 @@ int menuModeDeJeu() {
 }
 
 //Menu pour personnaliser le joueur en début de partie
-void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20]) {
+void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][21]) {
     for(int i=0; i<nombreDeJoueur; i++) {
         menuPseudo(i, pseudo);
         jeton[i] = menuJeton();
@@ -81,14 +80,14 @@ void menuPersonnalisation(int nombreDeJoueur, char jeton[4], char pseudo[4][20])
 }
 
 //Menu pour entrer le pseudo du joueur
-void menuPseudo(int numero, char pseudo[numero+1][20]){
+void menuPseudo(int numero, char pseudo[numero + 1][21]){
     bool duplicationPseudo;
     while(getchar() != '\n');
     do {
         duplicationPseudo = 0; // Réinitialisation pour chaque tentative
-        printf("          Joueur %d\n", numero+1);
+        printf("          Joueur %d\n", numero + 1);
         printf("Entrez votre pseudo (20 caracteres maximum) : ");
-        fgets(pseudo[numero], 20, stdin);
+        fgets(pseudo[numero], 21, stdin);
         pseudo[numero][strcspn(pseudo[numero], "\n")] = '\0'; // Suppression du '\n'
         for (int i = 0; i < numero; i++) {
             if (!strcmp(pseudo[numero], pseudo[i])) {
@@ -151,3 +150,22 @@ void reglesAfficher() {
 }
 
 // Fonction menu Score
+/*
+void scoreAfficher() {
+    char tableau_score[100][40], pseudo_lu[20];
+    int cpt = 0, score_lu;
+
+    FILE* pf = fopen("./score.txt", "r");
+    if (pf == NULL) {
+        printf("Erreur lors de l'ouverture du fichier\n");
+    }
+
+    // Parcours du fichier pour chercher le pseudo
+    while (fscanf(pf, "%s %d", pseudo_lu, &score_lu) != EOF) {
+        tableau_score[]
+    }
+
+    fclose(pf);
+    pf = NULL;
+}
+*/

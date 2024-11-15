@@ -5,11 +5,11 @@
 typedef struct {
     int x;         // Coordonnée x du joueur sur le plateau
     int y;         // Coordonnée y du joueur sur le plateau
-    char pseudo[20]; // pseudo du joueur
+    char pseudo[21]; // pseudo du joueur
     char jeton;      // pion du jouer
     int nb_barrieres; // Nombre de barrières restant
     int score;  // score du joueur
-}Joueur;
+} Joueur;
 
 Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur);
 Joueur *ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour);
