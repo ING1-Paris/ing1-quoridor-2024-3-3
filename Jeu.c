@@ -45,7 +45,7 @@ void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 void executionJeu(int nombreDeJoueur) {
-    int plateau[17][17] = {{0}}; // matrice[ligne][colonne] : 9 cases Joueur, 8 cases barrières.
+    int plateau[17][17] = {{0}}; // matrice[colonne][ligne] : 9 cases Joueur, 8 cases barrières.
     initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
 
     char pseudo[4][20]; // Tableaux pour stocker les pseudos
@@ -76,7 +76,7 @@ void executionJeu(int nombreDeJoueur) {
             break;
         }
 
-        char action = actionsJoueurs(JoueurActuel); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur
+        char action = actionsJoueurs(JoueurActuel, plateau); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur
         if (action == 'S'){//Actions
             //Sauvegarde de la partie
             break;
@@ -86,7 +86,6 @@ void executionJeu(int nombreDeJoueur) {
             system("cls");
             i--;
         }
-        system("pause");
     }
 }
 

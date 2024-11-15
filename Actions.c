@@ -9,14 +9,18 @@
 #include "Plateau.h"
 
 
-char actionsJoueurs(Joueur* J) {
+char actionsJoueurs(Joueur* J, int plateau[17][17]) {
     int choix,annulation = 0;
     do {
         while(getchar()!= '\n');
         scanf("%d", &choix);
         switch(choix) {
             case 1: // Mouvement
-                deplacer_joueur(J);
+                printf("\nPour aller en haut, tapez z");
+                printf("\nPour aller en bas, tapez s");
+                printf("\nPour aller a droite, tapez d");
+                printf("\nPour aller en gauche, tapez q");
+                deplacer_joueur(J, plateau);
                 break;
             case 2: //Poser barriere
                 placer_barriere();
@@ -49,7 +53,7 @@ char actionsJoueurs(Joueur* J) {
 }
 
 // FONCTION POUR DEPLACER LE JOUEUR AVEC LES TOUCHES z, q, s, d
-void deplacer_joueur(Joueur* J) {
+void deplacer_joueur(Joueur* J, int plateau[17][17]) {
     int verif = 1;
     do {
         if (_kbhit()) {  // Vérifie si une touche a été pressée
@@ -57,29 +61,106 @@ void deplacer_joueur(Joueur* J) {
 
             switch (deplacement) {
                 case 'z':  // Déplace le joueur vers le haut
-                    if (J->y > 0) { // Vérifie que le joueur ne se trouve pas tout en haut du plateau
-                        J->y -= 2;
-                        verif = 0;
+                    if (J->y > 0 && plateau[J->y-1][J->x] == 0) { // Vérifie que le joueur ne se trouve pas tout en haut du plateau
+                        if(plateau[J->y-2][J->x] > 0){
+                            if(plateau[J->y-3][J->x] > 0){
+                                if(plateau[J->y-2][J->x + 1] == 0 && plateau[J->y-2][J->x + 2] == 0) {
+                                    J->y -= 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-2][J->x - 1] == 0 && plateau[J->y-2][J->x - 2] == 0) {
+                                    J->y -= 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->y -= 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->y -= 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
                     }
-                break;
+                    break;
                 case 's':  // Déplace le joueur vers le bas
-                    if (J->y < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout en bas du plateau
-                        J->y += 2;
-                        verif = 0;
+                    if (J->y < 16 && plateau[J->y+1][J->x] == 0) { // Vérifie que le joueur ne se trouve pas tout en bas du plateau
+                        if(plateau[J->y+2][J->x] > 0){
+                            if(plateau[J->y+3][J->x] > 0){
+                                if(plateau[J->y+2][J->x + 1] == 0 && plateau[J->y+2][J->x + 2] == 0) {
+                                    J->y += 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y+2][J->x - 1] == 0 && plateau[J->y+2][J->x - 2] == 0) {
+                                    J->y += 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->y += 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->y += 2;
+                            verif = 0;
+                        }
+
+                    }else{
+                        //Message d'erreur
                     }
-                break;
+                    break;
                 case 'q':  // Déplace le joueur vers la gauche
-                    if (J->x > 0) { // Vérifie que le joueur ne se trouve pas tout à gauche du plateau
-                        J->x -= 2;
-                        verif = 0;
+                    if (J->x > 0 && plateau[J->y][J->x-1] == 0) { // Vérifie que le joueur ne se trouve pas tout à gauche du plateau
+                        if(plateau[J->y][J->x-2] > 0){
+                            if(plateau[J->y][J->x-3] > 0){
+                                if(plateau[J->y+1][J->x -2] == 0 && plateau[J->y+2][J->x - 2] == 0) {
+                                    J->y += 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-1][J->x - 2] == 0 && plateau[J->y-2][J->x - 2] == 0) {
+                                    J->y -= 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->x -= 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->x -= 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
                     }
-                break;
+                    break;
                 case 'd':  // Déplace le joueur vers la droite
-                    if (J->x < 17 - 1) { // Vérifie que le joueur ne se trouve pas tout à droite du plateau
-                        J->x += 2;
-                        verif = 0;
+                    if (J->x < 16 && plateau[J->y][J->x+1] == 0) { // Vérifie que le joueur ne se trouve pas tout à droite du plateau
+                        if(plateau[J->y][J->x+2] > 0){
+                            if(plateau[J->y][J->x+3] > 0){
+                                if(plateau[J->y+1][J->x+2] == 0 && plateau[J->y+2][J->x + 2] == 0) {
+                                    J->y += 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-1][J->x + 2] == 0 && plateau[J->y-2][J->x + 2] == 0) {
+                                    J->y -= 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->x += 4;
+                                verif = 0;
+                            }
+                        }else {
+                            J->x += 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
                     }
-                break;
+                    break;
             }
         }
     } while (verif);

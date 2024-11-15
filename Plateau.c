@@ -155,3 +155,7 @@ void initialiserPlateau(int plateau[17][17], int nombreDeJoueur) {
         plateau[16][8] = 4; // Positionne le Joueur 4 sur le bord du bas au milieu
     }
 }
+
+void changerMatrice(Joueur* J, int anciennePosition[2], int plateau[17][17]){
+
+}
