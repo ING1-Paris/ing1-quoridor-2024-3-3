@@ -156,8 +156,9 @@ void initialiserPlateau(int plateau[17][17], int nombreDeJoueur) {
     }
 }
 
-void changerMatrice(Joueur* J, int anciennePosition[2], int plateau[17][17]){
-
+void actuPlateauMouv(Joueur* J, const int anciennePosition[2], int plateau[17][17]){
+    plateau[J->y][J->x] = J->numero;
+    plateau[anciennePosition[0]][anciennePosition[1]] = 0;
 }
 
 // Mettre à jour le plateau pour ajouter une barrière

@@ -22,7 +22,7 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
             printf("    C'est au tour du joueur %d : %s", J->numero, J->pseudo);
         break;
         case 2:
-            //printf("    Score du joueur : %d", J->score);
+            printf("    Score du joueur : %d", J->score);
                 break;
         case 3:
             printf("    Jeton du joueur : %c", J->jeton);

@@ -9,25 +9,28 @@
 #include "Plateau.h"
 
 
-char actionsJoueurs(Joueur* J, int plateau[17][17]) {
+char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
     int choix,annulation = 0;
     do {
         while(getchar()!= '\n');
         scanf("%d", &choix);
         switch(choix) {
             case 1: // Mouvement
+                *tourPasse = 0;
                 printf("\nPour aller en haut, tapez z");
                 printf("\nPour aller en bas, tapez s");
                 printf("\nPour aller a droite, tapez d");
                 printf("\nPour aller en gauche, tapez q");
-                int anciennePosition[2] = {J->y, J->x}; //Pour effacer l'ancienne position
+                int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
                 deplacer_joueur(J, plateau);
                 actuPlateauMouv(J, anciennePosition, plateau);
                 break;
             case 2: //Poser barriere
+                *tourPasse = 0;
                 placer_barriere(J, plateau);
                 break;
             case 3: //Passer son tour
+                *tourPasse+= 1;
                 break;
             case 4: //Sauvegarde de la partie
                 return 'S';
@@ -40,7 +43,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17]) {
             scanf("%d", &annulation);
 
             if (annulation == 1) {
-                //annuler coup
+                //annuler coup //Si passez tour : diminuez tourPasse, si barrière enlever barrière, si déplacement, remettre à ancienne coordonnées
                 //Reafficher l'ancien plateau
                 printf("\nRetapez alors l'action voulue :");
             }

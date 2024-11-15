@@ -70,18 +70,18 @@ void executionJeu(int nombreDeJoueur) {
     aleatoire(nombreDeJoueur, ordre);
 
 
-    for(int i = 0;; i = (i + 1) % nombreDeJoueur) {
+    for(int i = 0, tourPasse = 0;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
-
 
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel); //Affichage du Jeu
         if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) { //Condition victoire
+            ecranVictoire(JoueurActuel);
             ajouterPointGagnant(JoueurActuel->pseudo);
             break;
         }
 
-        char action = actionsJoueurs(JoueurActuel, plateau); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur
-        if (action == 'S') {//Actions
+        char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
+        if (action == 'S') {
             //Sauvegarde de la partie
             break;
         }
@@ -90,6 +90,10 @@ void executionJeu(int nombreDeJoueur) {
             sleep(2);
             system("cls");
             i--;
+        }
+        if(tourPasse == nombreDeJoueur*2){
+            ecranMatchNul();
+            break;
         }
     }
 }
@@ -153,4 +157,26 @@ bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur) {
             break;
     }
     return 0; //Condition de non-Victoire
+}
+
+void ecranVictoire(Joueur* J){
+    system("cls");
+    printf("__     ___      _        _            _   _   _ \n");
+    printf("\\ \\   / (_) ___| |_ ___ (_)_ __ ___  | | | | | |\n");
+    printf(" \\ \\ / /| |/ __| __/ _ \\| | '__/ _ \\ | | | | | |\n");
+    printf("  \\ V / | | (__| || (_) | | | |  __/ |_| |_| |_|\n");
+    printf("   \\_/  |_|\\___|\\__\\___/|_|_|  \\___| (_) (_) (_)\n");
+    printf("         %s gagne cette partie ! Bravo !", J->pseudo);
+    sleep(3);
+}
+
+void ecranMatchNul(){
+    system("cls");
+    printf(" __  __       _       _                   _             \n");
+    printf("|  \\/  | __ _| |_ ___| |__    _ __  _   _| |            \n");
+    printf("| |\\/| |/ _` | __/ __| '_ \\  | '_ \\| | | | |            \n");
+    printf("| |  | | (_| | || (__| | | | | | | | |_| | |  _   _   _ \n");
+    printf("|_|  |_|\\__,_|\\__\\___|_| |_| |_| |_|\\__,_|_| (_) (_) (_)\n");
+    printf("         Blocage de la partie : match nul ...");
+    sleep(3);
 }

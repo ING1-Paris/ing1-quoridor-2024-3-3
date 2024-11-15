@@ -4,7 +4,7 @@
 
 // Fonction qui cherche si le joueur est présent dans le fichier
 int chercherJoueur(const char *pseudo) {
-    FILE* pf = fopen("./score.txt", "r");
+    FILE* pf = fopen("../score.txt", "r");
     if (pf == NULL) {
         printf("Erreur lors de l'ouverture du fichier\n");
         return 0;
