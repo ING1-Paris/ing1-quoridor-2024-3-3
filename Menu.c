@@ -38,8 +38,8 @@ bool menuChoisir() {
         case 3: //Afficher règles
             reglesAfficher();
             return 1;
-        case 4:
-            //menu score
+        case 4: //Afficher score
+            scoreAfficher();
             return 1;
         case 5: //Quitter
             return 0;
@@ -190,5 +190,5 @@ void scoreAfficher() {
     for (int i = 0; i < 5; i++) {
         printf("%d : %s %d\n", i + 1, pseudo[i], scores[i]);
     }
-    return 0;
+    system("pause");
 }
