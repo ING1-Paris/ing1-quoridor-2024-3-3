@@ -1,3 +1,3 @@
-C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir
-C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/cleme/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/GIGAPIRATE/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3.dir
+C:/Users/GIGAPIRATE/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/GIGAPIRATE/Documents/GitHub/ing1-quoridor-2024-3-3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
