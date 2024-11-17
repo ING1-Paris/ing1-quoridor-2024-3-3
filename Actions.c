@@ -34,7 +34,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
                 *tourPasse = 0;
                 int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
                 souris_barrieres(&BX1, &BY1, &BX2, &BY2);
-                placer_barriere(J, plateau);
+                //placer_barriere(J, plateau);
                 break;
             case 3: //Passer son tour
                 *tourPasse+= 1;
@@ -210,7 +210,7 @@ void demander_coordonnees(char* lettre, char* chiffre) {
 }*/
 
 // FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS
-void placer_barriere(Joueur* J, int plateau[17][17]) {
+/*void placer_barriere(Joueur* J, int plateau[17][17]) {
     char lettre1, chiffre1, lettre2, chiffre2, sens;
 
     // Saisie et validation des coordonnées de la première case
@@ -250,4 +250,4 @@ void placer_barriere(Joueur* J, int plateau[17][17]) {
     // MISE A JOUR DES STOCKS DU NOMBRE DE BARRIERES DU JOUEUR
     J->nb_barrieres -= 1;
 }
-//
+*/

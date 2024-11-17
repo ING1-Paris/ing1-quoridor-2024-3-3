@@ -5,18 +5,6 @@
 #include "Actions.h"
 #include "Jeu.h"
 
-int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
-    int vrai = 0;
-    if (abs(X - position_jetonX) == 2 && Y == position_jetonY) {
-        vrai = 1;
-    }
-    if (abs(Y - position_jetonY) == 2 && X == position_jetonX) {
-        vrai = 1;
-    }
-    return vrai;
-}
-
-
 int souris_joueurs(Joueur* J, int positionValide[6][2], int* X, int* Y) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
@@ -33,7 +21,7 @@ int souris_joueurs(Joueur* J, int positionValide[6][2], int* X, int* Y) {
         INPUT_RECORD irInBuf[128];
         DWORD cNumRead;
         if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
-            printf("Erreur de lecture de l'entrée de la console.\n");
+            printf("Erreur de lecture de l'entree de la console.\n");
             return 1;
         }
 
@@ -64,11 +52,11 @@ int souris_joueurs(Joueur* J, int positionValide[6][2], int* X, int* Y) {
                             }
                     }
                     if (vrai == 1) {
-                        printf("C'est bon\n");
+                        printf("\nC'est bon");
                         fin = 0;
                     }
                     else {
-                        printf("La position n'est pas convenable ! Veuillez cliquer a nouveau sur la case ou vous voulez vous deplacer.\n");
+                        printf("\nLa position n'est pas convenable ! Veuillez cliquer a nouveau sur la case ou vous voulez vous deplacer.");
                     }
                 }
             }
@@ -92,7 +80,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
         INPUT_RECORD irInBuf[128];
         DWORD cNumRead;
         if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
-            printf("Erreur de lecture de l'entrée de la console.\n");
+            printf("Erreur de lecture de l'entree de la console.\n");
             return 1;
         }
 
@@ -109,19 +97,19 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
 
                     definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX1, BY1);
 
-                    printf("Les coordonnées sélectionnées sont X: %d, Y: %d\n", *BX1, *BY1);
+                    printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX1, *BY1);
 
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
-                        printf("La Position n'est pas convenable\n");
+                        printf("La position n'est pas convenable\n");
                     }
 
                     else {
                         if (*BX1 % 2 == 0 && *BY1 % 2 == 0) {
-                            printf("La Position n'est pas convenable\n");
+                            printf("La position n'est pas convenable\n");
                         }
                         else {
                             if (*BX1 % 2 == 1 && *BY1 % 2 == 1) {
-                                printf("La Position n'est pas convenable\n");
+                                printf("La position n'est pas convenable\n");
                             }
                             else {
                                 printf("La position de la premiere partie de la barrière est donc en X: %d, Y: %d.\n", *BX1, *BY1);
@@ -140,7 +128,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
         INPUT_RECORD irInBuf[128];
         DWORD cNumRead;
         if (!ReadConsoleInput(hStdin, irInBuf, 128, &cNumRead)) {
-            printf("Erreur de lecture de l'entrée de la console.\n");
+            printf("Erreur de lecture de l'entree de la console.\n");
             return 1;
         }
 
@@ -158,17 +146,17 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
 
                     definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX2, BY2);
 
-                    printf("Les coordonnées sélectionnées sont X: %d, Y: %d\n", *BX2, *BY2);
+                    printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX2, *BY2);
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
-                        printf("La Position n'est pas convenable\n");
+                        printf("La position n'est pas convenable\n");
                     }
                     else {
                         if (*BX2 % 2 == 0 && *BY2 % 2 == 0) {
-                            printf("La Position n'est pas convenable\n");
+                            printf("La position n'est pas convenable\n");
                         }
                         else {
                             if (*BX2 % 2 == 1 && *BY2 % 2 == 1) {
-                                printf("La Position n'est pas convenable\n");
+                                printf("La position n'est pas convenable\n");
                             }
                             else {
                                 if (*BX2 % 2 == 0 && *BY2 % 2 == 1) {
@@ -176,13 +164,18 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
                                         printf("La position de la deuxieme partie de la barrière est donc en X: %d, Y: %d.\n", *BX2, *BY2);
                                         fin = 0;
                                     }
+                                    else {
+                                        printf("La position n'est pas convenable\n");
+                                    }
                                 }
                                 else if (*BX2 % 2 == 1 && *BY2 % 2 == 0) {
                                     if (abs(*BX1 - *BX2) == 0 && abs(*BY1 - *BY2) == 2) {
                                         printf("La position de la deuxieme partie de la barrière est donc en X: %d, Y: %d.\n", *BX2, *BY2);
                                         fin = 0;
                                     }
-
+                                    else {
+                                        printf("La position n'est pas convenable\n");
+                                    }
                                 }
                             }
                         }
