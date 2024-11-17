@@ -74,7 +74,6 @@ void executionJeu(int nombreDeJoueur) {
     int ordre[nombreDeJoueur];
     aleatoire(nombreDeJoueur, ordre);
 
-
     for(int i = 0, tourPasse = 0;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
@@ -86,25 +85,24 @@ void executionJeu(int nombreDeJoueur) {
         if (action == 'S') {
             //Sauvegarde de la partie
             break;
-        }
-        else if(action == 'E'){
+        }else if(action == 'E'){
             sleep(2);
             system("cls");
             i--;
-        }
+        }else{
+            //Affiche le jeu après l'action du joueur
+            affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel);
 
-        //Affiche le jeu après l'action du joueur
-        affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel);
-
-        //      Test pour voir si la partie doit continuer :
-        if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
-            ecranVictoire(JoueurActuel);  //Affiche écran de victoire
-            ajouterPointGagnant(JoueurActuel->pseudo);
-            break;
-        }
-        if(tourPasse == nombreDeJoueur*2){ //Condition match nul
-            ecranMatchNul(); //Affiche écran de match nul
-            break;
+            //      Test pour voir si la partie doit continuer :
+            if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
+                ecranVictoire(JoueurActuel);  //Affiche écran de victoire
+                ajouterPointGagnant(JoueurActuel->pseudo);
+                break;
+            }
+            if(tourPasse == nombreDeJoueur*2){ //Condition match nul
+                ecranMatchNul(); //Affiche écran de match nul
+                break;
+            }
         }
     }
 }

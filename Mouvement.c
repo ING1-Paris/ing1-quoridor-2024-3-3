@@ -1,4 +1,7 @@
 #include "Mouvement.h"
+#include "Souris.h"
+#include "Plateau.h"
+#include <stdio.h>
 
 //Vérifie que les coordonnées soit comprise dans celle du plateau
 bool estDansPlateau(int Y, int X){
@@ -32,6 +35,7 @@ void ajouterTableau(int Y, int X, int positionValide[6][2], int *nombreElements)
 //BAS : Signe Y = 1, SigneX = 0;
 //DROITE : Signe Y = 0, SigneX = +1;
 //GAUCHE : Signe Y = 0, SigneX = -1;
+//Trouve les coordonnées dans le plateau valides
 void ChercherPositionsPlateau(int plateau[17][17], int positionValide[6][2], int* nombreElements, int Y, int X, int signeY, int signeX) {
 
     //Vérifie que les prochaines coordonnées soit dans le plateau
@@ -52,7 +56,8 @@ void ChercherPositionsPlateau(int plateau[17][17], int positionValide[6][2], int
                 int nextNextWallX = nextWallX + 2*signeX;
                 int nextNextCaseY = nextCaseY + 2*signeY;
                 int nextNextCaseX = nextCaseX + 2*signeX;
-                if (presenceObjet(nextNextWallY, nextNextWallX, plateau) || !estDansPlateau(nextNextCaseY, nextNextCaseX)) {
+                if (presenceObjet(nextNextWallY, nextNextWallX, plateau) || presenceObjet(nextNextCaseY, nextNextCaseX, plateau) ||
+                    !estDansPlateau(nextNextCaseY, nextNextCaseX)) {
 
                     //Vérifie que mur et joueur ne bloque pas le côté gauche
                     int nextLeftWallY = nextCaseY - signeX;
@@ -95,7 +100,8 @@ void ChercherPositionsPlateau(int plateau[17][17], int positionValide[6][2], int
     }
 }
 
-int deplacerJoueur(Joueur* J, int plateau[17][17], int positionValide[6][2]) {
+//Trouve toutes les cases valides pour un joueur
+int trouverCasesValides(Joueur* J, int plateau[17][17], int positionValide[6][2]) {
     int nombreElements = 0;
     ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, -1, 0); //Cherche les positions en Haut
     ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, 1, 0); //Cherche les positions en Bas
@@ -104,6 +110,20 @@ int deplacerJoueur(Joueur* J, int plateau[17][17], int positionValide[6][2]) {
     return nombreElements;
 }
 
+bool deplacerJoueur(Joueur* J, int plateau[17][17], int anciennePosition[2]){
+    int positionValide[6][2] = {{-1}}; // 6 : correspond nombre maximal de cases, 2 : Y et X
+    int nmbCases = trouverCasesValides(J, plateau, positionValide);
+    if (nmbCases == 0) {
+        return 0; //Erreur, aucune cases valides
+    }
+    printf("\n\n   Cliquez sur la case que vous souhaitez selectionner...");
+    int newXJ = 0, newYJ = 0;
+    souris_joueurs(positionValide, &newXJ, &newYJ);
+    J->y = newYJ;
+    J->x = newXJ;
+    actuPlateauMouv(J, anciennePosition, plateau);
+    return 1;
+}
 /**
 // FONCTION POUR DEPLACER LE JOUEUR AVEC LES TOUCHES z, q, s, d
 void deplacer_joueur(Joueur* J, int plateau[17][17]) {

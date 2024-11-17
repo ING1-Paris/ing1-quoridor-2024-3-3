@@ -52,7 +52,6 @@ int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
                             }
                     }
                     if (vrai == 1) {
-                        printf("\nC'est bon");
                         fin = 0;
                     }
                     else {

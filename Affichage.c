@@ -37,16 +37,16 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
             printf("    Nombre de barrieres : %d", J->nb_barrieres);
         break;
         case 5:
-            printf("    Tapez 1: Deplacer le pion");
+            printf("    1. Deplacer le pion");
         break;
         case 6:
-            printf("    Tapez 2: Placer une barriere");
+            printf("    2. Placer une barriere");
         break;
         case 7:
-            printf("    Tapez 3: Passez votre tour");
+            printf("    3. Passez votre tour");
         break;
         case 8:
-            printf("    Tapez 4: Interrompre et sauvegarder la partie");
+            printf("    4. Interrompre et sauvegarder la partie");
         break;
         case 9:
             printf("    Tapez le chiffre correspondant a l'action que vous voulez faire :");

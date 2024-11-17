@@ -10,66 +10,71 @@
 #include "Mouvement.h"
 
 char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
-    int choix,annulation = 0;
+    char annulation = '0';
+    int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
     do {
-        while(getchar()!= '\n');
-        scanf("%d", &choix);
-        switch(choix) {
-            case 1: // Mouvement
-                *tourPasse = 0;
-                int positionValide[6][2] = {{-1}}; // 6 : correspond nombre maximal de cases, 2 : Y et X
-                int nmbCases = deplacerJoueur(J, plateau, positionValide);
-                if (nmbCases==0){
-                    printf("\nErreur : Impossible pour le joueur de se deplacer !");
-                    return 'E'; //Erreur, aucune cases valides
-                }else{
-                    printf("\nCliquer sur la case que vous souhaitez selectionner...");
-                    int newXJ = 0, newYJ = 0;
-                    souris_joueurs(positionValide, &newXJ, &newYJ);
-                    int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
-                    J->y = newYJ;
-                    J->x = newXJ;
-                    actuPlateauMouv(J, anciennePosition, plateau);
+        char choix = '0';
+        do{
+            if (_kbhit()) {
+                choix = _getch();
+                switch (choix) {
+                    case '1': // Mouvement
+                        *tourPasse = 0;
+                        if(!deplacerJoueur(J, plateau, anciennePosition)){
+                            printf("\n\n   Erreur : Impossible pour le joueur de se deplacer !");
+                            return 'E'; //Erreur, aucune cases valides
+                        }
+                        break;
+                    case '2': //Poser barriere
+                        *tourPasse = 0;
+                        int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
+                        souris_barrieres(&BX1, &BY1, &BX2, &BY2);
+                        break;
+                    case '3': //Passer son tour
+                        *tourPasse += 1;
+                        break;
+                    case '4': //Sauvegarde de la partie
+                        return 'S';
                 }
-                break;
-            case 2: //Poser barriere
-                *tourPasse = 0;
-                int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
-                souris_barrieres(&BX1, &BY1, &BX2, &BY2);
-                break;
-            case 3: //Passer son tour
-                *tourPasse+= 1;
-                break;
-            case 4: //Sauvegarde de la partie
-                return 'S';
-            default://Cas où l'entrée dans la console ne correspond à rien
-                printf("\nErreur : Nombre invalide");
-                return 'E';
-        }
-        //Afficher modifications
-        if (annulation == 0) {
-            printf("\nVoulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez 2 :");
-            while(getchar()!= '\n');
-            scanf("%d", &annulation);
+            }
+        }while(!(choix == '1'||choix == '2'||choix == '3'));
 
-            if (annulation == 1) {
-                //annuler coup //Si passez tour : diminuez tourPasse, si barrière enlever barrière, si déplacement, remettre à ancienne coordonnées
-                //Reafficher l'ancien plateau
-                printf("\nRetapez alors l'action voulue :");
-            }
-            else if(annulation != 2) {
-                printf("\nErreur : Nombre invalide");
-                return 'E';
-            }
-        }
-        else {
+        //Afficher modifications
+
+        if (annulation == '0') {
+            printf("\n\n   Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez sur n'importe quelle touche...");
+            do {
+                if (_kbhit()) {
+                    annulation = _getch();
+                    if (annulation == '1') {
+                        annulerCoup(plateau, J, choix, anciennePosition, tourPasse);
+                        //Si passez tour : diminuez tourPasse, si barrière enlever barrière, si déplacement, remettre à ancienne coordonnées
+                        //Reafficher l'ancien plateau
+                        printf("\n\n   Retapez alors l'action voulue :");
+                    }
+                }
+            }while(annulation == '0');
+        }else {
             break;
         }
-    } while(annulation==1);
+    }while(annulation == '1');
     return 0;
 }
 
+void annulerCoup(int plateau[17][17], Joueur* J, int choix, const int anciennePosition[2], int *tourPasse){
+    switch(choix){
+        case '1': //Action précédente = Mouvement.
+            plateau[J->y][J->x] = 0;   //Efface le pion de la nouvelle coordonnées
+            J->y = anciennePosition[0]; //Met les coordonnées de J aux anciennes
+            J->x = anciennePosition[1];
+            plateau[J->y][J->x] = J->numero; //Met le jeton de J aux anciennes coordonnées
+        case '2':
 
+        case '3':
+            *tourPasse -= 1;
+            break;
+    }
+}
 // FONCTIONS POUR CONVERTIR LES COORDONNEES DU PLATEAU (ex : A1, B5) EN COORDONNEES DE LA MATRICE
 int conversion_lettre(char lettre) { // On convertit la lettre en une colonne
     return (lettre - 'A') * 2;
@@ -140,5 +145,118 @@ void demander_coordonnees(char* lettre, char* chiffre) {
 
     // MISE A JOUR DES STOCKS DU NOMBRE DE BARRIERES DU JOUEUR
     J->nb_barrieres -= 1;
+}
+
+ void deplacer_joueur(Joueur* J, int plateau[17][17]) {
+    int verif = 1;
+    do {
+        if (_kbhit()) {  // Vérifie si une touche a été pressée
+            char deplacement = _getch();
+
+            switch (deplacement) {
+                case 'z':  // Déplace le joueur vers le haut
+                    if (J->y > 0 && plateau[J->y-1][J->x] == 0) { // Vérifie que le joueur ne se trouve pas tout en haut du plateau
+                        if(plateau[J->y-2][J->x] > 0){
+                            if(plateau[J->y-3][J->x] > 0){
+                                if(plateau[J->y-2][J->x + 1] == 0 && plateau[J->y-2][J->x + 2] == 0) {
+                                    J->y -= 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-2][J->x - 1] == 0 && plateau[J->y-2][J->x - 2] == 0) {
+                                    J->y -= 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->y -= 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->y -= 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
+                    }
+                    break;
+                case 's':  // Déplace le joueur vers le bas
+                    if (J->y < 16 && plateau[J->y+1][J->x] == 0) { // Vérifie que le joueur ne se trouve pas tout en bas du plateau
+                        if(plateau[J->y+2][J->x] > 0){
+                            if(plateau[J->y+3][J->x] > 0){
+                                if(plateau[J->y+2][J->x + 1] == 0 && plateau[J->y+2][J->x + 2] == 0) {
+                                    J->y += 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y+2][J->x - 1] == 0 && plateau[J->y+2][J->x - 2] == 0) {
+                                    J->y += 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->y += 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->y += 2;
+                            verif = 0;
+                        }
+
+                    }else{
+                        //Message d'erreur
+                    }
+                    break;
+                case 'q':  // Déplace le joueur vers la gauche
+                    if (J->x > 0 && plateau[J->y][J->x-1] == 0) { // Vérifie que le joueur ne se trouve pas tout à gauche du plateau
+                        if(plateau[J->y][J->x-2] > 0){
+                            if(plateau[J->y][J->x-3] > 0){
+                                if(plateau[J->y+1][J->x -2] == 0 && plateau[J->y+2][J->x - 2] == 0) {
+                                    J->y += 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-1][J->x - 2] == 0 && plateau[J->y-2][J->x - 2] == 0) {
+                                    J->y -= 2;
+                                    J->x -= 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->x -= 4;
+                                verif = 0;
+                            }
+                        }else{
+                            J->x -= 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
+                    }
+                    break;
+                case 'd':  // Déplace le joueur vers la droite
+                    if (J->x < 16 && plateau[J->y][J->x+1] == 0) { // Vérifie que le joueur ne se trouve pas tout à droite du plateau
+                        if(plateau[J->y][J->x+2] > 0){
+                            if(plateau[J->y][J->x+3] > 0){
+                                if(plateau[J->y+1][J->x+2] == 0 && plateau[J->y+2][J->x + 2] == 0) {
+                                    J->y += 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }else if(plateau[J->y-1][J->x + 2] == 0 && plateau[J->y-2][J->x + 2] == 0) {
+                                    J->y -= 2;
+                                    J->x += 2;
+                                    verif = 0;
+                                }
+                            }else{
+                                J->x += 4;
+                                verif = 0;
+                            }
+                        }else {
+                            J->x += 2;
+                            verif = 0;
+                        }
+                    }else{
+                        //Message d'erreur
+                    }
+                    break;
+            }
+        }
+    } while (verif);
 }
 **/
