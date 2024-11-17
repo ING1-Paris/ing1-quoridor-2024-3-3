@@ -201,9 +201,9 @@ void demander_coordonnees(char* lettre, char* chiffre) {
 }
 
 // FONCTION POUR VERIFIER SI LES DEUX CASES SONT COTE A COTE
-int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
+/*int cote_a_cote(char lettre1, char chiffre1, char lettre2, char chiffre2) {
     return (abs(lettre1 - lettre2) == 1 && chiffre1 == chiffre2) || (abs(chiffre1 - chiffre2) == 1 && lettre1 == lettre2);
-}
+}*/
 
 // FONCTION POUR PLACER LA BARRIERE ET DEMANDER LE SENS
 void placer_barriere(Joueur* J, int plateau[17][17]) {
