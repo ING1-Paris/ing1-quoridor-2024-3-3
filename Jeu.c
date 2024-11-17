@@ -7,7 +7,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include "ScoreCalcul.h"
+
+#define ROUGE 12
+#define BLEU 9
+#define JAUNE 14
+#define VERT 10
+#define BLANC 15
 
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
@@ -57,13 +62,13 @@ void executionJeu(int nombreDeJoueur) {
     menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
 
     Joueur J1, J2, J3, J4;
-    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1);
-    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2);
+    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1, BLEU);
+    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2, ROUGE);
     if(nombreDeJoueur>2) {
         J2.x = 8;
         J2.y = 0;
-        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3);
-        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4);
+        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3, JAUNE);
+        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4, VERT);
     }
 
     int ordre[nombreDeJoueur];
@@ -83,7 +88,6 @@ void executionJeu(int nombreDeJoueur) {
             break;
         }
         else if(action == 'E'){
-            printf("\nErreur : Nombre invalide");
             sleep(2);
             system("cls");
             i--;
@@ -106,13 +110,14 @@ void executionJeu(int nombreDeJoueur) {
 }
 
 // Fonction pour initialiser un joueur
-Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero) {
+Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero, int couleur) {
     Joueur J;
     J.x = x;   // placement du joueur 1 en bas au milieu
     J.y = y;
     strcpy(J.pseudo, pseudo);
     J.jeton = jeton;
     J.numero = numero;
+    J.couleur = couleur;
     initialisationScore(&J);
     if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
@@ -187,4 +192,11 @@ void ecranMatchNul(){
     printf("|_|  |_|\\__,_|\\__\\___|_| |_| |_| |_|\\__,_|_| (_) (_) (_)\n");
     printf("        Blocage de la partie : match nul ...");
     sleep(3);
+}
+
+//Fonction qui permet de mettre de la couleur dans la console
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond * 16 + couleurDuTexte);
 }

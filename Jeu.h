@@ -10,14 +10,16 @@ typedef struct {
     int nb_barrieres; // Nombre de barrières restant
     int score;  // score du joueur
     int numero; // numero joueur
+    int couleur; //Couleur du joueur
 }Joueur;
 
-Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero);
+Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero, int couleur);
 Joueur *ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour);
 bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur);
 void executionJeu(int nombreDeJoueur);
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]);
 void ecranMatchNul();
 void ecranVictoire(Joueur* J);
+void Color(int couleurDuTexte,int couleurDeFond);
 
 #endif //BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H

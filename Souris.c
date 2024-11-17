@@ -5,7 +5,7 @@
 #include "Actions.h"
 #include "Jeu.h"
 
-int souris_joueurs(Joueur* J, int positionValide[6][2], int* X, int* Y) {
+int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 

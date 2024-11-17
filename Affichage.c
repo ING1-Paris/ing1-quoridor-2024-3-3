@@ -1,7 +1,10 @@
 #include "Affichage.h"
 #include "Plateau.h"
-#include <stdio.h>
 #include "windows.h"
+#include "Jeu.h"
+#include <stdio.h>
+
+#define BLANC 15
 
 //Fonction qui affiche le Jeu
 void affichageJeu(int plateau[17][17], char Jetons[4], int nombreDeJoueur, Joueur* J) {
@@ -19,7 +22,10 @@ void affichageInformations(int ligne, int nombreDeJoueur, Joueur* J) {
             printf("    Nombre de joueurs : %d", nombreDeJoueur);
         break;
         case 1:
-            printf("    C'est au tour du joueur %d : %s", J->numero, J->pseudo);
+            printf("    C'est au tour du joueur %d : ", J->numero);
+            Color(J->couleur, 0);
+            printf("%s", J->pseudo);
+            Color(BLANC, 0);
         break;
         case 2:
             printf("    Score du joueur : %d", J->score);

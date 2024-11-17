@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "Plateau.h"
-#include "fonctionsUtiles.h"
 #include "Actions.h"
 
 #define Cases 9     // nombre de cases par lignes/colonnes
@@ -8,6 +7,12 @@
 #define BarreV 0xBA // Barres Verticales
 #define BarreC 0xCE // Barres Croix
 #define Espace 0x20 // Espace
+
+#define ROUGE 12
+#define BLEU 9
+#define JAUNE 14
+#define VERT 10
+#define BLANC 15
 
 //Fonction qui affiche les bords inférieur et supérieur du plateau
 void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]) {
@@ -91,25 +96,25 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
             printf("%c",  Espace);
         }
         switch (tableau[2 * ligne][j]) { //Puis on cherche à savoir si un jour est sur la case du plateau :
-            case 1: //Si c'est le joueur 1, on écrit son jeton en bleu foncé
-                Color(9, 0);
+            case 1: //Si c'est le joueur 1, on écrit son jeton en bleu
+                Color(BLEU, 0);
                 printf("%c", Jetons[0]);
-                Color(15, 0);
+                Color(BLANC, 0);
                 break;
-            case 2: //Si c'est le joueur 2, on écrit son jeton en rouge foncé
-                Color(12, 0);
+            case 2: //Si c'est le joueur 2, on écrit son jeton en rouge
+                Color(ROUGE, 0);
                 printf("%c", Jetons[1]);
-                Color(15, 0);
+                Color(BLANC, 0);
                 break;
             case 3: //Si c'est le joueur 3, on écrit son jeton en jaune
-                Color(14, 0);
+                Color(JAUNE, 0);
                 printf("%c", Jetons[2]);
-                Color(15, 0);
+                Color(BLANC, 0);
                 break;
             case 4: //Si c'est le joueur 4, on écrit son jeton en vert
-                Color(10, 0);
+                Color(VERT, 0);
                 printf("%c", Jetons[3]);
-                Color(15, 0);
+                Color(BLANC, 0);
                 break;
             default :
                 printf("%c", Espace); //Sinon on écrit un espace
