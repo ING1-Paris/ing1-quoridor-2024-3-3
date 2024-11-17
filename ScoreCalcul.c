@@ -40,19 +40,20 @@ void ajouterJoueur(const char *pseudo) {
     pf = NULL;
 }
 
-void initialisationScore(Joueur* J){
+void initialisationScore(Joueur* J) {
     int scoreJoueur = chercherScoreJoueur(J->pseudo);
     if (scoreJoueur == -1) {
         ajouterJoueur(J->pseudo); //Ajoute le score
         J->score = 0;
-    }else{
+    }
+    else {
         J->score = scoreJoueur;
     }
 }
 
-// Fonction qui ajoute des points au joueur gagnant
+// Fonction qui ajoute des points au joueur gagnant sans fichier temporaire
 void ajouterPointGagnant(const char *pseudo) {
-    FILE* pf = fopen("../score.txt", "r");
+    FILE* pf = fopen("../score.txt", "r+");  // Ouvre le fichier en lecture/écriture
     if (pf == NULL) {
         printf("Erreur lors de l'ouverture du fichier\n");
         return;
@@ -60,30 +61,22 @@ void ajouterPointGagnant(const char *pseudo) {
 
     char pseudo_lu[21];
     int score_lu;
-
-    // Fichier temporaire pour réécrire les scores - cela réduit la possibilité d'erreur
-    FILE *temp_file = fopen("temp_score.txt", "w");
-    if (temp_file == NULL) {
-        printf("Erreur lors de la création du fichier temporaire\n");
-        fclose(pf);
-        pf = NULL;
-        return;
-    }
+    long pos;
 
     // Parcours du fichier pour modifier le score du joueur
     while (fscanf(pf, "%s %d", pseudo_lu, &score_lu) != EOF) {
+        pos = ftell(pf);  // Sauvegarder la position du curseur de fichier
+
         if (strcmp(pseudo_lu, pseudo) == 0) {
-            score_lu += 5;    // ajout des 5 points de la victoire
+            score_lu += 5;    // Ajout des 5 points de la victoire
+            fseek(pf, pos - strlen(pseudo_lu) - 1, SEEK_SET); // Se repositionner pour réécrire la ligne
+            fprintf(pf, "%s %d\n", pseudo_lu, score_lu);
+            fflush(pf);  // Force l'écriture dans le fichier
+            fclose(pf);  // On ferme après modification
+            return;
         }
-        fprintf(temp_file, "%s %d\n", pseudo_lu, score_lu);
     }
 
     fclose(pf);
-    pf = NULL;
-    fclose(temp_file);
-    temp_file = NULL;
-
-    // Remplacement du fichier original par le fichier temporaire
-    remove("score.txt");
-    rename("temp_score.txt", "score.txt");
+    printf("Le joueur n'a pas été trouvé dans le fichier.\n");
 }
