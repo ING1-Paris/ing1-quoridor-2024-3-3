@@ -2,13 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "Jeu.h"
 #include "Affichage.h"
 #include "Menu.h"
 #include "Actions.h"
 #include "Plateau.h"
 #include "Souris.h"
-
+#include "Mouvement.h"
 
 char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
     int choix,annulation = 0;
@@ -18,14 +17,18 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
         switch(choix) {
             case 1: // Mouvement
                 *tourPasse = 0;
-                souris_joueurs(J);
-                printf("\nPour aller en haut, tapez z");
-                printf("\nPour aller en bas, tapez s");
-                printf("\nPour aller a droite, tapez d");
-                printf("\nPour aller en gauche, tapez q");
-                int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
-                deplacer_joueur(J, plateau);
-                actuPlateauMouv(J, anciennePosition, plateau);
+                int positionValide[6][2] = {{-1}}; // 6 : correspond nombre maximal de cases, 2 : Y et X
+                int nmbCases = deplacerJoueur(J, plateau, positionValide);
+                if (nmbCases==0){
+                    return 'E'; //Erreur, aucune cases valides
+                }else{
+                    printf("\nCliquer sur la case que vous souhaitez selectionner...");
+                    //Fonction souris déplacement
+                    souris_joueurs(J);
+                    int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
+                    deplacer_joueur(J, plateau);
+                    actuPlateauMouv(J, anciennePosition, plateau);
+                }
                 break;
             case 2: //Poser barriere
                 *tourPasse = 0;
