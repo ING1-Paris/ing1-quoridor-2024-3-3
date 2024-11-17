@@ -1,15 +1,11 @@
 #include <conio.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "Affichage.h"
-#include "Menu.h"
 #include "Actions.h"
-#include "Plateau.h"
+#include "Affichage.h"
 #include "Souris.h"
 #include "Mouvement.h"
 
-char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
+char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDeJoueur, char Jetons[4]) {
     char annulation = '0';
     int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
     do {
@@ -39,17 +35,18 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
             }
         }while(!(choix == '1'||choix == '2'||choix == '3'));
 
-        //Afficher modifications
+        //Affiche les modifications
+        affichageJeu(plateau, Jetons, nombreDeJoueur, J);
 
         if (annulation == '0') {
-            printf("\n\n   Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez sur n'importe quelle touche...");
+            printf("\n\n   Voulez vous annuler votre coup ? Si oui, tapez 1, sinon tapez sur n'importe quelle autre touche...");
             do {
                 if (_kbhit()) {
                     annulation = _getch();
                     if (annulation == '1') {
                         annulerCoup(plateau, J, choix, anciennePosition, tourPasse);
-                        //Si passez tour : diminuez tourPasse, si barrière enlever barrière, si déplacement, remettre à ancienne coordonnées
-                        //Reafficher l'ancien plateau
+                        //Si passez tour : diminuez tourPasse
+                        affichageJeu(plateau, Jetons, nombreDeJoueur, J);//Reafficher l'ancien plateau
                         printf("\n\n   Retapez alors l'action voulue :");
                     }
                 }

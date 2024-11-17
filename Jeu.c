@@ -81,7 +81,7 @@ void executionJeu(int nombreDeJoueur) {
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel);
 
         //      Partie action du joueur :
-        char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
+        char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') {
             //Sauvegarde de la partie
             break;
@@ -90,9 +90,7 @@ void executionJeu(int nombreDeJoueur) {
             system("cls");
             i--;
         }else{
-            //Affiche le jeu après l'action du joueur
-            affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel);
-
+            
             //      Test pour voir si la partie doit continuer :
             if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
                 ecranVictoire(JoueurActuel);  //Affiche écran de victoire
