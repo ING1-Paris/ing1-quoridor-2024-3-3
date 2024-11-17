@@ -17,15 +17,9 @@ int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
 }
 
 
-int souris_joueurs(Joueur* J, int positionValide[6][2]) {
+int souris_joueurs(Joueur* J, int positionValide[6][2], int* X, int* Y) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-
-    /* Vérifier si le handle est valide
-    if (hStdin == INVALID_HANDLE_VALUE) {
-        printf("Erreur : Impossible d'obtenir le handle de la console.\n");
-        return 1;
-    }*/
 
     // Activer le mode pour lire les événements de la souris
     DWORD fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT;
@@ -51,22 +45,21 @@ int souris_joueurs(Joueur* J, int positionValide[6][2]) {
 
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
-                    int X = 0, Y = 0;
                     for (i = 0; i < 16; i++) {
                         if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
-                            X = 2*i;
+                            *X = 2*i;
                         }
                     }
                     for (i = 0; i < 16; i++) {
                         if (2 + 2*i == mer.dwMousePosition.Y) {
-                            Y = 2*i;
+                            *Y = 2*i;
                         }
                     }
-                    printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
-                    printf("Les coordonnées dans la matrice sont X: %d, Y: %d\n", X, Y);
+                    //printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
+                    //printf("Les coordonnées dans la matrice sont X: %d, Y: %d\n", *X, *Y);
                     int vrai = 0;
                     for (i = 0; i < 6; i++) {
-                            if (positionValide[i][0] == Y && positionValide[i][1] == X) {
+                            if (positionValide[i][0] == *Y && positionValide[i][1] == *X) {
                                 vrai = 1;
                             }
                     }
@@ -87,12 +80,6 @@ int souris_joueurs(Joueur* J, int positionValide[6][2]) {
 int souris_barrieres() {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-
-    /* Vérifier si le handle est valide
-    if (hStdin == INVALID_HANDLE_VALUE) {
-        printf("Erreur : Impossible d'obtenir le handle de la console.\n");
-        return 1;
-    }*/
 
     // Activer le mode pour lire les événements de la souris
     DWORD fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_MOUSE_INPUT;
@@ -120,26 +107,16 @@ int souris_barrieres() {
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
                     X1 = 0, Y1 = 0;
-                    for (i = 0; i < 16; i++) {
-                        if (3 + 5*i == mer.dwMousePosition.X) {
-                            X1 = 2*i - 1;
-                        }
-                    }
-                    for (i = 0; i < 16; i++) {
-                        if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
-                            X1 = 2*i;
-                        }
-                    }
-                    for (i = 0; i < 16; i++) {
-                        if (3 + i == mer.dwMousePosition.Y) {
-                            Y1 = 1 + i;
-                        }
-                    }
+                    int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
+
+                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, &X1, &Y1);
 
                     printf("Les coordonnées sélectionnées sont X: %d, Y: %d\n", X1, Y1);
+
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
                         printf("La Position n'est pas convenable\n");
                     }
+
                     else {
                         if (X1 % 2 == 0 && Y1 % 2 == 0) {
                             printf("La Position n'est pas convenable\n");
@@ -178,21 +155,10 @@ int souris_barrieres() {
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
                     X2 = 0, Y2 = 0;
-                    for (i = 0; i < 16; i++) {
-                        if (3 + 5*i == mer.dwMousePosition.X) {
-                            X2 = 2*i - 1;
-                        }
-                    }
-                    for (i = 0; i < 16; i++) {
-                        if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
-                            X2 = 2*i;
-                        }
-                    }
-                    for (i = 0; i < 16; i++) {
-                        if (3 + i == mer.dwMousePosition.Y) {
-                            Y2 = 1 + i;
-                        }
-                    }
+
+                    int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
+
+                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, &X2, &Y2);
 
                     printf("Les coordonnées sélectionnées sont X: %d, Y: %d\n", X2, Y2);
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
@@ -208,11 +174,17 @@ int souris_barrieres() {
                             }
                             else {
                                 if (X2 % 2 == 1 && Y2 % 2 == 0) {
-
+                                    if (abs(X1 - X2) == 2 && abs(Y1 - Y2) == 0) {
+                                        printf("La position de la deuxieme partie de la barrière est donc en X: %d, Y: %d.\n", X2, Y2);
+                                        fin = 0;
+                                    }
                                 }
-                                else {
-                                    printf("La position de la premiere partie de la barrière est donc en X: %d, Y: %d.\n", X2, Y2);
-                                    fin = 0;
+                                else if (X2 % 2 == 0 && Y2 % 2 == 1) {
+                                    if (abs(X1 - X2) == 2 && abs(Y1 - Y2) == 0) {
+                                        printf("La position de la deuxieme partie de la barrière est donc en X: %d, Y: %d.\n", X2, Y2);
+                                        fin = 0;
+                                    }
+
                                 }
                             }
                         }
@@ -222,4 +194,23 @@ int souris_barrieres() {
         }
     }
     return 0;
+}
+
+
+void definitioncoordonneesXYbarrieres(int* Xsouris, int* Ysouris, int* X, int* Y) {
+    for (int i = 0; i < 16; i++) {
+        if (3 + 5*i == *Xsouris) {
+            *X = 2*i - 1;
+        }
+    }
+    for (int i = 0; i < 16; i++) {
+        if (4 + 5*i <= *Xsouris && *Xsouris <= 7 + 5*i) {
+            *X = 2*i;
+        }
+    }
+    for (int i = 0; i < 16; i++) {
+        if (3 + i == *Ysouris) {
+            *Y = 1 + i;
+        }
+    }
 }
