@@ -24,7 +24,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse) {
                 }else{
                     printf("\nCliquer sur la case que vous souhaitez selectionner...");
                     //Fonction souris déplacement
-                    souris_joueurs(J);
+                    souris_joueurs(J, positionValide);
                     int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
                     deplacer_joueur(J, plateau);
                     actuPlateauMouv(J, anciennePosition, plateau);

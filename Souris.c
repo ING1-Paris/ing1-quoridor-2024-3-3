@@ -17,7 +17,7 @@ int cote_a_cote(int X, int Y, int position_jetonX, int position_jetonY) {
 }
 
 
-int souris_joueurs(Joueur* J) {
+int souris_joueurs(Joueur* J, int positionValide[6][2]) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 
@@ -62,27 +62,20 @@ int souris_joueurs(Joueur* J) {
                             Y = 2*i;
                         }
                     }
-
                     printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
-                    printf("Les coordonnées dans la matrice sont X: %d, Y: %d", X, Y);
-                    if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
-                        printf("La Position n'est pas convenable");
+                    printf("Les coordonnées dans la matrice sont X: %d, Y: %d\n", X, Y);
+                    int vrai = 0;
+                    for (i = 0; i < 6; i++) {
+                            if (positionValide[i][0] == Y && positionValide[i][1] == X) {
+                                vrai = 1;
+                            }
+                    }
+                    if (vrai == 1) {
+                        printf("C'est bon\n");
+                        fin = 0;
                     }
                     else {
-                        if (mer.dwMousePosition.X % 5 == 3 || mer.dwMousePosition.Y % 2 == 1) {
-                            printf("La Position n'est pas convenable");
-                        }
-                        else {
-                            int vrai = 0;
-                            vrai = cote_a_cote(X, Y, J->x, J->y);
-                            if (vrai == 0) {
-                                printf("La Position n'est pas convenable");
-                            }
-                            else {
-                                printf("C'est bon");
-                                fin = 0;
-                            }
-                        }
+                        printf("La position n'est pas convenable ! Veuillez cliquer a nouveau sur la case ou vous voulez vous deplacer.\n");
                     }
                 }
             }
