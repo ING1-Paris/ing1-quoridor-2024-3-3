@@ -2,7 +2,6 @@
 #include <string.h>
 #include "ScoreCalcul.h"
 
-
 // Fonction qui renvoie le score du joueur, et renvoie -1 s'il n'est pas présent dans le fichier
 int chercherScoreJoueur(const char *pseudo) {
     FILE* pf = fopen("../score.txt", "r");
@@ -18,13 +17,11 @@ int chercherScoreJoueur(const char *pseudo) {
     while (fscanf(pf, "%s %d", pseudo_lu, &score_lu) != EOF) {
         if (strcmp(pseudo_lu, pseudo) == 0) {
             fclose(pf);
-            pf = NULL;
             return score_lu; // Renvoie le score quand le joueur est trouvé
         }
     }
 
     fclose(pf);
-    pf = NULL;
     return -1; // Joueur non trouvé
 }
 
@@ -37,21 +34,19 @@ void ajouterJoueur(const char *pseudo) {
     }
     fprintf(pf, "%s 0\n", pseudo);
     fclose(pf);
-    pf = NULL;
 }
 
 void initialisationScore(Joueur* J) {
     int scoreJoueur = chercherScoreJoueur(J->pseudo);
     if (scoreJoueur == -1) {
-        ajouterJoueur(J->pseudo); //Ajoute le score
+        ajouterJoueur(J->pseudo); // Ajoute le score
         J->score = 0;
-    }
-    else {
+    } else {
         J->score = scoreJoueur;
     }
 }
 
-// Fonction qui ajoute des points au joueur gagnant sans fichier temporaire
+// Fonction qui ajoute des points au joueur gagnant sans ajouter le joueur s'il n'existe pas
 void ajouterPointGagnant(const char *pseudo) {
     FILE* pf = fopen("../score.txt", "r+");  // Ouvre le fichier en lecture/écriture
     if (pf == NULL) {
@@ -65,11 +60,13 @@ void ajouterPointGagnant(const char *pseudo) {
 
     // Parcours du fichier pour modifier le score du joueur
     while (fscanf(pf, "%s %d", pseudo_lu, &score_lu) != EOF) {
-        pos = ftell(pf);  // Sauvegarder la position du curseur de fichier
-
         if (strcmp(pseudo_lu, pseudo) == 0) {
+            pos = ftell(pf);  // Position après lecture
             score_lu += 5;    // Ajout des 5 points de la victoire
-            fseek(pf, pos - strlen(pseudo_lu) - 1, SEEK_SET); // Se repositionner pour réécrire la ligne
+
+            // Repositionnement précis pour l'écriture
+            fseek(pf, pos - (strlen(pseudo_lu) + 1 + snprintf(NULL, 0, "%d", score_lu - 5) + 1), SEEK_SET);
+
             fprintf(pf, "%s %d\n", pseudo_lu, score_lu);
             fflush(pf);  // Force l'écriture dans le fichier
             fclose(pf);  // On ferme après modification

@@ -85,7 +85,7 @@ void executionJeu(int nombreDeJoueur) {
         if (action == 'S') {
             //Sauvegarde de la partie
             break;
-        }else if(action == 'E'){
+        } else if(action == 'E'){
             sleep(2);
             system("cls");
             i--;
