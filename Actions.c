@@ -25,7 +25,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDe
                     case '2': //Poser barriere
                         *tourPasse = 0;
                         int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
-                        souris_barrieres(&BX1, &BY1, &BX2, &BY2);
+                        souris_barrieres(&BX1, &BY1, &BX2, &BY2, plateau);
                         ajouterBarriere(plateau, BX1, BY1, BX2, BY2);
                         break;
                     case '3': //Passer son tour
