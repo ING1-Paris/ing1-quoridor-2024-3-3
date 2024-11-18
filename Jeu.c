@@ -90,7 +90,7 @@ void executionJeu(int nombreDeJoueur) {
             system("cls");
             i--;
         }else{
-            
+
             //      Test pour voir si la partie doit continuer :
             if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
                 ecranVictoire(JoueurActuel);  //Affiche écran de victoire
