@@ -9,6 +9,7 @@
 char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDeJoueur, char Jetons[4]) {
     char annulation = '0';
     int anciennePosition[2] = {J->y, J->x}; //Pour effacer le jeton à l'ancienne position
+    int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
     do {
         char choix = '0';
         do{
@@ -24,9 +25,15 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDe
                         break;
                     case '2': //Poser barriere
                         *tourPasse = 0;
-                        int BX1 = 0, BY1 = 0, BX2 = 0, BY2 = 0;
-                        souris_barrieres(&BX1, &BY1, &BX2, &BY2, plateau);
-                        ajouterBarriere(plateau, BX1, BY1, BX2, BY2);
+                        if(J->nb_barrieres > 0){
+                            printf("\n\n   Cliquez donc sur les positions voulues (entre les cases) :");
+                            souris_barrieres(&BX1, &BY1, &BX2, &BY2, plateau);
+                            ajouterBarriere(plateau, BX1, BY1, BX2, BY2);
+                            J->nb_barrieres--;
+                        }else{
+                            printf("\n\n   Erreur : le joueur n'a plus de barrieres !");
+                            return 'E';
+                        }
                         break;
                     case '3': //Passer son tour
                         *tourPasse += 1;
@@ -46,7 +53,7 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDe
                 if (_kbhit()) {
                     annulation = _getch();
                     if (annulation == '1') {
-                        annulerCoup(plateau, J, choix, anciennePosition, tourPasse);
+                        annulerCoup(plateau, J, choix, anciennePosition, tourPasse, BX1, BY1, BX2, BY2);
                         //Si passez tour : diminuez tourPasse
                         affichageJeu(plateau, Jetons, nombreDeJoueur, J);//Reafficher l'ancien plateau
                         printf("\n\n   Retapez alors l'action voulue :");
@@ -60,15 +67,22 @@ char actionsJoueurs(Joueur* J, int plateau[17][17], int* tourPasse, int nombreDe
     return 0;
 }
 
-void annulerCoup(int plateau[17][17], Joueur* J, int choix, const int anciennePosition[2], int *tourPasse){
+void annulerCoup(int plateau[17][17], Joueur* J, int choix, const int anciennePosition[2], int *tourPasse, int BX1, int BY1, int BX2, int BY2){
     switch(choix){
         case '1': //Action précédente = Mouvement.
             plateau[J->y][J->x] = 0;   //Efface le pion de la nouvelle coordonnées
             J->y = anciennePosition[0]; //Met les coordonnées de J aux anciennes
             J->x = anciennePosition[1];
             plateau[J->y][J->x] = J->numero; //Met le jeton de J aux anciennes coordonnées
+            break;
         case '2':
-
+            plateau[BY1][BX1] = 0;
+            plateau[BY2][BX2] = 0;
+            int intersectionY = (BY1+BY2)/2;
+            int intersectionX = (BX1+BX2)/2;
+            plateau[intersectionY][intersectionX] = 0;
+            J->nb_barrieres ++;
+            break;
         case '3':
             *tourPasse -= 1;
             break;
