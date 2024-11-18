@@ -85,6 +85,11 @@ void executionJeu(int nombreDeJoueur) {
         char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') {
             SauvegardePartie partie;
+            for (int x = 0; x < 17; x++) {
+                for (int y = 0; y < 17; y++) {
+                    partie.plateau[x][y] = plateau[x][y];
+                }
+            }
             partie.nb_joueurs = nombreDeJoueur;
             partie.tour_joueur = ordre[i];
             if (nombreDeJoueur>2) {

@@ -51,7 +51,6 @@ void sauvegarder_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur
     printf("Partie sauvegardée avec succès.\n");
 }
 
-/**
 // FONCTION POUR CHARGER LA DERNIERE PARTIE SAUVEGARDEE
 void charger_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4) {
     FILE* fichier = fopen("sauvegarde.txt", "r");
@@ -101,7 +100,6 @@ void charger_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3
     fclose(fichier);
     printf("Partie chargée avec succès.\n");
 }
-**/
 
 
 
