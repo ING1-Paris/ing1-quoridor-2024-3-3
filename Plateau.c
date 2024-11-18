@@ -167,23 +167,29 @@ void actuPlateauMouv(Joueur* J, const int anciennePosition[2], int plateau[17][1
 }
 
 // Mettre à jour le plateau pour ajouter une barrière
-void ajouter_barriere(int plateau[17][17], char lettre1, char chiffre1, char lettre2, char chiffre2, char sens) {
-    int ligne1 = conversion_lettre(lettre1);
-    int colonne1 = conversion_chiffre(chiffre1);
-    int ligne2 = conversion_lettre(lettre2);
-    int colonne2 = conversion_chiffre(chiffre2);
+void ajouterBarriere(int plateau[17][17], int X1, int Y1, int X2, int Y2){
+    int typeBarriere;
 
-    if (sens == 'H') {
-        plateau[ligne1 - 1][colonne1] = 5; // Barrière horizontale au-dessus
-        plateau[ligne2 - 1][colonne2] = 5; // Prolongement de la barrière
-    } else if (sens == 'B') {
-        plateau[ligne1 + 1][colonne1] = 5; // Barrière horizontale en-dessous
-        plateau[ligne2 + 1][colonne2] = 5; // Prolongement de la barrière
-    } else if (sens == 'G') {
-        plateau[ligne1][colonne1 - 1] = 6; // Barrière verticale à gauche
-        plateau[ligne2][colonne2 - 1] = 6; // Prolongement de la barrière
-    } else if (sens == 'D') {
-        plateau[ligne1][colonne1 + 1] = 6; // Barrière verticale à droite
-        plateau[ligne2][colonne2 + 1] = 6; // Prolongement de la barrière
+    if (Y1 == Y2){
+        typeBarriere = 5;
+    }else{
+        typeBarriere = 6;
+    }
+
+    plateau[Y1][X1] = typeBarriere;
+    plateau[Y2][X2] = typeBarriere;
+
+    int intersectionY = (Y1 + Y2)/2;
+    int intersectionX = (X1 + X2)/2;
+    /**
+    int intersectionGaucheY = intersectionY -
+    int intersectionGaucheX = (X1 + X2)/2;
+    int intersectionDroiteY = (Y1 + Y2)/2;
+    int intersectionDroiteX = (X1 + X2)/2;
+    **/
+    if(plateau[intersectionY][intersectionX] >= 5){
+        plateau[intersectionY][intersectionX] = 7;
+    }else{
+        plateau[intersectionY][intersectionX] = typeBarriere;
     }
 }
