@@ -33,18 +33,11 @@ int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
 
                 // Où le clic gauche est pressé
                 if (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
-                    for (i = 0; i < 16; i++) {
-                        if (4 + 5*i <= mer.dwMousePosition.X && mer.dwMousePosition.X <= 7 + 5*i) {
-                            *X = 2*i;
-                        }
-                    }
-                    for (i = 0; i < 16; i++) {
-                        if (2 + 2*i == mer.dwMousePosition.Y) {
-                            *Y = 2*i;
-                        }
-                    }
-                    //printf("Clic gauche detecte a la position X: %d, Y: %d\n", mer.dwMousePosition.X, mer.dwMousePosition.Y);
-                    //printf("Les coordonnées dans la matrice sont X: %d, Y: %d\n", *X, *Y);
+
+                    int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
+
+                    definitioncoordonneesXY(&Xsouris, &Ysouris, X, Y);
+                    
                     int vrai = 0;
                     for (i = 0; i < 6; i++) {
                             if (positionValide[i][0] == *Y && positionValide[i][1] == *X) {
@@ -94,7 +87,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
                     *BX1 = 0, *BY1 = 0;
                     int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
 
-                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX1, BY1);
+                    definitioncoordonneesXY(&Xsouris, &Ysouris, BX1, BY1);
 
                     printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX1, *BY1);
 
@@ -147,7 +140,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
 
                     int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
 
-                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX2, BY2);
+                    definitioncoordonneesXY(&Xsouris, &Ysouris, BX2, BY2);
 
                     printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX2, *BY2);
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
@@ -231,7 +224,7 @@ int remplacer_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][
                     *BX1 = 0, *BY1 = 0;
                     int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
 
-                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX1, BY1);
+                    definitioncoordonneesXY(&Xsouris, &Ysouris, BX1, BY1);
 
                     printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX1, *BY1);
 
@@ -269,7 +262,7 @@ int remplacer_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][
 
                     int Xsouris = mer.dwMousePosition.X, Ysouris = mer.dwMousePosition.Y;
 
-                    definitioncoordonneesXYbarrieres(&Xsouris, &Ysouris, BX2, BY2);
+                    definitioncoordonneesXY(&Xsouris, &Ysouris, BX2, BY2);
 
                     printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX2, *BY2);
 
@@ -288,18 +281,18 @@ int remplacer_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][
 }
 
 
-void definitioncoordonneesXYbarrieres(int* Xsouris, int* Ysouris, int* X, int* Y) {
-    for (int i = 0; i < 16; i++) {
+void definitioncoordonneesXY(int* Xsouris, int* Ysouris, int* X, int* Y) {
+    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des barrieres
         if (3 + 5*i == *Xsouris) {
             *X = 2*i - 1;
         }
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des joueurs
         if (4 + 5*i <= *Xsouris && *Xsouris <= 7 + 5*i) {
             *X = 2*i;
         }
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 16; i++) { // Récupération du Y des coordonnees de la barriere
         if (3 + i == *Ysouris) {
             *Y = 1 + i;
         }
