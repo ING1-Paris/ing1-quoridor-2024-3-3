@@ -64,7 +64,7 @@ int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
     return 0;
 }
 
-int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
+int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 
@@ -111,8 +111,12 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
                                 printf("La position n'est pas convenable\n");
                             }
                             else {
-                                printf("La position de la premiere partie de la barrière est donc en X: %d, Y: %d.\n", *BX1, *BY1);
-                                fin = 0;
+                                if (plateau[*BY1][*BX1] >= 5) {
+                                    printf("Il y a deja une barriere a cet emplacement.\n");
+                                }
+                                else {
+                                    fin = 0;
+                                }
                             }
                         }
                     }
@@ -164,7 +168,12 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
                                         fin = 0;
                                     }
                                     else {
-                                        printf("La position n'est pas convenable\n");
+                                        if (plateau[*BY1][*BX1] >= 5) {
+                                            printf("Il y a deja une barriere a cet emplacement.\n");
+                                        }
+                                        else {
+                                            fin = 0;
+                                        }
                                     }
                                 }
                                 else if (*BX2 % 2 == 1 && *BY2 % 2 == 0) {
@@ -173,7 +182,12 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2) {
                                         fin = 0;
                                     }
                                     else {
-                                        printf("La position n'est pas convenable\n");
+                                        if (plateau[*BY1][*BX1] >= 5) {
+                                            printf("Il y a deja une barriere a cet emplacement.\n");
+                                        }
+                                        else {
+                                            fin = 0;
+                                        }
                                     }
                                 }
                             }
