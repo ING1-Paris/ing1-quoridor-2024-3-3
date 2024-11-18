@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include "Sauvegarde.h"
 
 #define ROUGE 12
 #define BLEU 9
@@ -83,7 +84,14 @@ void executionJeu(int nombreDeJoueur) {
         //      Partie action du joueur :
         char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') {
-            //Sauvegarde de la partie
+            SauvegardePartie partie;
+            partie.nb_joueurs = nombreDeJoueur;
+            partie.tour_joueur = ordre[i];
+            if (nombreDeJoueur>2) {
+                sauvegarder_partie(&partie, &J1, &J2, &J3, &J4);
+            } else {
+                sauvegarder_partie(&partie, &J1, &J2, NULL, NULL);
+            }
             break;
         } else if(action == 'E'){
             sleep(2);

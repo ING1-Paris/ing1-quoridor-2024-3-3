@@ -1,5 +1,6 @@
 #ifndef SAUVEGARDE_H
 #define SAUVEGARDE_H
+#include "Jeu.h"
 
 typedef struct {
     int plateau[17][17]; // Le plateau de jeu en l'état actuel
@@ -9,5 +10,8 @@ typedef struct {
     int nb_barrieres[4]; // Barrières restantes pour chaque joueur
     int tour_joueur; // Le joueur qui doit jouer
 } SauvegardePartie;
+
+void sauvegarder_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4);
+void charger_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4);
 
 #endif //SAUVEGARDE_H
