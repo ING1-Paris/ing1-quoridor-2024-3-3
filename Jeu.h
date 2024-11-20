@@ -16,7 +16,7 @@ typedef struct {
 Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero, int couleur);
 Joueur *ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int tour);
 bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur);
-void executionJeu(int nombreDeJoueur);
+void executionJeu(int nombreDeJoueur, bool partieCharge);
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]);
 void ecranMatchNul();
 void ecranVictoire(Joueur* J);

@@ -52,28 +52,33 @@ void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
 }
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
-void executionJeu(int nombreDeJoueur) {
+void executionJeu(int nombreDeJoueur, bool partieCharge) {
+    //DECLARATION
+
     int plateau[17][17] = {{0}}; // matrice[colonne][ligne] : 9 cases Joueur, 8 cases barrières
     //éléments en fonction du chiffre :
     // 1 = J1; 2 = J2; 3 = J3; 4 = J4; 5 = barrière horizontale; 6 = barrière verticale 7 = barrière en croix
-    initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
-
+    Joueur J1, J2, J3, J4; //Déclaration des joueurs
     char pseudo[4][21]; // Tableaux pour stocker les pseudos
     char jeton[4]; // Tableaux pour stocker les jetons
-    menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
-
-    Joueur J1, J2, J3, J4;
-    J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1, BLEU);
-    J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2, ROUGE);
-    if(nombreDeJoueur>2) {
-        J2.x = 8;
-        J2.y = 0;
-        J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3, JAUNE);
-        J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4, VERT);
-    }
-
     int ordre[nombreDeJoueur];
-    aleatoire(nombreDeJoueur, ordre);
+
+    //INITIALISATION
+    if(partieCharge){
+        //Chargement
+    }else{
+        initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
+        menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
+        J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1, BLEU);
+        J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2, ROUGE);
+        if(nombreDeJoueur>2) {
+            J2.x = 8;
+            J2.y = 0;
+            J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3, JAUNE);
+            J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4, VERT);
+        }
+        aleatoire(nombreDeJoueur, ordre);
+    }
 
     for(int i = 0, tourPasse = 0;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
