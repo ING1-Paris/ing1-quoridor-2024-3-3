@@ -62,6 +62,8 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
     char pseudo[4][21]; // Tableaux pour stocker les pseudos
     char jeton[4]; // Tableaux pour stocker les jetons
     int ordre[nombreDeJoueur];
+    int tourPasse;
+    int tour;
 
     //INITIALISATION
     if(partieCharge){
@@ -78,9 +80,11 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
             J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4, VERT);
         }
         aleatoire(nombreDeJoueur, ordre);
+        tourPasse = 0;
+        tour = 0;
     }
 
-    for(int i = 0, tourPasse = 0;; i = (i + 1) % nombreDeJoueur) {
+    for(int i = tour;; i = (i + 1) % nombreDeJoueur) {
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
         //1er Affichage du Jeu
@@ -89,19 +93,8 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
         //      Partie action du joueur :
         char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') {
-            SauvegardePartie partie;
-            for (int x = 0; x < 17; x++) {
-                for (int y = 0; y < 17; y++) {
-                    partie.plateau[x][y] = plateau[x][y];
-                }
-            }
-            partie.nb_joueurs = nombreDeJoueur;
-            partie.tour_joueur = ordre[i];
-            if (nombreDeJoueur>2) {
-                sauvegarder_partie(&partie, &J1, &J2, &J3, &J4);
-            } else {
-                sauvegarder_partie(&partie, &J1, &J2, NULL, NULL);
-            }
+            SauvegardePartie partie = iniPartie(plateau, nombreDeJoueur, tour, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
+            sauvegarder_partie(&partie);
             break;
         } else if(action == 'E'){
             sleep(2);

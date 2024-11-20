@@ -4,14 +4,20 @@
 
 typedef struct {
     int plateau[17][17]; // Le plateau de jeu en l'état actuel
-    int positions_joueurs[4][2]; // Positions des joueurs [n° du joueur][position : ligne, colonne]
     int nb_joueurs; // Nombre de joueurs
-    char pseudos[4][20]; // Pseudos des joueurs
-    int nb_barrieres[4]; // Barrières restantes pour chaque joueur
     int tour_joueur; // Le joueur qui doit jouer
+    char jeton[4]; // Jetons des joueurs
+    int ordre[4]; // Tableau correspondant à l'ordre définit des joueurs
+    int tourPasse; // variable qui correspond au nombre de tour passé par le joueur
+    Joueur* J1; // Pointeur vers J1
+    Joueur* J2; // Pointeur vers J2
+    Joueur* J3; // Pointeur vers J3
+    Joueur* J4; // Pointeur vers J4
 } SauvegardePartie;
 
-void sauvegarder_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4);
+SauvegardePartie iniPartie(int plateau[17][17], int nombreDeJoueur, int tour, Joueur*J1, Joueur*J2, Joueur*J3, Joueur*J4,
+                           char jeton[4], int ordre[nombreDeJoueur], int tourPasse);
+void sauvegarder_partie(SauvegardePartie* partie);
 void charger_partie(SauvegardePartie* partie, Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4);
 
 #endif //SAUVEGARDE_H
