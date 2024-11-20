@@ -89,7 +89,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
 
                     definitioncoordonneesXY(&Xsouris, &Ysouris, BX1, BY1);
 
-                    printf("Les coordonnees selectionnees sont X: %d, Y: %d\n", *BX1, *BY1);
+                    printf("\nLes coordonnees selectionnees sont X: %d, Y: %d", *BX1, *BY1);
 
                     if (mer.dwMousePosition.X < 3 || mer.dwMousePosition.X > 48 || mer.dwMousePosition.Y < 1 || mer.dwMousePosition.Y > 19) {
                         printf("La position n'est pas convenable\n");
@@ -107,8 +107,27 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
                                 if (plateau[*BY1][*BX1] >= 5) {
                                     printf("Il y a deja une barriere a cet emplacement.\n");
                                 }
-                                else {
-                                    fin = 0;
+                                else if (*BX1 % 2 == 0 && *BY1 % 2 == 1) {
+                                    if (plateau[*BY1][*BX1 - 2] >= 5 && plateau[*BY1][*BX1 + 2] >= 5) {
+                                        printf("Espace insuffisant, recliquez sur un emp1lacement valide.\n");
+                                    }
+                                    else if ((plateau[*BY1][*BX1 - 2] >= 5 && *BX1 == 16) || (plateau[*BY1][*BX1 + 2] >= 5 && *BX1 == 0)) {
+                                        printf("Espace insuffisant, recliquez sur un emplacement valide.\n");
+                                    }
+                                    else {
+                                        fin = 0;
+                                    }
+                                }
+                                else if (*BX1 % 2 == 1 && *BY1 % 2 == 0) {
+                                    if (plateau[*BY1 - 2][*BX1] >= 5 && plateau[*BY1 + 2][*BX1] >= 5) {
+                                        printf("Espace insuffisant, recliquez sur un emplacement valide.\n");
+                                    }
+                                    else if ((plateau[*BY1 - 2][*BX1] >= 5 && *BY1 == 16) || (plateau[*BY1 + 2][*BX1] >= 5 && *BY1 == 0)) {
+                                        printf("Espace insuffisant, recliquez sur un emplacement valide.\n");
+                                    }
+                                    else {
+                                        fin = 0;
+                                    }
                                 }
                             }
                         }
@@ -156,7 +175,7 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
                             }
                             else {
                                 if (*BX2 % 2 == 0 && *BY2 % 2 == 1) {
-                                    if (plateau[*BY1][*BX1] >= 5) {
+                                    if (plateau[*BY2][*BX2] >= 5) {
                                         printf("Il y a deja une barriere a cet emplacement.\n");
                                     }
                                     else {
