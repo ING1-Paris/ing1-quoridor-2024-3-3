@@ -101,11 +101,13 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
             system("cls");
             i--;
         }else{
-
             //      Test pour voir si la partie doit continuer :
             if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
                 ecranVictoire(JoueurActuel);  //Affiche écran de victoire
                 ajouterPointGagnant(JoueurActuel->pseudo);
+                if(partieCharge){  //Lorsque la partie vient du partie chargé, supprime cette dernière
+                    remove("../sauvegarde.txt");
+                }
                 break;
             }
             if(tourPasse == nombreDeJoueur*2){ //Condition match nul

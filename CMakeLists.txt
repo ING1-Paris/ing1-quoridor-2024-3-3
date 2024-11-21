@@ -24,6 +24,6 @@ add_executable(Benoit_Sergent_ing1_quoridor_2024_groupe3_equipe3
         Mouvement.h
         Sauvegarde.c
         Sauvegarde.h
-        Barrières.c
-        Barrières.h
+        Barrieres.c
+        Barrieres.h
 )

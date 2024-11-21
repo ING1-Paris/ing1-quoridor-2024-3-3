@@ -61,7 +61,7 @@ void sauvegarder_partie(SauvegardePartie* partie) {
     }
 
     // Sauvegarde de l'ordre des joueurs
-    fprintf(fichier, "Ordre chaque joueur :\n");
+    fprintf(fichier, "Ordre de chaque joueur :\n");
     fprintf(fichier, "1er, joueur numéro : %d\n", partie->ordre[0]);
     fprintf(fichier, "2nd, joueur numéro : %d\n", partie->ordre[1]);
     if(partie->nb_joueurs>2){
@@ -70,7 +70,7 @@ void sauvegarder_partie(SauvegardePartie* partie) {
     }
 
     // Sauvegarde du tour actuel
-    fprintf(fichier, "Joueur à qui le tour : %d\n", partie->tour_joueur);
+    fprintf(fichier, "indice du tableau ordre (tour du joueur) : %d\n", partie->tour_joueur);
 
     // Sauvegarde le nombre de tour passés d'affilé
     fprintf(fichier, "Nombre de tour passés : %d\n", partie->tourPasse);
