@@ -37,9 +37,9 @@ bool menuChoisir() {
                     system("cls");
                     executionJeu(menuModeDeJeu(), 0);
                     return 1;
-                case '2'://Continuer partie
+                case '2':
                     system("cls");
-                    executionJeu(menuModeDeJeu(), 1);
+                    //Continuer partie
                     return 1;
                 case '3': //Afficher règles
                     system("cls");
@@ -61,7 +61,7 @@ bool menuChoisir() {
 //Menu pour choisir le mode de jeu
 int menuModeDeJeu() {
     char choix;
-    printf("Choissisez votre mode de jeu :\n");
+    printf("Choisissez votre mode de jeu :\n");
     printf("Tapez 1 : Mode 2 joueurs\n");
     printf("Tapez 2 : Mode 4 joueurs\n");
 
@@ -123,19 +123,19 @@ char menuJeton() {
             choix = _getch();
             switch (choix) {
                 case '1'://Commencer partie
-                    printf("\nVous avez choisit : %c\n", 0x03);
+                    printf("\nVous avez choisi : %c\n", 0x03);
                     sleep(1);
                     return 0x03; // Coeur
                 case '2':
-                    printf("\nVous avez choisit : %c\n", 0x04);
+                    printf("\nVous avez choisi : %c\n", 0x04);
                     sleep(1);
                     return 0x04; // Carreau
                 case '3': //Afficher règles
-                    printf("\nVous avez choisit : %c\n", 0x05);
+                    printf("\nVous avez choisi : %c\n", 0x05);
                     sleep(1);
                     return 0x05; // Trèfle
                 case '4': //Afficher score
-                    printf("\nVous avez choisit : %c\n", 0x06);
+                    printf("\nVous avez choisi : %c\n", 0x06);
                     sleep(1);
                     return 0x06; // Pique
             }
@@ -161,7 +161,7 @@ void reglesAfficher() {
     printf("1. Le jeu se joue sur un plateau de 9x9 cases.\n");
     printf("2. Chaque joueur commence au centre de sa premiere ligne.\n");
     printf("3. Les joueurs se deplacent d'une case a la fois (verticalement ou horizontalement).\n");
-    printf("4. Chaque joueur dispose de barrieres qui empecheny les autres joueurs d'avancer lorsqu'ils se trouvent devant.\n");
+    printf("4. Chaque joueur dispose de barrieres qui empechent les autres joueurs d'avancer lorsqu'ils se trouvent devant.\n");
     printf("5. Chaque joueur dispose de 10 barrieres pour une partie a 2 joueurs ou 5 barrieres s'il y a 4 joueurs.\n");
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
