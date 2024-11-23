@@ -39,7 +39,13 @@ bool menuChoisir() {
                     return 1;
                 case '2'://Continuer partie
                     system("cls");
-                    executionJeu(menuModeDeJeu(), 1);
+                    FILE *fichier = fopen("../sauvegarde.txt", "r");
+                    if(fichier == NULL){
+                        printf("Erreur : Il n'y a pas de sauvegarde.\n");
+                        sleep(2);
+                    }else{
+                        executionJeu(0, 1);
+                    }
                     return 1;
                 case '3': //Afficher règles
                     system("cls");

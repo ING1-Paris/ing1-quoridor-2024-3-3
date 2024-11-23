@@ -1,0 +1,36 @@
+Plateau :
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Nombre de joueurs : 2
+Pseudos des joueurs :
+Joueur 1 : eeeeeeeeee
+Joueur 2 : aaaaaaaaa
+Positions des joueurs :
+Joueur 1 : (0, 8)
+Joueur 2 : (16, 8)
+Barrières restantes pour chaque joueur :
+Joueur 1 : 10 barrières restantes
+Joueur 2 : 10 barrières restantes
+Jetons de chaque joueur :
+Jeton joueur 1 : 4
+Jeton joueur 2 : 5
+Ordre de chaque joueur :
+1er, joueur numéro : 2
+2nd, joueur numéro : 1
+indice du tableau ordre (tour du joueur) : 0
+Nombre de tour passés : 0

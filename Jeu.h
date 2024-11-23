@@ -2,6 +2,11 @@
 #define BENOIT_SERGENT_ING1_QUORIDOR_2024_GROUPE3_EQUIPE3_JEU_H
 #include <stdbool.h>
 
+#define ROUGE 12
+#define BLEU 9
+#define JAUNE 14
+#define VERT 10
+
 typedef struct {
     int x;         // Coordonnée x du joueur sur le plateau
     int y;         // Coordonnée y du joueur sur le plateau

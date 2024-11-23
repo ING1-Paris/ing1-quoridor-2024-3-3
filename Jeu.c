@@ -4,21 +4,20 @@
 #include "Actions.h"
 #include "Plateau.h"
 #include "ScoreCalcul.h"
+#include "Sauvegarde.h"
+#include "Chargement.h"
+
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include "Sauvegarde.h"
 
-#define ROUGE 12
-#define BLEU 9
-#define JAUNE 14
-#define VERT 10
-#define BLANC 15
-
+//Fonction qui permet de décider de l'aléatoire pour l'ordre des joueurs
 void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
     int choix;
     srand(time(NULL));
     choix = rand();
+
+    //Cas où il y a seulement deux joueurs :
     if (nombredejoueurs == 2) {
         if (choix % 10 < 5) {
             ordrealeatoire[0] = 1;
@@ -29,7 +28,8 @@ void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
             ordrealeatoire[1] = 1;
         }
     }
-    if (nombredejoueurs == 4) {
+    //Cas où il y a 4  joueurs : (On fait une boucle afin de vérifier que l'on n'ait pas 2 fois le même joueur)
+    else if (nombredejoueurs == 4) {
         for (int i = 0; i < 4; i++) {
             do {
                 choix = rand();
@@ -53,22 +53,33 @@ void aleatoire(int nombredejoueurs, int ordrealeatoire[nombredejoueurs]) {
 
 // Fonction qui exécute le jeu et qui correspond à la boucle de jeu
 void executionJeu(int nombreDeJoueur, bool partieCharge) {
-    //DECLARATION
 
+    //DECLARATION
     int plateau[17][17] = {{0}}; // matrice[colonne][ligne] : 9 cases Joueur, 8 cases barrières
     //éléments en fonction du chiffre :
     // 1 = J1; 2 = J2; 3 = J3; 4 = J4; 5 = barrière horizontale; 6 = barrière verticale 7 = barrière en croix
     Joueur J1, J2, J3, J4; //Déclaration des joueurs
     char pseudo[4][21]; // Tableaux pour stocker les pseudos
     char jeton[4]; // Tableaux pour stocker les jetons
-    int ordre[nombreDeJoueur];
-    int tourPasse;
-    int tour;
+    int ordre[nombreDeJoueur]; // Déclaration du tableau pour l'odre des joueurs
+    int tourPasse; // Déclaration de tour passées
+    int tour;  // Déclaration du tour auquel la partie commence
 
     //INITIALISATION
     if(partieCharge){
-        //Chargement
+        //Initialisation de la données dans laquelle on mettra les éléments de la sauvegarde
+        SauvegardePartie partie;
+
+        //Vérifie que la sauvegarde soit chargé
+        if(charger_sauvegarde(&partie)){
+            charger_partie(plateau, &nombreDeJoueur, &tour, &J1, &J2, &J3, &J4, jeton, ordre, &tourPasse, partie);
+        }else{ //Si elle n'est pas chargé, renvoie au menu
+            system("cls");
+            printf("Erreur : impossible de charger la sauvegarde");
+            return;
+        }
     }else{
+        //Initialisation du Jeu
         initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
         menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
         J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1, BLEU);
@@ -93,7 +104,7 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
         //      Partie action du joueur :
         char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') {
-            SauvegardePartie partie = iniPartie(plateau, nombreDeJoueur, tour, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
+            SauvegardePartie partie = iniSauvegarde(plateau, nombreDeJoueur, tour, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
             sauvegarder_partie(&partie);
             break;
         } else if(action == 'E'){
@@ -105,8 +116,13 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
             if (conditionVictoire(ordre[i], JoueurActuel, nombreDeJoueur)) {  //Condition victoire
                 ecranVictoire(JoueurActuel);  //Affiche écran de victoire
                 ajouterPointGagnant(JoueurActuel->pseudo);
-                if(partieCharge){  //Lorsque la partie vient du partie chargé, supprime cette dernière
-                    remove("../sauvegarde.txt");
+                if(partieCharge){
+                    //Lorsque la partie vient du partie chargé, supprime cette dernière
+                    if(remove("../sauvegarde.txt") !=0){
+                        system("cls");
+                        printf("Erreur : la supression de la sauvegarde ne fonctionne pas.\n");
+                        sleep(2);
+                    }
                 }
                 break;
             }

@@ -2,18 +2,6 @@
 #include "Plateau.h"
 #include "Actions.h"
 
-#define Cases 9     // nombre de cases par lignes/colonnes
-#define BarreH 0xCD // Barres Horizontales
-#define BarreV 0xBA // Barres Verticales
-#define BarreC 0xCE // Barres Croix
-#define Espace 0x20 // Espace
-
-#define ROUGE 12
-#define BLEU 9
-#define JAUNE 14
-#define VERT 10
-#define BLANC 15
-
 //Fonction qui affiche les bords inférieur et supérieur du plateau
 void afficherBord(int angleDebut, int angleFin, int intersection, int ligne, int tableau[17][17]) {
     printf("\n   ");     //Décalage pour les lettres
