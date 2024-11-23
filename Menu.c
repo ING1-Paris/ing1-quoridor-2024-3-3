@@ -37,9 +37,9 @@ bool menuChoisir() {
                     system("cls");
                     executionJeu(menuModeDeJeu(), 0);
                     return 1;
-                case '2':
+                case '2'://Continuer partie
                     system("cls");
-                    //Continuer partie
+                    executionJeu(menuModeDeJeu(), 0);
                     return 1;
                 case '3': //Afficher règles
                     system("cls");
