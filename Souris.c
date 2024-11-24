@@ -5,6 +5,7 @@
 #include "Actions.h"
 #include "Jeu.h"
 
+//Fonctions qui catpure les coordonnées X et Y pour le déplacement du joueurs
 int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
@@ -57,6 +58,7 @@ int souris_joueurs(int positionValide[6][2], int* X, int* Y) {
     return 0;
 }
 
+//Fonctions qui catpure les coordonnées X et Y pour le placement des barrières
 int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]) {
     // Ouvrir un handle pour l'entrée de la console
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
@@ -212,6 +214,25 @@ int souris_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]
     return 0;
 }
 
+void definitioncoordonneesXY(int* Xsouris, int* Ysouris, int* X, int* Y) {
+    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des barrieres
+        if (3 + 5*i == *Xsouris) {
+            *X = 2*i - 1;
+        }
+    }
+    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des joueurs
+        if (4 + 5*i <= *Xsouris && *Xsouris <= 7 + 5*i) {
+            *X = 2*i;
+        }
+    }
+    for (int i = 0; i < 16; i++) { // Récupération du Y des coordonnees de la barriere
+        if (3 + i == *Ysouris) {
+            *Y = 1 + i;
+        }
+    }
+}
+
+/*
 int remplacer_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][17]) {
 
     // Ouvrir un handle pour l'entrée de la console
@@ -298,22 +319,4 @@ int remplacer_barrieres(int* BX1, int* BY1, int* BX2, int* BY2, int plateau[17][
     }
     return 0;
 }
-
-
-void definitioncoordonneesXY(int* Xsouris, int* Ysouris, int* X, int* Y) {
-    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des barrieres
-        if (3 + 5*i == *Xsouris) {
-            *X = 2*i - 1;
-        }
-    }
-    for (int i = 0; i < 16; i++) { // Récupération du X des coordonnees de la barriere si elle est au niveau des joueurs
-        if (4 + 5*i <= *Xsouris && *Xsouris <= 7 + 5*i) {
-            *X = 2*i;
-        }
-    }
-    for (int i = 0; i < 16; i++) { // Récupération du Y des coordonnees de la barriere
-        if (3 + i == *Ysouris) {
-            *Y = 1 + i;
-        }
-    }
-}
+*/

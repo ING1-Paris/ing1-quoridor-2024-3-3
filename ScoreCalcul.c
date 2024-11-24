@@ -36,6 +36,7 @@ void ajouterJoueur(const char *pseudo) {
     fclose(pf);
 }
 
+//Fonction qui intialise le score d'un joueur
 void initialisationScore(Joueur* J) {
     int scoreJoueur = chercherScoreJoueur(J->pseudo);
     if (scoreJoueur == -1) {

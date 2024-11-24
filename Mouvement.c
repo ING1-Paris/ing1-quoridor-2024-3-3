@@ -13,6 +13,7 @@ bool presenceObjet(int Y, int X, int plateau[17][17]){
     return plateau[Y][X] > 0;
 }
 
+//Vérifie qu'il n'y ait pas de doublon dans les positions
 bool doublon(int Y, int X, int positionValide[6][2], int nombreElements){
     for(int i = 0; i < nombreElements; i++){
         if(positionValide[i][0] == Y && positionValide[i][1] == X){
@@ -25,9 +26,9 @@ bool doublon(int Y, int X, int positionValide[6][2], int nombreElements){
 //Ajoute les coordonnées dans positionValide
 void ajouterTableau(int Y, int X, int positionValide[6][2], int *nombreElements){
     if(!doublon(Y, X, positionValide, *nombreElements)){
-        *nombreElements += 1;
         positionValide[*nombreElements][0] = Y;
         positionValide[*nombreElements][1] = X;
+        *nombreElements += 1;
     }
 }
 
@@ -101,26 +102,27 @@ void ChercherPositionsPlateau(int plateau[17][17], int positionValide[6][2], int
 }
 
 //Trouve toutes les cases valides pour un joueur
-int trouverCasesValides(Joueur* J, int plateau[17][17], int positionValide[6][2]) {
-    int nombreElements = 0;
-    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, -1, 0); //Cherche les positions en Haut
-    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, 1, 0); //Cherche les positions en Bas
-    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, 0, -1); //Cherche les positions à gauche
-    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, J->y, J->x, 0, 1); //Cherche les positions à droite
-    return nombreElements;
+int trouverCasesValides(int X, int Y, int plateau[17][17], int positionValide[6][2]) {
+    int nombreElements = 0; //Initialise le nombre de cases valides
+    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, Y, X, -1, 0); //Cherche les positions en Haut
+    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, Y, X, 1, 0); //Cherche les positions en Bas
+    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, Y, X, 0, -1); //Cherche les positions à gauche
+    ChercherPositionsPlateau(plateau, positionValide, &nombreElements, Y, X, 0, 1); //Cherche les positions à droite
+    return nombreElements; //renvoie le nombre de cases valide
 }
 
+//Fonction pour déplacer le joueur
 bool deplacerJoueur(Joueur* J, int plateau[17][17], int anciennePosition[2]){
     int positionValide[6][2] = {{-1}}; // 6 : correspond nombre maximal de cases, 2 : Y et X
-    int nmbCases = trouverCasesValides(J, plateau, positionValide);
+    int nmbCases = trouverCasesValides(J->x, J->y, plateau, positionValide);
     if (nmbCases == 0) {
         return 0; //Erreur, aucune cases valides
     }
     printf("\n\n   Cliquez sur la case que vous souhaitez selectionner...");
     int newXJ = 0, newYJ = 0;
-    souris_joueurs(positionValide, &newXJ, &newYJ);
+    souris_joueurs(positionValide, &newXJ, &newYJ); //Renvoie les coordonnées choisit par le joueur
     J->y = newYJ;
     J->x = newXJ;
-    actuPlateauMouv(J, anciennePosition, plateau);
+    actuPlateauMouv(J, anciennePosition, plateau); //Actualise le plateau avec les nouvelles positions du joueur
     return 1;
 }

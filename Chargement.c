@@ -103,27 +103,40 @@ SauvegardePartie iniChargement(FILE* fichier){
 // FONCTION POUR CHARGER UNE PARTIE
 void charger_partie(int plateau[17][17], int* nombreDeJoueur, int* tour, Joueur*J1, Joueur*J2, Joueur*J3, Joueur*J4,
                     char jeton[4], int ordre[*nombreDeJoueur], int* tourPasse, SauvegardePartie partie){
+
+    //Charge le plateau
     for (int x = 0; x < 17; x++) {
         for (int y = 0; y < 17; y++) {
             plateau[x][y] = partie.plateau[x][y];
         }
     }
+    //Charge le nombre de joueurs
     *nombreDeJoueur = partie.nb_joueurs ;
+
+    //Charge le tour
     *tour = partie.tour_joueur;
 
+    //Charge les Joueurs
     *J1 = attribuerJoueur(partie.J1, 1, BLEU);
     *J2 = attribuerJoueur(partie.J2, 2, ROUGE);
     if(*nombreDeJoueur > 2){
         *J3 = attribuerJoueur(partie.J3, 3, JAUNE);
         *J4 = attribuerJoueur(partie.J4, 4, VERT);
     }
+
+    //Charge les jetons
     strcpy(jeton, partie.jeton);
+
+    //Charge l'ordre
     for (int i = 0; i < *nombreDeJoueur; i++) {
         ordre[i] = partie.ordre[i];
     }
+
+    //Charge le nombre de tour passées
     *tourPasse = partie.tourPasse;
 }
 
+//Fonction pour charger les données de la sauvegarde dans un joueur
 Joueur attribuerJoueur(Joueur Jsource, int numero, int couleur){
     Joueur J = Jsource;
     J.numero = numero;

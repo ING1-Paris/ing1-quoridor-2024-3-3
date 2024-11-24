@@ -31,7 +31,7 @@ bool menuChoisir() {
     char choix;
     do{
         if (_kbhit()) {  // Vérifie si une touche a été pressée
-            choix = _getch();
+            choix = _getch(); //Récupère la touche saisie par le clavier dans choix
             switch (choix) {
                 case '1'://Commencer partie
                     system("cls");
@@ -40,7 +40,7 @@ bool menuChoisir() {
                 case '2'://Continuer partie
                     system("cls");
                     FILE *fichier = fopen("../sauvegarde.txt", "r");
-                    if(fichier == NULL){
+                    if(fichier == NULL){ //Vérifie qu'il y a un fichier de sauvegarde avant de faire continuer
                         printf("Erreur : Il n'y a pas de sauvegarde.\n");
                         sleep(2);
                     }else{
@@ -62,8 +62,6 @@ bool menuChoisir() {
     }while(1);
 }
 
-
-
 //Menu pour choisir le mode de jeu
 int menuModeDeJeu() {
     char choix;
@@ -72,7 +70,7 @@ int menuModeDeJeu() {
     printf("Tapez 2 : Mode 4 joueurs\n");
 
     do{
-        choix = _getch();
+        choix = _getch(); //Récupère le touche saisie par le joueur dans choix
         if(choix == '1') { //Mode 2 joueur
             printf("\nVous avez choisi le mode 2 joueurs.");
             sleep(1);
@@ -105,6 +103,7 @@ void menuPseudo(int numero, char pseudo[numero + 1][21]) {
         fgets(pseudo[numero], 21, stdin);
         pseudo[numero][strcspn(pseudo[numero], "\n")] = '\0'; // Suppression du '\n'
         for (int i = 0; i < numero; i++) {
+            //Vérifie que le pseudo ne soit pas écrit en double
             if (!strcmp(pseudo[numero], pseudo[i])) {
                 printf("Erreur, ce pseudo est deja inscrit.\n");
                 duplicationPseudo = 1;
@@ -149,8 +148,6 @@ char menuJeton() {
     }while(1);
 }
 
-// Fonction pour Continuer la partie du Quoridor
-
 // Fonction pour afficher les règles du Quoridor
 void reglesAfficher() {
 
@@ -172,6 +169,7 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
+    printf("9. Si la partie est bloquée, par l'inaction des joueurs ou par un blocage complet des barrières, il y a match nul.\n");
     printf("\n************************************************\n\n");
     system("pause");
 }

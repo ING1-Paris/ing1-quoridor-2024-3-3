@@ -17,6 +17,7 @@ typedef struct {
 
 SauvegardePartie iniSauvegarde(int plateau[17][17], int nombreDeJoueur, int tour, Joueur*J1, Joueur*J2, Joueur*J3, Joueur*J4,
                            char jeton[4], int ordre[nombreDeJoueur], int tourPasse);
-void sauvegarder_partie(SauvegardePartie* partie);
+bool sauvegarder_partie(SauvegardePartie* partie);
+void supprSauvegarde();
 
 #endif //SAUVEGARDE_H

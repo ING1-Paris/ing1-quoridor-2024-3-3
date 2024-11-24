@@ -122,23 +122,24 @@ void afficher_interligne(int tableau[17][17], int ligne, char lettre, char Jeton
 
 //Fonctions qui gère les sous-programmes afin d'afficher le plateau
 void affichagePlateau(int ligne, int plateau[17][17], char Jetons[4]) {
-    if (ligne == 0) {
+    if (ligne == 0) {  //Affiche le Haut
         printf(" ");
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 10; i++) { //Affiche les chiffres en haut du plateau
             printf("    %d", i);
         }
-        afficherBord(0xC9, 0xBB, 0xCB, 0, plateau);
+        afficherBord(0xC9, 0xBB, 0xCB, 0, plateau); //Affiche le bord Haut
     }
-    else if (ligne == 9) {
-        afficher_interligne(plateau, 8, 'I', Jetons);
-        afficherBord(0xC8, 0xBC, 0xCA, 8, plateau);
+    else if (ligne == 9) { //Affiche le  Bas
+        afficher_interligne(plateau, 8, 'I', Jetons); //Affiche les lettres à gauche du plateau
+        afficherBord(0xC8, 0xBC, 0xCA, 8, plateau); //Affiche le bord Bas
     }
-    else {
-        afficher_interligne(plateau, ligne - 1, 'A' + ligne - 1, Jetons);
-        afficher_ligne(plateau, ligne - 1);
+    else { //Affiche le milieu
+        afficher_interligne(plateau, ligne - 1, 'A' + ligne - 1, Jetons); //Affiche les lettres à gauche du plateau
+        afficher_ligne(plateau, ligne - 1); //Affiche les lignes
     }
 }
 
+//Fonction qui initialise le plateau en début de partie
 void initialiserPlateau(int plateau[17][17], int nombreDeJoueur) {
     plateau[8][0] = 1; // Positionne le Joueur 1 sur le bord gauche au milieu
     plateau[8][16] = 2; // Positionne le Joueur 2 sur le bord droit au milieu
@@ -149,6 +150,7 @@ void initialiserPlateau(int plateau[17][17], int nombreDeJoueur) {
     }
 }
 
+//Fonction qui actualise le plateau avec les nouvelles positions du joueur
 void actuPlateauMouv(Joueur* J, const int anciennePosition[2], int plateau[17][17]){
     plateau[J->y][J->x] = J->numero;
     plateau[anciennePosition[0]][anciennePosition[1]] = 0;
@@ -158,24 +160,21 @@ void actuPlateauMouv(Joueur* J, const int anciennePosition[2], int plateau[17][1
 void ajouterBarriere(int plateau[17][17], int X1, int Y1, int X2, int Y2){
     int typeBarriere;
 
-    if (Y1 == Y2){
-        typeBarriere = 5;
+    if (Y1 == Y2){ //Vérifie que la barrière soit horizontale
+        typeBarriere = 5; //Met une barrière horizontale
     }else{
-        typeBarriere = 6;
+        typeBarriere = 6; //Met une barrière verticale
     }
 
-    plateau[Y1][X1] = typeBarriere;
+    plateau[Y1][X1] = typeBarriere; //Initialise la matrice avec les barrières
     plateau[Y2][X2] = typeBarriere;
 
-    int intersectionY = (Y1 + Y2)/2;
+    int intersectionY = (Y1 + Y2)/2; //Initialise l'intersection entre les deux barrières
     int intersectionX = (X1 + X2)/2;
-    /**
-    int intersectionGaucheY = intersectionY -
-    int intersectionGaucheX = (X1 + X2)/2;
-    int intersectionDroiteY = (Y1 + Y2)/2;
-    int intersectionDroiteX = (X1 + X2)/2;
-    **/
+
+    //Initialise la matrice avec l'intersection
     if(plateau[intersectionY][intersectionX] >= 5){
+        //S'il y a déjà une barrière, met une barrière en croix
         plateau[intersectionY][intersectionX] = 7;
     }else{
         plateau[intersectionY][intersectionX] = typeBarriere;

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "unistd.h"
 #include "Sauvegarde.h"
 #include "Jeu.h"
 
@@ -10,11 +11,11 @@
 #define VERT 10
 
 // FONCTION POUR SAUVEGARDER UNE PARTIE EN COURS
-void sauvegarder_partie(SauvegardePartie* partie) {
+bool sauvegarder_partie(SauvegardePartie* partie) {
     FILE* fichier = fopen("../sauvegarde.txt", "w");
     if (fichier == NULL) {
         printf("Erreur d'ouverture du fichier.\n");
-        return;
+        return 0;
     }
 
     // Sauvegarde du plateau
@@ -81,32 +82,50 @@ void sauvegarder_partie(SauvegardePartie* partie) {
     fprintf(fichier, "Nombre de tour passés : %d\n", partie->tourPasse);
 
     fclose(fichier);
-    printf("Partie sauvegardée avec succès.\n");
+    return 1;
 }
 
 // Fonction pour insérer les élements de la partie dans "partie"
 SauvegardePartie iniSauvegarde(int plateau[17][17], int nombreDeJoueur, int tour, Joueur*J1, Joueur*J2, Joueur*J3, Joueur*J4, char jeton[4], int ordre[nombreDeJoueur], int tourPasse){
     SauvegardePartie P;
+
+    //Sauvegarde le plateau dans la sauvegarde
     for (int x = 0; x < 17; x++) {
         for (int y = 0; y < 17; y++) {
             P.plateau[x][y] = plateau[x][y];
         }
     }
+    //Sauvegarde le nombre de joueur dans la sauvegarde
     P.nb_joueurs = nombreDeJoueur;
+    //Sauvegarde le tour dans la sauvegarde
     P.tour_joueur = tour;
+
+    //Sauvegarde les éléments des joueurs  dans la sauvegarde
     P.J1 = *J1;
     P.J2 = *J2;
     if(nombreDeJoueur > 2){
         P.J3 = *J3;
         P.J4 = *J4;
     }
+
+    //Sauvegarde les jetons dans la sauvegarde
     strcpy(P.jeton, jeton);
+
+    //Sauvegarde l'ordre dans la sauvegarde
     for (int i = 0; i < nombreDeJoueur; i++) {
         P.ordre[i] = ordre[i];
     }
+    //Sauvegarde le nombre de tour passées dans la sauvegarde
     P.tourPasse = tourPasse;
     return P;
 }
 
-
-
+//Fonction pour supprimer une sauvegarde
+void supprSauvegarde(){
+    //Lorsque la partie vient du partie chargé, supprime cette dernière
+    if(remove("../sauvegarde.txt") !=0){
+        system("cls");
+        printf("Erreur : la supression de la sauvegarde ne fonctionne pas.\n");
+        sleep(2);
+    }
+}

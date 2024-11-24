@@ -6,6 +6,7 @@
 #include "ScoreCalcul.h"
 #include "Sauvegarde.h"
 #include "Chargement.h"
+#include "Barrieres.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -82,32 +83,44 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
         //Initialisation du Jeu
         initialiserPlateau(plateau, nombreDeJoueur); //Initialise les joueurs sur le plateau
         menuPersonnalisation(nombreDeJoueur, jeton, pseudo); //Initialise jetons et pseudo afin de les remplir
+
+        //Initialisation des joueurs
         J1 = initialiserJoueur(0, 8, pseudo[0], jeton[0], nombreDeJoueur, 1, BLEU);
         J2 = initialiserJoueur(16, 8, pseudo[1], jeton[1], nombreDeJoueur, 2, ROUGE);
         if(nombreDeJoueur>2) {
-            J2.x = 8;
+            J2.x = 8; //Pour avoir le J2 en haut lorsqu"il y a 4 joueurs
             J2.y = 0;
             J3 = initialiserJoueur(16, 8, pseudo[2], jeton[2], nombreDeJoueur, 3, JAUNE);
             J4 = initialiserJoueur(8, 16, pseudo[3], jeton[3], nombreDeJoueur, 4, VERT);
         }
+
+        //Initialisation ordre du jeu
         aleatoire(nombreDeJoueur, ordre);
+
+        //Initialisation variables
         tourPasse = 0;
         tour = 0;
     }
 
+    //BOUCLE DE JEU
     for(int i = tour;; i = (i + 1) % nombreDeJoueur) {
+        //Définit le joueur actuel
         Joueur* JoueurActuel = ordreJoueur(&J1, &J2, &J3, &J4, ordre[i]);
 
         //1er Affichage du Jeu
         affichageJeu(plateau, jeton, nombreDeJoueur, JoueurActuel);
 
         //      Partie action du joueur :
-        char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton); //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
-        if (action == 'S') {
+        char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton);
+        //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
+        if (action == 'S') { //Sauvegarde la partie
             SauvegardePartie partie = iniSauvegarde(plateau, nombreDeJoueur, tour, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
-            sauvegarder_partie(&partie);
+            if(sauvegarder_partie(&partie)==0){
+                system("cls");
+                printf("Erreur : Impossible de sauvegarder la partie.\n");
+            }
             break;
-        } else if(action == 'E'){
+        } else if(action == 'E'){ //Message d'erreur
             sleep(2);
             system("cls");
             i--;
@@ -117,17 +130,15 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
                 ecranVictoire(JoueurActuel);  //Affiche écran de victoire
                 ajouterPointGagnant(JoueurActuel->pseudo);
                 if(partieCharge){
-                    //Lorsque la partie vient du partie chargé, supprime cette dernière
-                    if(remove("../sauvegarde.txt") !=0){
-                        system("cls");
-                        printf("Erreur : la supression de la sauvegarde ne fonctionne pas.\n");
-                        sleep(2);
-                    }
+                    supprSauvegarde();
                 }
                 break;
             }
-            if(tourPasse == nombreDeJoueur*2){ //Condition match nul
+            if(tourPasse == nombreDeJoueur*2 || blocage(&J1, &J2, &J3, &J4, plateau, nombreDeJoueur)){ //Condition match nul
                 ecranMatchNul(); //Affiche écran de match nul
+                if(partieCharge){
+                    supprSauvegarde();
+                }
                 break;
             }
         }
@@ -137,13 +148,15 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
 // Fonction pour initialiser un joueur
 Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJoueur, int numero, int couleur) {
     Joueur J;
-    J.x = x;   // placement du joueur 1 en bas au milieu
+    J.x = x;   // placement du joueur
     J.y = y;
-    strcpy(J.pseudo, pseudo);
-    J.jeton = jeton;
-    J.numero = numero;
-    J.couleur = couleur;
-    initialisationScore(&J);
+    strcpy(J.pseudo, pseudo); // initialisation pseudo du joueur
+    J.jeton = jeton; // initialisation du jeton du joueur
+    J.numero = numero; // initialisation du numéro du joueur
+    J.couleur = couleur; // initialisation de la couleur du joueur
+    initialisationScore(&J); // initialisation du score du joueur
+
+    // initialisation des barrières du joueur
     if(nombreDeJoueur ==2) {
         J.nb_barrieres = 10;
     }
@@ -153,6 +166,7 @@ Joueur initialiserJoueur(int x, int y, char pseudo[], char jeton, int nombreDeJo
     return J;
 }
 
+//Fonction afin de renvoyer le Joueur qui joue
 Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int ordre) {
     if(ordre== 1) {
         return J1;
@@ -168,6 +182,7 @@ Joueur* ordreJoueur(Joueur* J1, Joueur* J2, Joueur* J3, Joueur* J4, int ordre) {
     }
 }
 
+//Fonction vérifie si un jour à gagné
 bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur) {
     switch (tour) {
         case 1: //Condition Victoire J1
@@ -197,6 +212,7 @@ bool conditionVictoire(int tour, Joueur* J, int nombreDeJoueur) {
     return 0; //Condition de non-Victoire
 }
 
+//Fonction pour afficher l'écran de victoire
 void ecranVictoire(Joueur* J){
     system("cls");
     printf("__     ___      _        _            _   _   _ \n");
@@ -208,6 +224,7 @@ void ecranVictoire(Joueur* J){
     sleep(3);
 }
 
+//Fonction pour afficher l'écran de match nul
 void ecranMatchNul(){
     system("cls");
     printf(" __  __       _       _                   _             \n");
