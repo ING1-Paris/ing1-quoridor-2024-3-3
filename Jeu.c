@@ -114,7 +114,7 @@ void executionJeu(int nombreDeJoueur, bool partieCharge) {
         char action = actionsJoueurs(JoueurActuel, plateau, &tourPasse, nombreDeJoueur, jeton);
         //Renvoie S si le joueur interromp la partie, E s'il fait une erreur, N si match nul
         if (action == 'S') { //Sauvegarde la partie
-            SauvegardePartie partie = iniSauvegarde(plateau, nombreDeJoueur, tour, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
+            SauvegardePartie partie = iniSauvegarde(plateau, nombreDeJoueur, i, &J1, &J2, &J3, &J4, jeton, ordre, tourPasse);
             if(sauvegarder_partie(&partie)==0){
                 system("cls");
                 printf("Erreur : Impossible de sauvegarder la partie.\n");

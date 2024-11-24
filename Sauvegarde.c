@@ -123,9 +123,7 @@ SauvegardePartie iniSauvegarde(int plateau[17][17], int nombreDeJoueur, int tour
 //Fonction pour supprimer une sauvegarde
 void supprSauvegarde(){
     //Lorsque la partie vient du partie chargé, supprime cette dernière
-    if(remove("../sauvegarde.txt") !=0){
-        system("cls");
-        printf("Erreur : la supression de la sauvegarde ne fonctionne pas.\n");
-        sleep(2);
+    if(remove("../sauvegarde.txt") ==0){
+
     }
 }
