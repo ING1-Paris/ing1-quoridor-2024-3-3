@@ -169,7 +169,7 @@ void reglesAfficher() {
     printf("6. Les barrieres ne doivent pas completement bloquer l'acces a la ligne d'arrivee.\n");
     printf("7. Si un joueur est directement en face de l'autre, il peut sauter par-dessus lui.\n");
     printf("8. Le joueur peut soit se deplacer, soit placer une barriere a chaque tour.\n");
-    printf("9. Si la partie est bloquée, par l'inaction des joueurs ou par un blocage complet des barrières, il y a match nul.\n");
+    printf("9. Si la partie est bloquee, par l'inaction des joueurs ou par un blocage complet des barrieres, il y a match nul.\n");
     printf("\n************************************************\n\n");
     system("pause");
 }
